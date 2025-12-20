@@ -136,9 +136,16 @@ async function updateGitHubStats() {
                 item.className = 'activity-item';
                 const title = star.name || '';
                 const desc = star.description || '';
+                const owner = star.owner || 'Unknown';
+                const starsCount = star.stars !== undefined ? star.stars : 0;
+                
                 item.innerHTML = `
                     <div class="activity-content">
                         <a class="activity-link" href="${star.url}" target="_blank" rel="noreferrer">${title}</a>
+                        <div class="activity-meta">
+                            <span class="meta-item"><i class="fas fa-user"></i> ${owner}</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> ${starsCount}</span>
+                        </div>
                         <p class="activity-desc">${desc}</p>
                     </div>
                     <div class="activity-info">
