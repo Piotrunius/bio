@@ -5,26 +5,6 @@ let analyser = null;
 let audioPlaying = false;
 const githubUsername = 'Piotrunius';
 
-// --- DATA: Setup & Gear (Hardcoded for stability) ---
-const setupData = {
-    pc: [
-        { icon: 'microchip', label: 'CPU', value: 'Intel Core i5-13400F', url: 'https://www.google.com/search?q=Intel+Core+i5-13400F' },
-        { icon: 'video', label: 'GPU', value: 'Nvidia GeForce RTX 4060 Ti (16GB)', url: 'https://www.google.com/search?q=Nvidia+GeForce+RTX+4060+Ti' },
-        { icon: 'network-wired', label: 'Motherboard', value: 'Gigabyte B760 GAMING X DDR4', url: 'https://www.google.com/search?q=Gigabyte+B760+GAMING+X+DDR4' },
-        { icon: 'memory', label: 'RAM', value: 'Kingston Fury Beast RGB (32GB DDR4)', url: 'https://www.google.com/search?q=Kingston+Fury+Beast+RGB+DDR4' },
-        { icon: 'hard-drive', label: 'Storage', value: 'Samsung 980 NVMe (1TB) + Seagate (2TB HDD)', urls: ['https://www.google.com/search?q=Samsung+980+NVMe+SSD', 'https://www.google.com/search?q=Seagate+2TB+HDD'] },
-        { icon: 'bolt', label: 'PSU', value: 'Endorfy Vero L5 Bronze (700W)', url: 'https://www.google.com/search?q=Endorfy+Vero+L5+Bronze+700W' }
-    ],
-    gear: [
-        { icon: 'display', label: 'Displays', value: 'Lenovo L2251p (75Hz) + AOC 27G2G8 (240Hz)', urls: ['https://www.google.com/search?q=Lenovo+L2251p', 'https://www.google.com/search?q=AOC+27G2G8+240Hz'] },
-        { icon: 'keyboard', label: 'Keyboard', value: 'Dark Project Terra Nova (Wireless)', url: 'https://www.google.com/search?q=Dark+Project+Terra+Nova+keyboard' },
-        { icon: 'mouse', label: 'Mouse', value: 'Dark Project Novus (Wireless)', url: 'https://www.google.com/search?q=Dark+Project+Novus+mouse' },
-        { icon: 'microphone', label: 'Microphone', value: 'Fifine AM8 RGB', url: 'https://www.google.com/search?q=Fifine+AM8+RGB+microphone' },
-        { icon: 'headset', label: 'Headphones', value: 'SteelSeries Arctis 9 (Wireless)', url: 'https://www.google.com/search?q=SteelSeries+Arctis+9+wireless' },
-        { icon: 'vr-cardboard', label: 'VR', value: 'Meta Quest 3 (128GB)', url: 'https://www.google.com/search?q=Meta+Quest+3+128GB' }
-    ]
-};
-
 // --- DATA: Profile & Socials ---
 function getDefaultConfig() {
     return {
@@ -102,153 +82,70 @@ function initMusicMeta() {
     if (artistEl) artistEl.textContent = config.music?.artist || '';
 }
 
-// --- CORE FUNCTION: Render Activity Feed (20 items, specific fields) ---
-async function updateGitHubStats() {
-    const projectsEl = document.getElementById('stat-projects');
-    const commitsEl = document.getElementById('stat-commits');
-    const starsEl = document.getElementById('stat-stars');
-    const lastUpdateEl = document.getElementById('stats-last-update');
-    const activityStarsEl = document.getElementById('activity-stars');
-    const activityCommitsEl = document.getElementById('activity-commits');
-
+// --- CORE FUNCTION: Render Activity Feed (User's Requested Logic) ---
+async function updateGitHubActivity() {
     try {
         let response = await fetch('github-stats.json?t=' + Date.now());
         if (!response.ok) {
             response = await fetch('assets/github-stats.json?t=' + Date.now());
         }
-        const stats = await response.json();
-        const summary = stats.summary || {};
+        const data = await response.json();
 
-        // 1. Render Summary Stats
-        if (projectsEl) projectsEl.textContent = summary.projects || '0';
-        if (starsEl) starsEl.textContent = summary.starredCount || '0';
-        if (commitsEl) commitsEl.textContent = summary.commits || '0';
+        // Update Summary Stats if elements exist
+        const projectsEl = document.getElementById('stat-projects');
+        const commitsEl = document.getElementById('stat-commits');
+        const starsEl = document.getElementById('stat-stars');
+        const lastUpdateEl = document.getElementById('stats-last-update');
         
-        if (lastUpdateEl && stats.lastUpdate) {
-            lastUpdateEl.textContent = `Last updated: ${formatPLDateTime(stats.lastUpdate)}`;
+        if (data.summary) {
+            if (projectsEl) projectsEl.textContent = data.summary.projects || '0';
+            if (starsEl) starsEl.textContent = data.summary.starredCount || '0';
+            if (commitsEl) commitsEl.textContent = data.summary.commits || '0';
         }
 
-        // 2. Render Recent Starred (Top 20)
-        if (activityStarsEl && stats.starred) {
-            activityStarsEl.innerHTML = '';
-            const starsData = stats.starred.slice(0, 20); // LIMIT TO 20
+        if (lastUpdateEl && data.lastUpdate) {
+            lastUpdateEl.textContent = `Last updated: ${new Date(data.lastUpdate).toLocaleString('pl-PL')}`;
+        }
 
-            starsData.forEach((star, index) => {
-                const item = document.createElement('div');
-                item.className = 'activity-item';
-                item.style.animationDelay = `${index * 0.05}s`; // Stagger animation
+        // Renderowanie Commitów (ostatnie 20)
+        const commitBox = document.getElementById('commits-list');
+        if (commitBox) {
+            commitBox.innerHTML = ''; 
+            (data.recentCommits || []).slice(0, 20).forEach((commit, index) => {
+                const date = new Date(commit.date).toLocaleDateString('pl-PL');
+                commitBox.innerHTML += `
+                    <div class="activity-item item-animate" style="animation-delay: ${index * 0.03}s">
+                        <div style="color: #00ff99; font-size: 0.95rem; font-weight: bold; margin-bottom: 2px;">${commit.repo || 'Repo'}</div>
+                        <div style="font-size: 0.85rem; margin: 2px 0;">${(commit.message || 'No message').split('\n')[0]}</div>
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.75rem;">${date} • ${commit.author || 'User'}</div>
+                    </div>
+                `;
+            });
+        }
 
-                const name = star.name || 'Unknown Repo';
-                const owner = star.owner || 'Unknown';
-                const starCount = star.stars || 0;
-                const lang = star.language || 'N/A';
-                const desc = star.description || 'No description provided.';
-                
-                item.innerHTML = `
-                    <div class="activity-header">
-                        <a href="${star.url}" class="activity-link" target="_blank" rel="noreferrer">${name}</a>
-                        <div class="meta-badge" title="Stars">
-                            <i class="fas fa-star"></i> ${starCount}
+        // Renderowanie Starred (ostatnie 20)
+        const starredBox = document.getElementById('starred-list');
+        if (starredBox) {
+            starredBox.innerHTML = '';
+            (data.starred || []).slice(0, 20).forEach((repo, index) => {
+                starredBox.innerHTML += `
+                    <a href="${repo.url}" target="_blank" class="activity-item item-animate" style="animation-delay: ${index * 0.03}s; text-decoration: none; color: inherit; display: block;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <span style="color: #00ff99; font-weight: bold; font-size: 0.95rem;">${repo.name}</span>
+                            <span style="color: #ffcc00; font-size: 0.8rem; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">⭐ ${repo.stars}</span>
                         </div>
-                    </div>
-                    <div class="activity-desc">${desc}</div>
-                    <div class="activity-meta-row">
-                        <div class="meta-badge"><i class="fas fa-user"></i> ${owner}</div>
-                        <div class="meta-badge"><i class="fas fa-code"></i> ${lang}</div>
-                        <span class="meta-date">${formatPLDateTime(star.starredAt, true)}</span>
-                    </div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin: 3px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${repo.description || 'Brak opisu'}</div>
+                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">${repo.language || 'Code'} • ${repo.owner}</div>
+                    </a>
                 `;
-                activityStarsEl.appendChild(item);
             });
         }
 
-        // 3. Render Recent Commits (Top 20)
-        if (activityCommitsEl && stats.recentCommits) {
-            activityCommitsEl.innerHTML = '';
-            const commitsData = stats.recentCommits.slice(0, 20); // LIMIT TO 20
-
-            commitsData.forEach((commit, index) => {
-                const item = document.createElement('div');
-                item.className = 'activity-item';
-                item.style.animationDelay = `${index * 0.05}s`;
-
-                const msg = (commit.message || 'No message').split('\n')[0];
-                const repo = commit.repo || 'Unknown';
-                const author = commit.author || 'Piotrunius';
-                
-                item.innerHTML = `
-                    <div class="activity-header">
-                        <a href="${commit.url}" class="activity-link" target="_blank" rel="noreferrer">${msg}</a>
-                    </div>
-                    <div class="activity-desc">Repository: ${repo}</div>
-                    <div class="activity-meta-row">
-                        <div class="meta-badge"><i class="fas fa-user-circle"></i> ${author}</div>
-                        <span class="meta-date">${formatPLDateTime(commit.date, true)}</span>
-                    </div>
-                `;
-                activityCommitsEl.appendChild(item);
-            });
-        }
-
-        console.log('GitHub Stats updated successfully.');
+        console.log('GitHub Stats updated successfully (User Logic).');
 
     } catch (e) {
-        console.warn('Error loading GitHub stats:', e);
-        if (lastUpdateEl) lastUpdateEl.textContent = 'Failed to load stats';
+        console.error("Błąd ładowania statsów:", e);
     }
-}
-
-// --- CORE FUNCTION: Render Setup (Safe from overwrites) ---
-function initSetup() {
-    const pcSpecs = document.getElementById('pc-specs');
-    const setupSpecs = document.getElementById('setup-specs');
-    
-    // Helper to render lists
-    const renderList = (container, items) => {
-        if (!container) return;
-        container.innerHTML = '';
-        items.forEach((item, index) => {
-            const el = document.createElement('a');
-            el.className = 'spec-item';
-            el.style.animationDelay = `${index * 0.05}s`;
-            
-            // Handle multiple URLs or single URL
-            if (item.urls && Array.isArray(item.urls)) {
-                el.href = '#';
-                el.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    item.urls.forEach(url => window.open(url, '_blank'));
-                });
-            } else {
-                el.href = item.url || '#';
-                el.target = '_blank';
-                el.rel = 'noreferrer';
-            }
-
-            el.innerHTML = `
-                <i class="fas fa-${item.icon}"></i>
-                <span>${item.label}${item.value ? `<small> - ${item.value}</small>` : ''}</span>
-            `;
-            container.appendChild(el);
-        });
-    };
-
-    renderList(pcSpecs, setupData.pc);
-    renderList(setupSpecs, setupData.gear);
-}
-
-// --- UTILS ---
-function formatPLDateTime(dateInput, short = false) {
-    const d = new Date(dateInput);
-    if (Number.isNaN(d.getTime())) return '';
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = d.getFullYear();
-    const hours = String(d.getHours()).padStart(2, '0');
-    const mins = String(d.getMinutes()).padStart(2, '0');
-    
-    if (short) return `${day}/${month} ${hours}:${mins}`;
-    return `${day}/${month}/${year}, ${hours}:${mins}`;
 }
 
 // --- AUDIO & VISUALIZER ---
@@ -354,8 +251,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initProfile();
     initSocials();
     initMusicMeta();
-    initSetup();          // Now safe!
-    updateGitHubStats();  // Now rich & limited to 20!
+    updateGitHubActivity(); // Using the requested logic
     initControls();
     initMouseEffects();
     console.log('Bio initialized.');

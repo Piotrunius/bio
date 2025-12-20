@@ -1305,8 +1305,50 @@ body {
     }
 }
 
-/* Accessibility: reduce motion */
-@media (prefers-reduced-motion: reduce) {
+/* Naprawa niewidzialnych modułów/przycisków */
+.nav-buttons, .action-module {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex;
+    z-index: 10;
+}
+
+/* Kontener ze scrollem */
+.scrollable-content {
+    max-height: 400px; /* Wysokość panelu */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Ensure scrollbar styling for Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #00ff99 rgba(255, 255, 255, 0.05);
+}
+
+/* Customowy Scrollbar dla Bazzite/Chrome */
+.scrollable-content::-webkit-scrollbar {
+    width: 4px;
+}
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: #00ff99;
+    border-radius: 10px;
+}
+.scrollable-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Animacja wejścia */
+ @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.item-animate {
+    animation: slideIn 0.4s ease forwards;
+    opacity: 0; /* Ensure hidden before animation */
+}
     * {
         animation: none !important;
         transition: none !important;
