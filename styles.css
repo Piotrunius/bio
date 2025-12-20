@@ -524,6 +524,65 @@ body {
     gap: 0.75rem;
 }
 
+.activity-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: background 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.activity-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.activity-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.activity-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.activity-link:hover {
+    text-decoration: underline;
+}
+
+.activity-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.activity-info {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.activity-date {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    display: block;
+}
+
 .feed-item {
     display: flex;
     gap: 0.75rem;
