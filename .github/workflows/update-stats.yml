@@ -9,6 +9,11 @@ on:
       - main
   workflow_dispatch: # Możesz też uruchomić ręcznie
 
+# Zapobiega nakładaniu się na siebie wielu uruchomień
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   update-stats:
     runs-on: ubuntu-latest

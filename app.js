@@ -115,12 +115,45 @@ async function updateGitHubStats() {
     const activityStarsEl = document.getElementById('starred-list');
     const activityCommitsEl = document.getElementById('commits-list');
 
+    // Fallback data to ensure UI works even if fetch fails (e.g. CORS on file://)
+    const fallbackStats = {
+        "summary": {
+            "projects": 3,
+            "starredCount": 21,
+            "commits": 33
+        },
+        "repos": [],
+        "recentCommits": [
+            { "message": "refactor: rewrite updateGitHubStats...", "repo": "Bio", "author": "Piotrunius", "date": "2025-12-20T22:07:38Z", "url": "#" },
+            { "message": "chore: update github stats", "repo": "Bio", "author": "GitHub Action", "date": "2025-12-20T22:01:22Z", "url": "#" }
+        ],
+        "starred": [
+            { "name": "Graphs", "owner": "bloominstituteoftechnology", "stars": 77, "language": "Python", "description": "Graphs, BFS, DFS...", "starredAt": "2025-12-20T22:08:58.151Z", "url": "#" },
+            { "name": "qwen-code", "owner": "QwenLM", "stars": 16590, "language": "TypeScript", "description": "Qwen Code is a coding agent...", "starredAt": "2025-12-20T22:08:58.151Z", "url": "#" }
+        ],
+        "lastUpdate": "2025-12-20T22:08:58.151Z"
+    };
+
+    let stats = fallbackStats;
+
     try {
+        // Try fetching local first
         let response = await fetch('github-stats.json?t=' + Date.now());
         if (!response.ok) {
+            // Try fetching from assets
             response = await fetch('assets/github-stats.json?t=' + Date.now());
         }
-        const stats = await response.json();
+        
+        if (response.ok) {
+            stats = await response.json();
+        } else {
+            console.warn('Stats fetch failed, using fallback data.');
+        }
+    } catch (e) {
+        console.warn('Error loading GitHub stats (likely CORS or offline), using fallback:', e);
+    }
+
+    try {
         const summary = stats.summary || {};
 
         // 1. Render Summary Stats
@@ -128,8 +161,10 @@ async function updateGitHubStats() {
         if (starsEl) starsEl.textContent = summary.starredCount || '0';
         if (commitsEl) commitsEl.textContent = summary.commits || '0';
 
-        if (lastUpdateEl && stats.lastUpdate) {
-            lastUpdateEl.textContent = `Last updated: ${formatPLDateTime(stats.lastUpdate)}`;
+        // Fix: Ensure lastUpdate is handled safely
+        if (lastUpdateEl) {
+            const dateStr = stats.lastUpdate || new Date().toISOString();
+            lastUpdateEl.textContent = `Last updated: ${formatPLDateTime(dateStr)}`;
         }
 
         // 2. Render Recent Starred (Top 20, RICH DATA)
@@ -140,7 +175,6 @@ async function updateGitHubStats() {
             starsData.forEach((star, index) => {
                 const item = document.createElement('div');
                 item.className = 'activity-item';
-                // Usunięcie opacity: 0 z JS (handled by CSS animation keyframes)
                 item.style.animationDelay = `${index * 0.05}s`;
 
                 const name = star.name || 'Unknown Repo';
@@ -149,7 +183,6 @@ async function updateGitHubStats() {
                 const lang = star.language || 'Code';
                 const desc = star.description || 'No description provided.';
 
-                // Struktura HTML dla bogatej karty
                 item.innerHTML = `
                     <div class="activity-header">
                         <a href="${star.url}" class="activity-link" target="_blank" rel="noreferrer">${name}</a>
@@ -195,12 +228,12 @@ async function updateGitHubStats() {
                 activityCommitsEl.appendChild(item);
             });
         }
+        
+        console.log('GitHub Stats rendered successfully.');
 
-        console.log('GitHub Stats updated successfully.');
-
-    } catch (e) {
-        console.warn('Error loading GitHub stats:', e);
-        if (lastUpdateEl) lastUpdateEl.textContent = 'Failed to load stats';
+    } catch (renderErr) {
+        console.error('Error rendering stats:', renderErr);
+        if (lastUpdateEl) lastUpdateEl.textContent = 'Data error';
     }
 }
 
@@ -253,7 +286,7 @@ function formatPLDateTime(dateInput, short = false) {
     const hours = String(d.getHours()).padStart(2, '0');
     const mins = String(d.getMinutes()).padStart(2, '0');
 
-    if (short) return `${day}.${month} ${hours}:${mins}`;
+    if (short) return `${day}.${month}.${year} ${hours}:${mins}`;
     return `${day}.${month}.${year}, ${hours}:${mins}`;
 }
 
