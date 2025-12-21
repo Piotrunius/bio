@@ -1,0 +1,92 @@
+name: Update GitHub Stats
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch GitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node -e "
+          const fs = require('fs');
+          const user = 'Piotrunius';
+          const headers = process.env.GITHUB_TOKEN ? { 'Authorization': `token ${process.env.GITHUB_TOKEN}` } : {};
+
+          async function run() {
+            try {
+              const uR = await fetch(`https://api.github.com/users/${user}`, { headers });
+              const uJ = await uR.json();
+              
+              // Starred
+              const sR = await fetch(`https://api.github.com/users/${user}/starred?per_page=100`, { headers: {...headers, 'Accept': 'application/vnd.github.star+json'} });
+              const starred = await sR.json();
+
+              // Total commits
+              const cR = await fetch(`https://api.github.com/search/commits?q=author:${user}`, { headers: {...headers, 'Accept': 'application/vnd.github.cloak-preview'} });
+              const cJ = await cR.json();
+
+              const stats = {
+                summary: { projects: uJ.public_repos, starredCount: Array.isArray(starred) ? starred.length : 0, commits: cJ.total_count || 0 },
+                starred: Array.isArray(starred) ? starred.slice(0, 30).map(i => ({
+                  name: i.repo.name,
+                  owner: i.repo.owner.login,
+                  url: i.repo.html_url,
+                  stars: i.repo.stargazers_count,
+                  language: i.repo.language,
+                  description: i.repo.description,
+                  starredAt: i.starred_at
+                })) : [],
+                recentCommits: [],
+                lastUpdate: new Date().toISOString()
+              };
+
+              // Recent commits from top 5 repos
+              const reposR = await fetch(`https://api.github.com/users/${user}/repos?sort=updated&per_page=5`, { headers });
+              const repos = await reposR.json();
+              for (const r of repos) {
+                const cr = await fetch(`https://api.github.com/repos/${user}/${r.name}/commits?per_page=5`, { headers });
+                const cm = await cr.json();
+                if (Array.isArray(cm)) {
+                  stats.recentCommits = stats.recentCommits.concat(cm.map(c => ({
+                    message: c.commit.message.split('\n')[0],
+                    repo: r.name,
+                    author: c.commit.author.name,
+                    date: c.commit.author.date,
+                    url: c.html_url
+                  })));
+                }
+              }
+              stats.recentCommits.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+              const path = './data/github-stats.json';
+              if (fs.existsSync(path)) {
+                const old = JSON.parse(fs.readFileSync(path, 'utf8'));
+                if (JSON.stringify({...stats, lastUpdate: old.lastUpdate}) === JSON.stringify(old)) {
+                  console.log('No change');
+                  process.exit(0);
+                }
+              }
+              if (!fs.existsSync('./data')) fs.mkdirSync('./data');
+              fs.writeFileSync(path, JSON.stringify(stats, null, 2));
+            } catch (e) { console.error(e); process.exit(1); }
+          }
+          run();
+          "
+
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/github-stats.json
+          git diff --staged --quiet || (git commit -m "chore: update github stats" && git push)
