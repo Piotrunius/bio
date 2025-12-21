@@ -610,6 +610,48 @@ function initVisibilityOptimization() {
     });
 }
 
+// --- SPOTIFY LIVE STATUS (Lanyard API) ---
+async function updateSpotifyStatus() {
+    const titleEl = document.getElementById('music-title');
+    const artistEl = document.getElementById('music-artist');
+    const labelEl = document.querySelector('.music-label span');
+    const discordId = '1166309729371439104';
+
+    try {
+        const response = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
+        const data = await response.json();
+
+        if (data.success && data.data.spotify) {
+            const spotify = data.data.spotify;
+            if (titleEl) {
+                titleEl.textContent = spotify.track;
+                titleEl.href = `https://open.spotify.com/track/${spotify.track_id}`;
+                titleEl.target = '_blank';
+            }
+            if (artistEl) {
+                artistEl.textContent = spotify.artist;
+            }
+            if (labelEl) {
+                labelEl.textContent = 'LISTENING TO';
+            }
+        } else {
+            // Fallback to default config
+            if (titleEl) {
+                titleEl.textContent = config.music?.title || 'Smoking Alone';
+                titleEl.href = config.music?.url || '#';
+            }
+            if (artistEl) {
+                artistEl.textContent = config.music?.artist || 'BackDrop';
+            }
+            if (labelEl) {
+                labelEl.textContent = 'MUSIC';
+            }
+        }
+    } catch (err) {
+        console.error('Spotify status error:', err);
+    }
+}
+
 // --- INIT ---
 document.addEventListener('DOMContentLoaded', async () => {
     await loadConfig();
@@ -618,6 +660,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initMusicMeta();
     initSetup();          // Restore Setup Items
     updateGitHubStats();  // Restore Rich GitHub Feed
+    updateSpotifyStatus(); // Fetch Spotify initial
     initControls();
     initParticles();      // New Particle Effect
     initScrollReveal();   // New Scroll Animations
@@ -625,7 +668,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     initMouseEffects();
     initVisibilityOptimization(); // New Performance Optimization
     
-    // Auto-refresh stats every 2 minutes for "live" Steam status
+    // Auto-refresh stats every 2 minutes
     setInterval(updateGitHubStats, 120000);
-    
+    // Refresh Spotify more frequently (every 30 seconds)
+    setInterval(updateSpotifyStatus, 30000);
 });
