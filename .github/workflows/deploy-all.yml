@@ -1,8 +1,6 @@
-name: Update GitHub Stats
+name: Deploy All (Full Manual)
 
 on:
-  schedule:
-    - cron: '0 */12 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -10,23 +8,51 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  update:
+  full-update:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    outputs:
-      committed: ${{ steps.check.outputs.committed }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Fetch GitHub
+      
+      - name: Fetch and Update Data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          STEAM_ID64: ${{ secrets.STEAM_ID64 }}
         run: |
-          cat << 'EOF' > update.js
+          # 1. STEAM UPDATE
+          cat << 'EOF' > steam.js
+          const fs = require('fs');
+          const key = process.env.STEAM_API_KEY;
+          const id = process.env.STEAM_ID64 || '76561199034113344';
+          async function run() {
+            try {
+              const sR = await fetch(`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${key}&steamids=${id}`);
+              const sJ = await sR.json();
+              const gR = await fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${key}&steamid=${id}&include_appinfo=0&include_played_free_games=1`);
+              const gJ = await gR.json();
+              const p = sJ.response.players[0];
+              const stats = {
+                steam: {
+                  personastate: p.personastate, gameextrainfo: p.gameextrainfo || null, avatar: p.avatarmedium,
+                  timecreated: p.timecreated, lastlogoff: p.lastlogoff, game_count: gJ.response?.game_count || 0,
+                  total_playtime: Math.round((gJ.response?.games?.reduce((a,b)=>a+(b.playtime_forever||0),0)||0)/60)
+                },
+                lastUpdate: new Date().toISOString()
+              };
+              fs.writeFileSync('./data/steam-status.json', JSON.stringify(stats, null, 2));
+            } catch (e) { console.error(e); }
+          }
+          run();
+          EOF
+          
+          # 2. GITHUB UPDATE
+          cat << 'EOF' > github.js
           const fs = require('fs');
           const user = 'Piotrunius';
           const headers = process.env.GITHUB_TOKEN ? { 'Authorization': `token ${process.env.GITHUB_TOKEN}` } : {};
@@ -58,34 +84,23 @@ jobs:
                 }
               }
               stats.recentCommits.sort((a,b) => new Date(b.date) - new Date(a.date));
-              const path = './data/github-stats.json';
-              if (fs.existsSync(path)) {
-                const old = JSON.parse(fs.readFileSync(path, 'utf8'));
-                if (JSON.stringify({...stats, lastUpdate: old.lastUpdate}) === JSON.stringify(old)) { process.exit(0); }
-              }
-              if (!fs.existsSync('./data')) fs.mkdirSync('./data');
-              fs.writeFileSync(path, JSON.stringify(stats, null, 2));
-            } catch (e) { console.error(e); process.exit(1); }
+              fs.writeFileSync('./data/github-stats.json', JSON.stringify(stats, null, 2));
+            } catch (e) { console.error(e); }
           }
           run();
           EOF
-          node update.js
-      - name: Commit
-        id: check
+          
+          if (!fs.existsSync('./data')) fs.mkdirSync('./data');
+          node steam.js
+          node github.js
+
+      - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/github-stats.json
-          if ! git diff --staged --quiet; then
-            git commit -m "chore: update github stats"
-            git pull --rebase origin main
-            git push origin main
-            echo "committed=true" >> $GITHUB_OUTPUT
-          else
-            echo "committed=false" >> $GITHUB_OUTPUT
-          fi
+          git add data/*.json
+          git diff --staged --quiet || (git commit -m "chore: full manual stats update" && git pull --rebase origin main && git push origin main)
 
   deploy:
-    needs: update
-    if: needs.update.outputs.committed == 'true'
+    needs: full-update
     uses: ./.github/workflows/deploy.yml

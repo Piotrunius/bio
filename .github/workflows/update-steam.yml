@@ -14,15 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
+    outputs:
+      committed: ${{ steps.check.outputs.committed }}
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - name: Fetch Steam
         env:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
@@ -32,23 +31,13 @@ jobs:
           const fs = require('fs');
           const key = process.env.STEAM_API_KEY;
           const id = process.env.STEAM_ID64 || '76561199034113344';
-          if (!key) {
-            console.error('STEAM_API_KEY is missing');
-            process.exit(1);
-          }
-
+          if (!key) process.exit(1);
           async function run() {
             try {
               const sR = await fetch(`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${key}&steamids=${id}`);
               const sJ = await sR.json();
               const gR = await fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${key}&steamid=${id}&include_appinfo=0&include_played_free_games=1`);
               const gJ = await gR.json();
-              
-              if (!sJ.response?.players?.[0]) {
-                console.error('No player data found');
-                process.exit(1);
-              }
-
               const p = sJ.response.players[0];
               const stats = {
                 steam: {
@@ -62,12 +51,10 @@ jobs:
                 },
                 lastUpdate: new Date().toISOString()
               };
-
               const path = './data/steam-status.json';
               if (fs.existsSync(path)) {
                 const old = JSON.parse(fs.readFileSync(path, 'utf8'));
                 if (JSON.stringify({...stats, lastUpdate: old.lastUpdate}) === JSON.stringify(old)) {
-                  console.log('No change');
                   process.exit(0);
                 }
               }
@@ -78,8 +65,8 @@ jobs:
           run();
           EOF
           node update.js
-
       - name: Commit
+        id: check
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -88,4 +75,12 @@ jobs:
             git commit -m "chore: update steam status"
             git pull --rebase origin main
             git push origin main
+            echo "committed=true" >> $GITHUB_OUTPUT
+          else
+            echo "committed=false" >> $GITHUB_OUTPUT
           fi
+
+  deploy:
+    needs: update
+    if: needs.update.outputs.committed == 'true'
+    uses: ./.github/workflows/deploy.yml
