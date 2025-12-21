@@ -79,24 +79,13 @@ jobs:
           EOF
           node update.js
 
-            - name: Commit
-
-              run: |
-
-                git config --local user.email "action@github.com"
-
-                git config --local user.name "GitHub Action"
-
-                git add data/steam-status.json
-
-                if ! git diff --staged --quiet; then
-
-                  git commit -m "chore: update steam status"
-
-                  git pull --rebase origin main
-
-                  git push origin main
-
-                fi
-
-      
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/steam-status.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update steam status"
+            git pull --rebase origin main
+            git push origin main
+          fi
