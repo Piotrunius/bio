@@ -49,12 +49,14 @@ jobs:
                 page++;
               }
 
-              // User's starred repos (paginated)
+              // User's starred repos (paginated) with timestamp
               let allStarred = [];
               page = 1;
               hasMore = true;
+              const starHeaders = { ...headers, 'Accept': 'application/vnd.github.star+json' };
+              
               while (hasMore) {
-                const starredResp = await fetch(\`https://api.github.com/users/\${githubUsername}/starred?page=\${page}&per_page=100\`, { headers });
+                const starredResp = await fetch(\`https://api.github.com/users/\${githubUsername}/starred?page=\${page}&per_page=100\`, { headers: starHeaders });
                 const starred = await starredResp.json();
                 if (!Array.isArray(starred) || starred.length === 0) break;
                 allStarred = allStarred.concat(starred);
@@ -105,14 +107,14 @@ jobs:
                   updatedAt: r.updated_at
                 })),
                 recentCommits: allCommits.slice(0, 10),
-                starred: allStarred.slice(0, 50).map(r => ({
-                  name: r.name,
-                  owner: r.owner.login,
-                  url: r.html_url,
-                  stars: r.stargazers_count || 0,
-                  language: r.language,
-                  description: r.description,
-                  starredAt: new Date().toISOString()
+                starred: allStarred.slice(0, 50).map(item => ({
+                  name: item.repo.name,
+                  owner: item.repo.owner.login,
+                  url: item.repo.html_url,
+                  stars: item.repo.stargazers_count || 0,
+                  language: item.repo.language,
+                  description: item.repo.description,
+                  starredAt: item.starred_at // Use real timestamp
                 })),
                 lastUpdate: new Date().toISOString()
               };
