@@ -203,7 +203,17 @@ async function updateGitHubStats() {
         // 3. Render Recent Commits (Top 20, RICH DATA)
         if (activityCommitsEl && stats.recentCommits) {
             activityCommitsEl.innerHTML = '';
-            const commitsData = stats.recentCommits.slice(0, 20); // LIMIT 20
+            
+            // Filter out automated commits (bots and chores)
+            const filteredCommits = stats.recentCommits.filter(commit => {
+                const author = (commit.author || '').toLowerCase();
+                const msg = (commit.message || '').toLowerCase();
+                const isBot = author === 'github-actions[bot]' || author === 'github action';
+                const isChore = msg.includes('chore:');
+                return !isBot && !isChore;
+            });
+
+            const commitsData = filteredCommits.slice(0, 20); // LIMIT 20
 
             commitsData.forEach((commit, index) => {
                 const item = document.createElement('div');
