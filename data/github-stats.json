@@ -2,7 +2,7 @@
   "summary": {
     "projects": 3,
     "starredCount": 20,
-    "commits": 62
+    "commits": 65
   },
   "starred": [
     {
@@ -18,7 +18,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 118338,
+      "stars": 118339,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -99,7 +99,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 160004,
+      "stars": 160005,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88134,
+      "stars": 88135,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -188,39 +188,39 @@
   ],
   "recentCommits": [
     {
-      "message": "fix: correct yaml indentation and formatting in workflows",
+      "message": "refactor: simplify to a single unified workflow",
       "repo": "bio",
       "author": "Piotrunius",
-      "date": "2025-12-21T07:52:06Z",
-      "url": "https://github.com/Piotrunius/bio/commit/7fe5a546e793467d6247f6177896cd43c52c52bd"
+      "date": "2025-12-21T08:09:08Z",
+      "url": "https://github.com/Piotrunius/bio/commit/cb51a7d5cb5644d1c1fe63f40250d72b694f12d1"
     },
     {
-      "message": "feat: add concurrency queuing to workflows",
+      "message": "feat: complete workflow overhaul with manual control and sequential deploy all",
       "repo": "bio",
       "author": "Piotrunius",
-      "date": "2025-12-21T07:47:57Z",
-      "url": "https://github.com/Piotrunius/bio/commit/e7280aa986cd7451e7863bc09720c89c6d94ff9c"
+      "date": "2025-12-21T08:06:29Z",
+      "url": "https://github.com/Piotrunius/bio/commit/b37a408a76d5f13dc1011b48865fb399ec1debc8"
     },
     {
-      "message": "fix: add rebase to handle concurrent workflow pushes",
+      "message": "feat: implement unified queuing for data updates and deployment",
       "repo": "bio",
       "author": "Piotrunius",
-      "date": "2025-12-21T07:46:35Z",
-      "url": "https://github.com/Piotrunius/bio/commit/2e30ac5860f399786b2b7a85e4be6afda15a6f13"
+      "date": "2025-12-21T07:55:25Z",
+      "url": "https://github.com/Piotrunius/bio/commit/be2251b70ee1f84490cceda4b1b36636a1435f61"
     },
     {
       "message": "chore: update steam status",
       "repo": "bio",
       "author": "GitHub Action",
-      "date": "2025-12-21T07:45:25Z",
-      "url": "https://github.com/Piotrunius/bio/commit/b84bd7101302faf8d565c80613f67aee9e8e901e"
+      "date": "2025-12-21T07:53:06Z",
+      "url": "https://github.com/Piotrunius/bio/commit/6d1a463ff3a0cdc48d62bb425a45baf0acca037b"
     },
     {
-      "message": "fix: resolve shell expansion issues in workflows by using heredocs",
+      "message": "chore: update github stats",
       "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T07:43:24Z",
-      "url": "https://github.com/Piotrunius/bio/commit/94a6f893e8da993516838d85c5045d10c7aa9490"
+      "author": "GitHub Action",
+      "date": "2025-12-21T07:52:57Z",
+      "url": "https://github.com/Piotrunius/bio/commit/b32efb3d1f9269db83a3aabd25a7c88d7cbee6a6"
     },
     {
       "message": "Update AutoClicker.py",
@@ -293,5 +293,5 @@
       "url": "https://github.com/Piotrunius/Core-Scripts/commit/f100fd2f72589f5b83cfd1f325441859901cb9b7"
     }
   ],
-  "lastUpdate": "2025-12-21T07:52:56.809Z"
+  "lastUpdate": "2025-12-21T08:09:51.429Z"
 }
