@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88135,
+      "stars": 88136,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -188,6 +188,20 @@
   ],
   "recentCommits": [
     {
+      "message": "Remove total playtime span from steam extra info",
+      "repo": "bio",
+      "author": "Piotrunius",
+      "date": "2025-12-21T08:16:06Z",
+      "url": "https://github.com/Piotrunius/bio/commit/4fe58f1885d0d1afb997767e2ceb14e500604c72"
+    },
+    {
+      "message": "chore: automated stats update",
+      "repo": "bio",
+      "author": "GitHub Action",
+      "date": "2025-12-21T08:14:25Z",
+      "url": "https://github.com/Piotrunius/bio/commit/5d661276bfd9e9d6c8b8d4b4ad9182d4d76f976b"
+    },
+    {
       "message": "chore: automated stats update",
       "repo": "bio",
       "author": "GitHub Action",
@@ -207,20 +221,6 @@
       "author": "Piotrunius",
       "date": "2025-12-21T08:11:54Z",
       "url": "https://github.com/Piotrunius/bio/commit/28393bfcf8972bb1bb26a7d742600dc644bec8f3"
-    },
-    {
-      "message": "chore: automated stats update",
-      "repo": "bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T08:09:52Z",
-      "url": "https://github.com/Piotrunius/bio/commit/2d2aecdefdc68cb3b90e0432227d18de634f5f6b"
-    },
-    {
-      "message": "refactor: simplify to a single unified workflow",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T08:09:08Z",
-      "url": "https://github.com/Piotrunius/bio/commit/cb51a7d5cb5644d1c1fe63f40250d72b694f12d1"
     },
     {
       "message": "Update AutoClicker.py",
@@ -293,5 +293,5 @@
       "url": "https://github.com/Piotrunius/Core-Scripts/commit/f100fd2f72589f5b83cfd1f325441859901cb9b7"
     }
   ],
-  "lastUpdate": "2025-12-21T08:14:25.041Z"
+  "lastUpdate": "2025-12-21T08:16:34.056Z"
 }
