@@ -4,18 +4,32 @@
     "gameextrainfo": null,
     "avatar": "https://avatars.steamstatic.com/a7b85c1debc6db3cb342f4f0a14f3bbe2d564f6d_medium.jpg",
     "timecreated": 1584306745,
-    "lastlogoff": 1766292157,
+    "lastlogoff": 1766293162,
     "game_count": 276,
     "total_playtime": 2698
   },
   "summary": {
     "projects": 3,
     "starredCount": 20,
-    "commits": 50,
+    "commits": 52,
     "followers": 0,
     "following": 3
   },
   "recentCommits": [
+    {
+      "message": "Remove last online span from steam extra info",
+      "repo": "Bio",
+      "author": "Piotrunius",
+      "date": "2025-12-21T04:55:20Z",
+      "url": "https://github.com/Piotrunius/Bio/commit/831560f3f3b37658bb7e381da0b4ea55305e849d"
+    },
+    {
+      "message": "chore: update github stats",
+      "repo": "Bio",
+      "author": "GitHub Action",
+      "date": "2025-12-21T04:50:47Z",
+      "url": "https://github.com/Piotrunius/Bio/commit/fdb58446423d68610e7ca9f87ba5caa6886090de"
+    },
     {
       "message": "Update update-stats.yml",
       "repo": "Bio",
@@ -36,20 +50,6 @@
       "author": "Piotrunius",
       "date": "2025-12-21T04:47:35Z",
       "url": "https://github.com/Piotrunius/Bio/commit/bc57915d3bc3b2de18e336d203fa6cd5dd15d6ff"
-    },
-    {
-      "message": "style: final music panel refinements and layout fixes",
-      "repo": "Bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T04:41:05Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/de2d51606e0fb019a4c64c9390d698e61196c1d9"
-    },
-    {
-      "message": "style: ensure 1:1 color and border match for music panels",
-      "repo": "Bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T04:40:37Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/4a856cac9f4792b559d52fa02db7b3412c440992"
     },
     {
       "message": "Update AutoClicker.py",
@@ -92,7 +92,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 16600,
+      "stars": 16601,
       "language": "TypeScript",
       "description": "Qwen Code is a coding agent that lives in the digital world.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -101,7 +101,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 118328,
+      "stars": 118329,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -128,7 +128,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18505,
+      "stars": 18506,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -164,7 +164,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 44321,
+      "stars": 44322,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -182,7 +182,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 159994,
+      "stars": 159996,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -269,5 +269,5 @@
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
-  "lastUpdate": "2025-12-21T04:50:47.747Z"
+  "lastUpdate": "2025-12-21T05:16:20.228Z"
 }
