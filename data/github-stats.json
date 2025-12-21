@@ -99,7 +99,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 160005,
+      "stars": 160007,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -188,6 +188,20 @@
   ],
   "recentCommits": [
     {
+      "message": "fix: add missing environment to main workflow",
+      "repo": "bio",
+      "author": "Piotrunius",
+      "date": "2025-12-21T08:11:54Z",
+      "url": "https://github.com/Piotrunius/bio/commit/28393bfcf8972bb1bb26a7d742600dc644bec8f3"
+    },
+    {
+      "message": "chore: automated stats update",
+      "repo": "bio",
+      "author": "GitHub Action",
+      "date": "2025-12-21T08:09:52Z",
+      "url": "https://github.com/Piotrunius/bio/commit/2d2aecdefdc68cb3b90e0432227d18de634f5f6b"
+    },
+    {
       "message": "refactor: simplify to a single unified workflow",
       "repo": "bio",
       "author": "Piotrunius",
@@ -207,20 +221,6 @@
       "author": "Piotrunius",
       "date": "2025-12-21T07:55:25Z",
       "url": "https://github.com/Piotrunius/bio/commit/be2251b70ee1f84490cceda4b1b36636a1435f61"
-    },
-    {
-      "message": "chore: update steam status",
-      "repo": "bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T07:53:06Z",
-      "url": "https://github.com/Piotrunius/bio/commit/6d1a463ff3a0cdc48d62bb425a45baf0acca037b"
-    },
-    {
-      "message": "chore: update github stats",
-      "repo": "bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T07:52:57Z",
-      "url": "https://github.com/Piotrunius/bio/commit/b32efb3d1f9269db83a3aabd25a7c88d7cbee6a6"
     },
     {
       "message": "Update AutoClicker.py",
@@ -293,5 +293,5 @@
       "url": "https://github.com/Piotrunius/Core-Scripts/commit/f100fd2f72589f5b83cfd1f325441859901cb9b7"
     }
   ],
-  "lastUpdate": "2025-12-21T08:09:51.429Z"
+  "lastUpdate": "2025-12-21T08:12:34.882Z"
 }
