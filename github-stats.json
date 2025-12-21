@@ -20,6 +20,13 @@
       "message": "chore: update github stats",
       "repo": "Bio",
       "author": "GitHub Action",
+      "date": "2025-12-21T05:42:23Z",
+      "url": "https://github.com/Piotrunius/Bio/commit/eacc7349a20a31040c77073ee7c3a580b19c0d23"
+    },
+    {
+      "message": "chore: update github stats",
+      "repo": "Bio",
+      "author": "GitHub Action",
       "date": "2025-12-21T05:16:20Z",
       "url": "https://github.com/Piotrunius/Bio/commit/f9812e3ffb2d097cd470873618eaba05bd6401ca"
     },
@@ -43,13 +50,6 @@
       "author": "Piotrunius",
       "date": "2025-12-21T04:50:07Z",
       "url": "https://github.com/Piotrunius/Bio/commit/7825a9358b41d5b5cca3b1367f21aca31d548a9e"
-    },
-    {
-      "message": "chore: update github stats",
-      "repo": "Bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T04:49:18Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/f17b25b793ba486ba9e3c320720420c0dad530bd"
     },
     {
       "message": "Update AutoClicker.py",
@@ -101,7 +101,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 118331,
+      "stars": 118332,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -128,7 +128,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18507,
+      "stars": 18508,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -200,7 +200,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88123,
+      "stars": 88124,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -269,5 +269,5 @@
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
-  "lastUpdate": "2025-12-21T05:42:23.121Z"
+  "lastUpdate": "2025-12-21T05:51:44.562Z"
 }
