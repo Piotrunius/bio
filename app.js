@@ -325,7 +325,7 @@ function initAudioVisualizer() {
     resizeCanvas();
 
     // Store the animate function to reuse it when resuming
-    window.visualizerAnimate = function() {
+    window.visualizerAnimate = function () {
         if (!audioPlaying || document.hidden) {
             cancelAnimationFrame(visualizerAnimationFrame);
             return;
@@ -347,7 +347,7 @@ function initAudioVisualizer() {
             x += barWidth + 1;
         }
     };
-    
+
     // Start animation if not already running
     window.visualizerAnimate();
 }
@@ -394,7 +394,7 @@ function initParticles() {
     for (let i = 0; i < 120; i++) particles.push(new Particle()); // More particles (120)
 
     // Store animate function globally (or in a wider scope) to access it for visibility change
-    window.particlesAnimate = function() {
+    window.particlesAnimate = function () {
         if (document.hidden) {
             cancelAnimationFrame(particlesAnimationFrame);
             return;
@@ -406,7 +406,7 @@ function initParticles() {
         });
         particlesAnimationFrame = requestAnimationFrame(window.particlesAnimate);
     };
-    
+
     window.particlesAnimate();
 }
 
@@ -456,11 +456,11 @@ function initMouseEffects() {
 function initVisibilityOptimization() {
     document.addEventListener('visibilitychange', () => {
         const audio = document.getElementById('bg-audio');
-        
+
         if (document.hidden) {
             // PAGE HIDDEN: Freeze everything
             console.log('Page hidden: Freezing resources...');
-            
+
             // 1. Pause Audio
             if (audioPlaying) {
                 wasAudioPlaying = true;
@@ -484,7 +484,7 @@ function initVisibilityOptimization() {
         } else {
             // PAGE VISIBLE: Resume
             console.log('Page visible: Resuming resources...');
-            
+
             // 1. Resume Audio if it was playing
             if (wasAudioPlaying && audio) {
                 audio.play().catch(e => console.log('Resume play failed:', e));
@@ -517,5 +517,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     initTypingEffect();   // New Typing Effect
     initMouseEffects();
     initVisibilityOptimization(); // New Performance Optimization
-    console.log('Bio initialized.');
 });
