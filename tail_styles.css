@@ -1,0 +1,400 @@
+}
+
+.about-value a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.about-value {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.about-os {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.os-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.lang-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 0.6rem;
+    --fill: 100%;
+}
+
+.lang-label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.lang-track {
+    position: relative;
+    width: 100%;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+.lang-fill {
+    position: absolute;
+    inset: 0;
+    width: var(--fill);
+    background: linear-gradient(90deg, #00ff88, #00d4b4, #00aaff);
+    box-shadow: 0 0 18px rgba(0, 255, 136, 0.4);
+    border-radius: inherit;
+    animation: fillSlide 1.2s ease forwards;
+}
+
+.lang-thumb {
+    display: none;
+}
+
+.lang-slider[data-level="100"] {
+    --fill: 100%;
+}
+
+.lang-slider[data-level="90"] {
+    --fill: 90%;
+}
+
+.lang-slider[data-level="25"] {
+    --fill: 25%;
+}
+
+@keyframes fillSlide {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: var(--fill);
+    }
+}
+
+@keyframes thumbPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 12px rgba(0, 255, 136, 0.6);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.9);
+    }
+}
+
+.bg-canvas {
+    z-index: -1;
+}
+
+.float-particle {
+    z-index: -2 !important;
+}
+
+/* Footer Styles */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-section,
+    .visualizer-section,
+    .social-section,
+    .stats-section,
+    .gaming-section,
+    .skills-section,
+    .contact-section,
+    .system-section {
+        grid-column: 1 / -1;
+    }
+
+    .gaming-content {
+        grid-template-columns: 1fr;
+    }
+
+    .socials-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem 1.25rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav {
+        gap: 0.5rem;
+    }
+
+    .nav-btn {
+        padding: 0.5rem 0.7rem;
+    }
+
+    .visualizer-canvas {
+        height: 240px;
+    }
+
+    .contact-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Naprawa niewidzialnych modułów/przycisków */
+.nav-buttons, .action-module {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex;
+    z-index: 10;
+}
+
+/* Kontener ze scrollem */
+.scrollable-content {
+    height: 380px; /* Fixed height to force layout */
+    overflow-y: scroll; /* Force scrollbar visibility */
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative; /* FIX: Ensure z-index works */
+    z-index: 2; /* FIX: Place above card overlays */
+    /* Ensure scrollbar styling for Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #00ff99 rgba(255, 255, 255, 0.05);
+}
+
+/* Customowy Scrollbar dla Bazzite/Chrome */
+.scrollable-content::-webkit-scrollbar {
+    width: 4px;
+}
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: #00ff99;
+    border-radius: 10px;
+}
+.scrollable-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Animacja wejścia */
+ @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.item-animate {
+    animation: slideIn 0.4s ease forwards;
+    opacity: 0; /* Ensure hidden before animation */
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    body {
+        cursor: auto;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stats-grid,
+    .activity-grid,
+    .gaming-content,
+    .about-grid,
+    .contact-grid,
+    .socials-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .feed-card,
+    .stat-card,
+    .spec-item,
+    .contact-card,
+    .about-card {
+        width: 100%;
+    }
+}
+
+.steam-panel-section {
+    grid-column: 1 / 13;
+    padding: 2rem;
+    animation-delay: 0.35s;
+}
+
+.steam-status-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.steam-user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.steam-avatar-wrapper {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+}
+
+.steam-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    border: 2px solid var(--glass-border);
+    object-fit: cover;
+}
+
+.steam-avatar-wrapper .status-dot {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #0b0f14; 
+    z-index: 2;
+}
+
+.steam-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.steam-name-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.steam-username {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.steam-status-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.7;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.steam-game-info {
+    font-size: 0.95rem;
+    color: var(--primary);
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.steam-profile-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.steam-profile-link:hover {
+    background: var(--primary) !important;
+    color: #000 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
+}
+
+.steam-profile-link:hover i {
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    color: #000 !important;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .steam-status-panel {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+    }
+
+    .steam-user-info {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .steam-name-row {
+        justify-content: center;
+    }
+
+    .steam-profile-link {
+        width: 100%;
+    }
+}
+
+/* Status Dot Colors */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #767d85; /* Default Offline */
+    box-shadow: 0 0 8px rgba(118, 125, 133, 0.5);
+    transition: all 0.3s ease;
+}
+
+.online .status-dot { background: #57cbff; box-shadow: 0 0 10px #57cbff; }
+.away .status-dot { background: #ffc82c; box-shadow: 0 0 10px #ffc82c; }
+.busy .status-dot { background: #ff4b4b; box-shadow: 0 0 10px #ff4b4b; }
+.in-game .status-dot { background: #90ff47; box-shadow: 0 0 12px #90ff47; }
+.offline .status-dot { background: #3a3f44; box-shadow: none; }
