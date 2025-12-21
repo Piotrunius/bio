@@ -117,6 +117,7 @@ async function updateGitHubStats() {
 
     // Fallback data to ensure UI works even if fetch fails (e.g. CORS on file://)
     const fallbackStats = {
+        "steam": { "personastate": 0, "gameextrainfo": null },
         "summary": {
             "projects": 3,
             "starredCount": 21,
@@ -137,20 +138,18 @@ async function updateGitHubStats() {
     let stats = fallbackStats;
 
     try {
-        // Try fetching local first
-        let response = await fetch('github-stats.json?t=' + Date.now());
+        // Use cache busting to ensure we get fresh data from the server
+        const cacheBuster = Date.now();
+        let response = await fetch(`github-stats.json?t=${cacheBuster}`);
         if (!response.ok) {
-            // Try fetching from assets
-            response = await fetch('assets/github-stats.json?t=' + Date.now());
+            response = await fetch(`assets/github-stats.json?t=${cacheBuster}`);
         }
         
         if (response.ok) {
             stats = await response.json();
-        } else {
-            console.warn('Stats fetch failed, using fallback data.');
         }
     } catch (e) {
-        console.warn('Error loading GitHub stats (likely CORS or offline), using fallback:', e);
+        console.warn('Error loading GitHub stats, using fallback:', e);
     }
 
     try {
@@ -238,6 +237,12 @@ async function updateGitHubStats() {
             const statusText = document.getElementById('steam-status-text');
             const gameInfo = document.getElementById('steam-game-info');
             const dotContainer = document.getElementById('steam-dot').parentElement; // The wrapper
+            const steamPfp = document.getElementById('steam-pfp');
+            
+            // Update Avatar if available
+            if (s.avatar && steamPfp) {
+                steamPfp.src = s.avatar;
+            }
             
             // Reset wrapper classes for colors
             dotContainer.className = 'steam-avatar-wrapper';
@@ -575,6 +580,9 @@ function initVisibilityOptimization() {
             if (window.particlesAnimate) {
                 window.particlesAnimate();
             }
+
+            // 4. Refresh stats immediately on return
+            updateGitHubStats();
         }
     });
 }
@@ -593,4 +601,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     initTypingEffect();   // New Typing Effect
     initMouseEffects();
     initVisibilityOptimization(); // New Performance Optimization
+    
+    // Auto-refresh stats every 2 minutes for "live" Steam status
+    setInterval(updateGitHubStats, 120000);
+    
 });
