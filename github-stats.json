@@ -17,6 +17,13 @@
   },
   "recentCommits": [
     {
+      "message": "chore: update github stats",
+      "repo": "Bio",
+      "author": "GitHub Action",
+      "date": "2025-12-21T03:47:48Z",
+      "url": "https://github.com/Piotrunius/Bio/commit/ecab745a0c7bbf7a00076e669ee273e6b94eca5b"
+    },
+    {
       "message": "refactor: polished spotify integration with audio auto-stop and visualizer toggle",
       "repo": "Bio",
       "author": "Piotrunius",
@@ -43,13 +50,6 @@
       "author": "GitHub Action",
       "date": "2025-12-21T03:27:47Z",
       "url": "https://github.com/Piotrunius/Bio/commit/8546f006207d787e5511b9a12f61af514db12fca"
-    },
-    {
-      "message": "final polish: restore background blobs and clean up CSS duplicates",
-      "repo": "Bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T03:25:46Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/396d16484484648f07f9624465c0fb2a9c7ba710"
     },
     {
       "message": "Update AutoClicker.py",
@@ -101,7 +101,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 118321,
+      "stars": 118322,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -269,5 +269,5 @@
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
-  "lastUpdate": "2025-12-21T03:47:48.716Z"
+  "lastUpdate": "2025-12-21T03:49:35.896Z"
 }
