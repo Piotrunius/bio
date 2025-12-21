@@ -99,11 +99,17 @@ jobs:
               const totalCommits = commitsData.total_count || 0;
 
               // --- STEAM DATA ---
-              let steamData = { personastate: 0, gameextrainfo: null };
+              let steamData = { personastate: 0, gameextrainfo: null, game_count: 0 };
               if (steamKey && steamId) {
                 try {
+                  // Player Summary
                   const steamResp = await fetch(\`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=\${steamKey}&steamids=\${steamId}\`);
                   const steamJson = await steamResp.json();
+                  
+                  // Owned Games (for game count)
+                  const gamesResp = await fetch(\`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=\${steamKey}&steamid=\${steamId}&include_appinfo=0&include_played_free_games=1\`);
+                  const gamesJson = await gamesResp.json();
+
                   if (steamJson.response && steamJson.response.players && steamJson.response.players[0]) {
                     const p = steamJson.response.players[0];
                     steamData = {
@@ -111,7 +117,8 @@ jobs:
                       gameextrainfo: p.gameextrainfo || null,
                       avatar: p.avatarmedium,
                       timecreated: p.timecreated,
-                      lastlogoff: p.lastlogoff
+                      lastlogoff: p.lastlogoff,
+                      game_count: gamesJson.response?.game_count || 0
                     };
                   }
                 } catch (se) { console.error('Steam fetch error:', se.message); }

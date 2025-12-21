@@ -256,19 +256,28 @@ async function updateGitHubStats() {
 
             // Update Extra Info
             const memberSince = document.getElementById('steam-member-since');
+            const gameCount = document.getElementById('steam-game-count');
             const lastOnline = document.getElementById('steam-last-online');
             
             if (s.timecreated && memberSince) {
                 const year = new Date(s.timecreated * 1000).getFullYear();
                 memberSince.textContent = `Since ${year}`;
             }
+
+            if (s.game_count !== undefined && gameCount) {
+                gameCount.textContent = `${s.game_count} Games`;
+            }
             
             if (lastOnline) {
-                if (s.personastate > 0 || s.gameextrainfo) {
-                    lastOnline.textContent = 'Active now';
-                } else if (s.lastlogoff) {
+                // Only show if NOT active and lastlogoff exists
+                const isActive = s.personastate > 0 || s.gameextrainfo;
+                if (!isActive && s.lastlogoff) {
                     const date = new Date(s.lastlogoff * 1000);
                     lastOnline.textContent = `Seen ${date.toLocaleDateString()}`;
+                    lastOnline.style.display = 'flex';
+                } else {
+                    lastOnline.textContent = '';
+                    lastOnline.style.display = 'none';
                 }
             }
             
