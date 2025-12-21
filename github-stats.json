@@ -1,7 +1,7 @@
 {
   "steam": {
     "personastate": 1,
-    "gameextrainfo": "Slime Rancher 2",
+    "gameextrainfo": null,
     "avatar": "https://avatars.steamstatic.com/a7b85c1debc6db3cb342f4f0a14f3bbe2d564f6d_medium.jpg",
     "timecreated": 1584306745,
     "lastlogoff": 1766285987,
@@ -16,6 +16,13 @@
     "following": 3
   },
   "recentCommits": [
+    {
+      "message": "chore: update github stats",
+      "repo": "Bio",
+      "author": "GitHub Action",
+      "date": "2025-12-21T03:49:35Z",
+      "url": "https://github.com/Piotrunius/Bio/commit/0e3b212a1e7daab97d547bb0346f5b7f29dad218"
+    },
     {
       "message": "chore: update github stats",
       "repo": "Bio",
@@ -43,13 +50,6 @@
       "author": "Piotrunius",
       "date": "2025-12-21T03:33:54Z",
       "url": "https://github.com/Piotrunius/Bio/commit/6e13b3ca5d2a6f80375377ddcf1f6f9c8dad6979"
-    },
-    {
-      "message": "chore: update github stats",
-      "repo": "Bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T03:27:47Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/8546f006207d787e5511b9a12f61af514db12fca"
     },
     {
       "message": "Update AutoClicker.py",
@@ -101,7 +101,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 118322,
+      "stars": 118325,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -182,7 +182,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 159992,
+      "stars": 159993,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -200,7 +200,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88114,
+      "stars": 88116,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -245,7 +245,7 @@
       "name": "yasb",
       "owner": "amnweb",
       "url": "https://github.com/amnweb/yasb",
-      "stars": 3742,
+      "stars": 3743,
       "language": "Python",
       "description": "A highly configurable Windows status bar written in Python. ",
       "starredAt": "2025-06-17T03:39:25Z"
@@ -269,5 +269,5 @@
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
-  "lastUpdate": "2025-12-21T03:49:35.896Z"
+  "lastUpdate": "2025-12-21T04:11:49.669Z"
 }
