@@ -2,7 +2,7 @@
   "summary": {
     "projects": 3,
     "starredCount": 20,
-    "commits": 66
+    "commits": 67
   },
   "starred": [
     {
@@ -188,6 +188,20 @@
   ],
   "recentCommits": [
     {
+      "message": "feat: trigger workflow on push (excluding data folder)",
+      "repo": "bio",
+      "author": "Piotrunius",
+      "date": "2025-12-21T08:17:39Z",
+      "url": "https://github.com/Piotrunius/bio/commit/80cacc14d98b67f8eb7a27533efa64a5540745f3"
+    },
+    {
+      "message": "chore: automated stats update",
+      "repo": "bio",
+      "author": "GitHub Action",
+      "date": "2025-12-21T08:16:34Z",
+      "url": "https://github.com/Piotrunius/bio/commit/5005c2ccbd9a2e16d4462a2554d27b1fc3e9b1b9"
+    },
+    {
       "message": "Remove total playtime span from steam extra info",
       "repo": "bio",
       "author": "Piotrunius",
@@ -207,20 +221,6 @@
       "author": "GitHub Action",
       "date": "2025-12-21T08:13:38Z",
       "url": "https://github.com/Piotrunius/bio/commit/23d78cb1aa11cc14d8f9e2db9f7e622a2d21a126"
-    },
-    {
-      "message": "chore: automated stats update",
-      "repo": "bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T08:12:35Z",
-      "url": "https://github.com/Piotrunius/bio/commit/14ed70ca05273a3377cf9666b7bc93e4ba530f2a"
-    },
-    {
-      "message": "fix: add missing environment to main workflow",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T08:11:54Z",
-      "url": "https://github.com/Piotrunius/bio/commit/28393bfcf8972bb1bb26a7d742600dc644bec8f3"
     },
     {
       "message": "Update AutoClicker.py",
@@ -293,5 +293,5 @@
       "url": "https://github.com/Piotrunius/Core-Scripts/commit/f100fd2f72589f5b83cfd1f325441859901cb9b7"
     }
   ],
-  "lastUpdate": "2025-12-21T08:16:34.056Z"
+  "lastUpdate": "2025-12-21T08:17:55.011Z"
 }
