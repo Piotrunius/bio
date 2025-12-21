@@ -23,6 +23,34 @@ body {
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
+    /* Global Scrollbar Styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--bg);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for Webkit (Main Page) - Matches feed-list style */
+body::-webkit-scrollbar {
+    width: 6px;
+}
+body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+body::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+/* Neon Text Selection */
+::selection {
+    background: rgba(0, 255, 136, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 5px var(--primary);
 }
 
 .custom-cursor {
@@ -156,8 +184,9 @@ body {
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     box-shadow: 0 8px 32px var(--shadow);
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.35s ease, border-color 0.35s ease;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.4s ease;
     transform-style: preserve-3d;
     perspective: 1000px;
     will-change: transform, box-shadow;
@@ -166,8 +195,9 @@ body {
 }
 
 .glass-card:hover {
-    box-shadow: 0 16px 48px var(--shadow), 0 0 40px rgba(0, 255, 136, 0.3);
-    border-color: var(--primary);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 136, 0.15);
+    border-color: rgba(0, 255, 136, 0.5);
+    transform: translateY(-5px);
 }
 
 
@@ -322,6 +352,12 @@ body {
     filter: brightness(1.05);
 }
 
+.music-btn i {
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    color: #000 !important;
+}
+
 .music-meta {
     display: flex;
     flex-direction: column;
@@ -432,13 +468,16 @@ body {
 .social-link:hover {
     transform: translateX(12px) scale(1.05);
     border-color: var(--social-color, var(--primary));
-    box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4);
-    background: var(--glass-bg);
+    box-shadow: 0 0 25px var(--social-color, var(--primary)); /* Updated Glow */
+    background: rgba(255, 255, 255, 0.03); /* Keep subtle bg */
 }
 
 .social-link i {
     font-size: 1.3rem;
-    color: var(--social-color, var(--primary));
+    /* Default Unified Look: Primary Gradient */
+    background: linear-gradient(135deg, #00ff88, #00b8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     transition: all 0.4s ease;
     animation: iconPulse 2s ease-in-out infinite;
 }
@@ -448,15 +487,21 @@ body {
     0%,
     100% {
         transform: scale(1);
+        filter: brightness(1);
     }
 
     50% {
         transform: scale(1.1);
+        filter: brightness(1.2);
     }
 }
 
 .social-link:hover i {
     transform: scale(1.2) rotate(10deg);
+    /* On Hover: Reveal Brand Color */
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: var(--social-color, var(--primary));
     filter: drop-shadow(0 0 8px var(--social-color, var(--primary)));
 }
 
@@ -497,6 +542,7 @@ body {
     background: radial-gradient(circle at 20% 20%, rgba(0, 255, 136, 0.1), transparent 60%);
     opacity: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none; /* FIX: Allow clicks to pass through overlay */
 }
 
 .feed-card:hover::after {
@@ -908,8 +954,71 @@ body {
 .animate-slide-up,
 .animate-slide-right,
 .animate-slide-left {
+    opacity: 0; /* Wait for JS to add .in-view */
+}
+
+.in-view {
     animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    opacity: 0; /* Ensure hidden before animation */
+}
+
+/* Typing Cursor */
+.typing-cursor::after {
+    content: '|';
+    display: inline-block;
+    width: 4px; /* Fix for layout shift */
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    color: var(--primary);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Enhanced Link Underline - Universal */
+a:not(.social-link):not(.contact-btn):not(.music-btn):not(.spec-item):not(.activity-link) {
+    position: relative;
+    text-decoration: none !important;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+a:not(.social-link):not(.contact-btn):not(.music-btn):not(.spec-item):not(.activity-link)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease-in-out;
+    box-shadow: 0 0 8px var(--primary);
+}
+
+a:not(.social-link):not(.contact-btn):not(.music-btn):not(.spec-item):not(.activity-link):hover::after {
+    width: 100%;
+}
+
+/* Glass Card Internal Glow (Static Replacement for Shine) */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 20% 0%,
+        rgba(255, 255, 255, 0.04),
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.glass-card:hover::before {
+    opacity: 1;
 }
 
 .activity-meta {
@@ -979,7 +1088,7 @@ body {
     border: 1px solid rgba(0, 255, 136, 0.25);
     border-radius: 12px;
     transition: all 0.3s ease;
-    animation: fadeIn 0.6s ease forwards;
+    animation: fadeInUp 0.6s ease forwards;
     opacity: 0;
     text-decoration: none;
     color: var(--text);
@@ -992,10 +1101,26 @@ body {
     box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3);
 }
 
+/* Unified Icon Style for Consistency */
+i:not(.social-link i) {
+    background: linear-gradient(135deg, #00ff88, #00b8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block; /* Required for clip to work on some browsers */
+}
+
+/* Specific Updates for Setup Items */
 .spec-item i {
     font-size: 1.5rem;
-    color: var(--primary);
-    text-shadow: 0 0 10px var(--primary);
+    /* Gradient is applied by general rule above */
+    filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5)); /* Replaced text-shadow for gradient text */
+    margin-bottom: 0; /* Fix alignment */
+    transition: all 0.4s ease;
+}
+
+.spec-item:hover i {
+    transform: scale(1.15) rotate(5deg);
+    filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.8));
 }
 
 .spec-item span {
@@ -1238,7 +1363,7 @@ body {
 }
 
 .bg-canvas {
-    z-index: -3;
+    z-index: -1;
 }
 
 .float-particle {
@@ -1315,13 +1440,14 @@ body {
 
 /* Kontener ze scrollem */
 .scrollable-content {
-    max-height: 400px; /* Wysokość panelu */
-    overflow-y: auto;
-    overflow-x: hidden;
+    height: 380px; /* Fixed height to force layout */
+    overflow-y: scroll; /* Force scrollbar visibility */
     padding-right: 8px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative; /* FIX: Ensure z-index works */
+    z-index: 2; /* FIX: Place above card overlays */
     /* Ensure scrollbar styling for Firefox */
     scrollbar-width: thin;
     scrollbar-color: #00ff99 rgba(255, 255, 255, 0.05);
@@ -1349,6 +1475,9 @@ body {
     animation: slideIn 0.4s ease forwards;
     opacity: 0; /* Ensure hidden before animation */
 }
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
     * {
         animation: none !important;
         transition: none !important;

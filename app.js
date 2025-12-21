@@ -5,7 +5,28 @@ let analyser = null;
 let audioPlaying = false;
 const githubUsername = 'Piotrunius';
 
-// --- DATA: Profile & Socials ---
+// --- DATA: Setup & Gear (Hardcoded - FIX FOR INVISIBLE BUTTONS) ---
+// Dane są tutaj, renderujemy je dynamicznie, aby mieć pełną kontrolę nad ich wyglądem i klasami.
+const setupData = {
+    pc: [
+        { icon: 'microchip', label: 'CPU', value: 'Intel Core i5-13400F', url: 'https://www.google.com/search?q=Intel+Core+i5-13400F' },
+        { icon: 'video', label: 'GPU', value: 'Nvidia GeForce RTX 4060 Ti (16GB)', url: 'https://www.google.com/search?q=Nvidia+GeForce+RTX+4060+Ti' },
+        { icon: 'network-wired', label: 'Motherboard', value: 'Gigabyte B760 GAMING X DDR4', url: 'https://www.google.com/search?q=Gigabyte+B760+GAMING+X+DDR4' },
+        { icon: 'memory', label: 'RAM', value: 'Kingston Fury Beast RGB (32GB DDR4)', url: 'https://www.google.com/search?q=Kingston+Fury+Beast+RGB+DDR4' },
+        { icon: 'hard-drive', label: 'Storage', value: 'Samsung 980 NVMe (1TB) + Seagate (2TB HDD)', urls: ['https://www.google.com/search?q=Samsung+980+NVMe+SSD', 'https://www.google.com/search?q=Seagate+2TB+HDD'] },
+        { icon: 'bolt', label: 'PSU', value: 'Endorfy Vero L5 Bronze (700W)', url: 'https://www.google.com/search?q=Endorfy+Vero+L5+Bronze+700W' }
+    ],
+    gear: [
+        { icon: 'display', label: 'Displays', value: 'Lenovo L2251p (75Hz) + AOC 27G2G8 (240Hz)', urls: ['https://www.google.com/search?q=Lenovo+L2251p', 'https://www.google.com/search?q=AOC+27G2G8+240Hz'] },
+        { icon: 'keyboard', label: 'Keyboard', value: 'Dark Project Terra Nova (Wireless)', url: 'https://www.google.com/search?q=Dark+Project+Terra+Nova+keyboard' },
+        { icon: 'mouse', label: 'Mouse', value: 'Dark Project Novus (Wireless)', url: 'https://www.google.com/search?q=Dark+Project+Novus+mouse' },
+        { icon: 'microphone', label: 'Microphone', value: 'Fifine AM8 RGB', url: 'https://www.google.com/search?q=Fifine+AM8+RGB+microphone' },
+        { icon: 'headset', label: 'Headphones', value: 'SteelSeries Arctis 9 (Wireless)', url: 'https://www.google.com/search?q=SteelSeries+Arctis+9+wireless' },
+        { icon: 'vr-cardboard', label: 'VR', value: 'Meta Quest 3 (128GB)', url: 'https://www.google.com/search?q=Meta+Quest+3+128GB' }
+    ]
+};
+
+// --- CONFIG DEFAULTS ---
 function getDefaultConfig() {
     return {
         profile: {
@@ -15,14 +36,11 @@ function getDefaultConfig() {
         },
         socials: [
             { label: 'GitHub', icon: 'github', url: 'https://github.com/Piotrunius', color: '#ffffff' },
-            { label: 'Discord', icon: 'discord', url: 'https://discord.gg/wsQujjvk', color: '#5865F2' },
             { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/piotrunius0/', color: '#E1306C' },
             { label: 'Spotify', icon: 'spotify', url: 'https://stats.fm/piotrunius', color: '#1DB954' },
             { label: 'Steam', icon: 'steam', url: 'https://steamcommunity.com/id/Piotrunius/', color: '#00adee' },
-            { label: 'Bio', icon: 'file', url: 'https://e-z.bio/piotrunius', color: '#9146FF' },
             { label: 'AniList', icon: 'circle-play', url: 'https://anilist.co/user/Piotrunius/', color: '#00A3FF' },
-            { label: 'Roblox', icon: 'cubes', url: 'https://www.roblox.com/users/962249141/profile', color: '#FF4757' },
-            { label: 'Minecraft', icon: 'gem', url: 'https://pl.namemc.com/profile/Piotrunius', color: '#3C873A' }
+            { label: 'Roblox', icon: 'cubes', url: 'https://www.roblox.com/users/962249141/profile', color: '#FF4757' }
         ],
         music: {
             title: 'Smoking Alone',
@@ -41,6 +59,7 @@ async function loadConfig() {
     return config;
 }
 
+// --- INIT HELPERS ---
 function initProfile() {
     const avatar = document.getElementById('avatar');
     const nameEl = document.getElementById('profile-name');
@@ -82,70 +101,157 @@ function initMusicMeta() {
     if (artistEl) artistEl.textContent = config.music?.artist || '';
 }
 
-// --- CORE FUNCTION: Render Activity Feed (User's Requested Logic) ---
-async function updateGitHubActivity() {
+// --- CORE FUNCTION: Render Activity Feed (BOGATE DANE, SCROLL, 20 LIMIT) ---
+async function updateGitHubStats() {
+    const projectsEl = document.getElementById('stat-projects');
+    const commitsEl = document.getElementById('stat-commits');
+    const starsEl = document.getElementById('stat-stars');
+    const lastUpdateEl = document.getElementById('stats-last-update');
+    
+    // Używamy nazw z poprzedniego prompta (activity-stars/commits)
+    const activityStarsEl = document.getElementById('starred-list'); 
+    const activityCommitsEl = document.getElementById('commits-list');
+
     try {
         let response = await fetch('github-stats.json?t=' + Date.now());
         if (!response.ok) {
             response = await fetch('assets/github-stats.json?t=' + Date.now());
         }
-        const data = await response.json();
+        const stats = await response.json();
+        const summary = stats.summary || {};
 
-        // Update Summary Stats if elements exist
-        const projectsEl = document.getElementById('stat-projects');
-        const commitsEl = document.getElementById('stat-commits');
-        const starsEl = document.getElementById('stat-stars');
-        const lastUpdateEl = document.getElementById('stats-last-update');
+        // 1. Render Summary Stats
+        if (projectsEl) projectsEl.textContent = summary.projects || '0';
+        if (starsEl) starsEl.textContent = summary.starredCount || '0';
+        if (commitsEl) commitsEl.textContent = summary.commits || '0';
         
-        if (data.summary) {
-            if (projectsEl) projectsEl.textContent = data.summary.projects || '0';
-            if (starsEl) starsEl.textContent = data.summary.starredCount || '0';
-            if (commitsEl) commitsEl.textContent = data.summary.commits || '0';
+        if (lastUpdateEl && stats.lastUpdate) {
+            lastUpdateEl.textContent = `Last updated: ${formatPLDateTime(stats.lastUpdate)}`;
         }
 
-        if (lastUpdateEl && data.lastUpdate) {
-            lastUpdateEl.textContent = `Last updated: ${new Date(data.lastUpdate).toLocaleString('pl-PL')}`;
-        }
+        // 2. Render Recent Starred (Top 20, RICH DATA)
+        if (activityStarsEl && stats.starred) {
+            activityStarsEl.innerHTML = '';
+            const starsData = stats.starred.slice(0, 20); // LIMIT 20
 
-        // Renderowanie Commitów (ostatnie 20)
-        const commitBox = document.getElementById('commits-list');
-        if (commitBox) {
-            commitBox.innerHTML = ''; 
-            (data.recentCommits || []).slice(0, 20).forEach((commit, index) => {
-                const date = new Date(commit.date).toLocaleDateString('pl-PL');
-                commitBox.innerHTML += `
-                    <div class="activity-item item-animate" style="animation-delay: ${index * 0.03}s">
-                        <div style="color: #00ff99; font-size: 0.95rem; font-weight: bold; margin-bottom: 2px;">${commit.repo || 'Repo'}</div>
-                        <div style="font-size: 0.85rem; margin: 2px 0;">${(commit.message || 'No message').split('\n')[0]}</div>
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.75rem;">${date} • ${commit.author || 'User'}</div>
+            starsData.forEach((star, index) => {
+                const item = document.createElement('div');
+                item.className = 'activity-item';
+                // Usunięcie opacity: 0 z JS (handled by CSS animation keyframes)
+                item.style.animationDelay = `${index * 0.05}s`; 
+
+                const name = star.name || 'Unknown Repo';
+                const owner = star.owner || 'Unknown';
+                const starCount = star.stars || 0;
+                const lang = star.language || 'Code';
+                const desc = star.description || 'No description provided.';
+                
+                // Struktura HTML dla bogatej karty
+                item.innerHTML = `
+                    <div class="activity-header">
+                        <a href="${star.url}" class="activity-link" target="_blank" rel="noreferrer">${name}</a>
+                        <div class="meta-badge" title="Stars">
+                            <i class="fas fa-star"></i> ${starCount}
+                        </div>
+                    </div>
+                    <div class="activity-desc">${desc}</div>
+                    <div class="activity-meta-row">
+                        <div class="meta-badge"><i class="fas fa-user"></i> ${owner}</div>
+                        <div class="meta-badge"><i class="fas fa-code"></i> ${lang}</div>
+                        <span class="meta-date">${formatPLDateTime(star.starredAt, true)}</span>
                     </div>
                 `;
+                activityStarsEl.appendChild(item);
             });
         }
 
-        // Renderowanie Starred (ostatnie 20)
-        const starredBox = document.getElementById('starred-list');
-        if (starredBox) {
-            starredBox.innerHTML = '';
-            (data.starred || []).slice(0, 20).forEach((repo, index) => {
-                starredBox.innerHTML += `
-                    <a href="${repo.url}" target="_blank" class="activity-item item-animate" style="animation-delay: ${index * 0.03}s; text-decoration: none; color: inherit; display: block;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                            <span style="color: #00ff99; font-weight: bold; font-size: 0.95rem;">${repo.name}</span>
-                            <span style="color: #ffcc00; font-size: 0.8rem; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">⭐ ${repo.stars}</span>
-                        </div>
-                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin: 3px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${repo.description || 'Brak opisu'}</div>
-                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">${repo.language || 'Code'} • ${repo.owner}</div>
-                    </a>
+        // 3. Render Recent Commits (Top 20, RICH DATA)
+        if (activityCommitsEl && stats.recentCommits) {
+            activityCommitsEl.innerHTML = '';
+            const commitsData = stats.recentCommits.slice(0, 20); // LIMIT 20
+
+            commitsData.forEach((commit, index) => {
+                const item = document.createElement('div');
+                item.className = 'activity-item';
+                item.style.animationDelay = `${index * 0.05}s`;
+
+                const msg = (commit.message || 'No message').split('\n')[0];
+                const repo = commit.repo || 'Unknown';
+                const author = commit.author || 'Piotrunius';
+                
+                item.innerHTML = `
+                    <div class="activity-header">
+                        <a href="${commit.url}" class="activity-link" target="_blank" rel="noreferrer">${msg}</a>
+                    </div>
+                    <div class="activity-desc">Repository: ${repo}</div>
+                    <div class="activity-meta-row">
+                        <div class="meta-badge"><i class="fas fa-user-circle"></i> ${author}</div>
+                        <span class="meta-date">${formatPLDateTime(commit.date, true)}</span>
+                    </div>
                 `;
+                activityCommitsEl.appendChild(item);
             });
         }
 
-        console.log('GitHub Stats updated successfully (User Logic).');
+        console.log('GitHub Stats updated successfully.');
 
     } catch (e) {
-        console.error("Błąd ładowania statsów:", e);
+        console.warn('Error loading GitHub stats:', e);
+        if (lastUpdateEl) lastUpdateEl.textContent = 'Failed to load stats';
     }
+}
+
+// --- CORE FUNCTION: Render Setup (Safe & Visible) ---
+function initSetup() {
+    const pcSpecs = document.getElementById('pc-specs');
+    const setupSpecs = document.getElementById('setup-specs');
+    
+    // Helper to render lists
+    const renderList = (container, items) => {
+        if (!container) return;
+        container.innerHTML = '';
+        items.forEach((item, index) => {
+            const el = document.createElement('a');
+            el.className = 'spec-item'; // Ta klasa musi mieć opacity: 1 !important w CSS jeśli są problemy
+            el.style.animationDelay = `${index * 0.05}s`;
+            
+            // Handle multiple URLs or single URL
+            if (item.urls && Array.isArray(item.urls)) {
+                el.href = '#';
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    item.urls.forEach(url => window.open(url, '_blank'));
+                });
+            } else {
+                el.href = item.url || '#';
+                el.target = '_blank';
+                el.rel = 'noreferrer';
+            }
+
+            el.innerHTML = `
+                <i class="fas fa-${item.icon}"></i>
+                <span>${item.label}${item.value ? `<small> - ${item.value}</small>` : ''}</span>
+            `;
+            container.appendChild(el);
+        });
+    };
+
+    renderList(pcSpecs, setupData.pc);
+    renderList(setupSpecs, setupData.gear);
+}
+
+// --- UTILS ---
+function formatPLDateTime(dateInput, short = false) {
+    const d = new Date(dateInput);
+    if (Number.isNaN(d.getTime())) return '';
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    const hours = String(d.getHours()).padStart(2, '0');
+    const mins = String(d.getMinutes()).padStart(2, '0');
+    
+    if (short) return `${day}.${month} ${hours}:${mins}`;
+    return `${day}.${month}.${year}, ${hours}:${mins}`;
 }
 
 // --- AUDIO & VISUALIZER ---
@@ -237,6 +343,92 @@ function initAudioVisualizer() {
     drawVisualizer();
 }
 
+function initParticles() {
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    const resize = () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.4;
+            this.vy = (Math.random() - 0.5) * 0.4;
+            this.size = Math.random() * 3 + 2; // Increased size (2-5px)
+            this.color = `rgba(0, 255, 136, ${Math.random() * 0.3})`; // Slightly more opaque
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+        }
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < 120; i++) particles.push(new Particle()); // More particles (120)
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+function initScrollReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right, .animate-slide-left');
+    animatedElements.forEach(el => observer.observe(el));
+}
+
+function initTypingEffect() {
+    const bioEl = document.getElementById('profile-bio');
+    if (!bioEl) return;
+    const text = config.profile?.bio || bioEl.textContent;
+    bioEl.textContent = '';
+    bioEl.classList.add('typing-cursor');
+    
+    let i = 0;
+    const type = () => {
+        if (i < text.length) {
+            bioEl.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 30 + Math.random() * 50);
+        } else {
+            setTimeout(() => bioEl.classList.remove('typing-cursor'), 1000);
+        }
+    };
+    setTimeout(type, 500); // Initial delay
+}
+
 function initMouseEffects() {
     const cards = document.querySelectorAll('.glass-card');
     cards.forEach(card => {
@@ -245,14 +437,41 @@ function initMouseEffects() {
     });
 }
 
+function initAutoplay() {
+    const startAudio = () => {
+        if (!audioPlaying) {
+            const audio = document.getElementById('bg-audio');
+            if (audio) {
+                audio.volume = config.audio?.volume || 0.4;
+                audio.play().then(() => {
+                    audioPlaying = true;
+                    initAudioVisualizer();
+                    updateAudioButton();
+                }).catch(err => console.log('Autoplay blocked or failed:', err));
+            }
+        }
+        // Remove listeners after first interaction to prevent constant toggling
+        document.removeEventListener('click', startAudio);
+        document.removeEventListener('keydown', startAudio);
+    };
+
+    document.addEventListener('click', startAudio);
+    document.addEventListener('keydown', startAudio);
+}
+
 // --- INIT ---
 document.addEventListener('DOMContentLoaded', async () => {
     await loadConfig();
     initProfile();
     initSocials();
     initMusicMeta();
-    updateGitHubActivity(); // Using the requested logic
+    initSetup();          // Restore Setup Items
+    updateGitHubStats();  // Restore Rich GitHub Feed
     initControls();
+    initParticles();      // New Particle Effect
+    initScrollReveal();   // New Scroll Animations
+    initTypingEffect();   // New Typing Effect
     initMouseEffects();
+
     console.log('Bio initialized.');
 });
