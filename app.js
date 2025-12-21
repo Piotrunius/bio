@@ -39,10 +39,10 @@ function getDefaultConfig() {
         },
         socials: [
             { label: 'GitHub', icon: 'github', url: 'https://github.com/Piotrunius', color: '#ffffff' },
-            { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/piotrunius0/', color: '#E1306C' },
+            { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/piotrunius0', color: '#E1306C' },
             { label: 'Spotify', icon: 'spotify', url: 'https://stats.fm/piotrunius', color: '#1DB954' },
-            { label: 'Steam', icon: 'steam', url: 'https://steamcommunity.com/id/Piotrunius/', color: '#00adee' },
-            { label: 'AniList', icon: 'circle-play', url: 'https://anilist.co/user/Piotrunius/', color: '#1663ffff' },
+            { label: 'Minecraft', icon: 'house-chimney', url: 'https://namemc.com/profile/Piotrunius', color: '#d2d22cff' },
+            { label: 'AniList', icon: 'circle-play', url: 'https://anilist.co/user/Piotrunius', color: '#1663ffff' },
             { label: 'Roblox', icon: 'cube', url: 'https://www.roblox.com/users/962249141/profile', color: '#EF3340' }
         ],
         music: {
@@ -144,7 +144,7 @@ async function updateGitHubStats() {
         if (!response.ok) {
             response = await fetch(`assets/github-stats.json?t=${cacheBuster}`);
         }
-        
+
         if (response.ok) {
             stats = await response.json();
         }
@@ -203,7 +203,7 @@ async function updateGitHubStats() {
         // 3. Render Recent Commits (Top 20, RICH DATA)
         if (activityCommitsEl && stats.recentCommits) {
             activityCommitsEl.innerHTML = '';
-            
+
             // Filter out automated commits (bots and chores)
             const filteredCommits = stats.recentCommits.filter(commit => {
                 const author = (commit.author || '').toLowerCase();
@@ -237,7 +237,7 @@ async function updateGitHubStats() {
                 activityCommitsEl.appendChild(item);
             });
         }
-        
+
         console.log('GitHub Stats rendered successfully.');
 
         // 4. Render Steam Status
@@ -248,7 +248,7 @@ async function updateGitHubStats() {
             const gameInfo = document.getElementById('steam-game-info');
             const dotContainer = document.getElementById('steam-dot').parentElement; // The wrapper
             const steamPfp = document.getElementById('steam-pfp');
-            
+
             // Update Avatar if available
             if (s.avatar && steamPfp) {
                 steamPfp.src = s.avatar;
@@ -259,7 +259,7 @@ async function updateGitHubStats() {
             const gameCount = document.getElementById('steam-game-count');
             const playtime = document.getElementById('steam-total-playtime');
             const lastOnline = document.getElementById('steam-last-online');
-            
+
             if (s.timecreated && memberSince) {
                 const year = new Date(s.timecreated * 1000).getFullYear();
                 memberSince.innerHTML = `<i class="fas fa-calendar-alt"></i> Since ${year}`;
@@ -272,16 +272,16 @@ async function updateGitHubStats() {
             if (s.total_playtime !== undefined && playtime) {
                 playtime.innerHTML = `<i class="fas fa-hourglass-half"></i> ${s.total_playtime} hrs`;
             }
-            
+
             if (lastOnline && s.lastlogoff) {
                 const date = new Date(s.lastlogoff * 1000);
                 lastOnline.innerHTML = `<i class="fas fa-clock"></i> Seen ${date.toLocaleDateString()}`;
                 lastOnline.style.display = 'flex';
             }
-            
+
             // Reset wrapper classes for colors
             dotContainer.className = 'steam-avatar-wrapper';
-            
+
             if (s.gameextrainfo) {
                 dotContainer.classList.add('in-game');
                 statusText.textContent = 'In-game';
@@ -290,8 +290,8 @@ async function updateGitHubStats() {
                 gameInfo.style.display = 'block';
             } else {
                 gameInfo.style.display = 'none';
-                gameInfo.style.color = ''; 
-                
+                gameInfo.style.color = '';
+
                 if (s.personastate > 0) {
                     dotContainer.classList.add('online');
                     statusText.textContent = 'Online';
@@ -624,10 +624,10 @@ async function updateSpotifyStatus() {
 
         if (data.success && data.data.spotify) {
             const spotify = data.data.spotify;
-            
+
             // Render initial or updated state
             renderSpotifyActive(container, spotify);
-            
+
             // Auto-stop local audio on new track
             if (!lastSpotifyData || lastSpotifyData.track_id !== spotify.track_id) {
                 const audio = document.getElementById('bg-audio');
@@ -680,7 +680,7 @@ function renderSpotifyActive(container, spotify) {
     // Use a simplified render to avoid heavy DOM reconstruction every second
     const bar = container.querySelector('.spotify-progress-bar');
     const timeStart = container.querySelector('.spotify-time span:first-child');
-    
+
     if (bar && timeStart && container.dataset.trackId === spotify.track_id) {
         bar.style.width = `${progress}%`;
         timeStart.textContent = formatTime(elapsed);
@@ -697,7 +697,7 @@ function renderSpotifyActive(container, spotify) {
                 <div class="spotify-track-name">${spotify.song}</div>
                 <div class="spotify-artist-name">${spotify.artist}</div>
                 ${spotify.album && spotify.album !== spotify.song ? `<div class="spotify-album-name">${spotify.album}</div>` : ''}
-                
+
                 <div class="spotify-progress-container">
                     <div class="spotify-progress-bar" style="width: ${progress}%"></div>
                 </div>
@@ -744,7 +744,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initTypingEffect();   // New Typing Effect
     initMouseEffects();
     initVisibilityOptimization(); // New Performance Optimization
-    
+
     // Auto-refresh stats every 2 minutes
     setInterval(updateGitHubStats, 120000);
     // Refresh Spotify API only every 30 seconds
