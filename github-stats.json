@@ -1,6 +1,6 @@
 {
   "steam": {
-    "personastate": 1,
+    "personastate": 3,
     "gameextrainfo": null,
     "avatar": "https://avatars.steamstatic.com/a7b85c1debc6db3cb342f4f0a14f3bbe2d564f6d_medium.jpg",
     "timecreated": 1584306745,
@@ -18,38 +18,38 @@
   "recentCommits": [
     {
       "message": "chore: update github stats",
-      "repo": "Bio",
+      "repo": "bio",
+      "author": "GitHub Action",
+      "date": "2025-12-21T06:23:10Z",
+      "url": "https://github.com/Piotrunius/bio/commit/245b0c31904c51fcc115108eb92dbf0cd1c6e3f1"
+    },
+    {
+      "message": "chore: update github stats",
+      "repo": "bio",
       "author": "GitHub Action",
       "date": "2025-12-21T05:51:44Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/50b338c1b3e94e4f0a06bedbad17bb523b3a62c1"
+      "url": "https://github.com/Piotrunius/bio/commit/50b338c1b3e94e4f0a06bedbad17bb523b3a62c1"
     },
     {
       "message": "chore: update github stats",
-      "repo": "Bio",
+      "repo": "bio",
       "author": "GitHub Action",
       "date": "2025-12-21T05:42:23Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/eacc7349a20a31040c77073ee7c3a580b19c0d23"
+      "url": "https://github.com/Piotrunius/bio/commit/eacc7349a20a31040c77073ee7c3a580b19c0d23"
     },
     {
       "message": "chore: update github stats",
-      "repo": "Bio",
+      "repo": "bio",
       "author": "GitHub Action",
       "date": "2025-12-21T05:16:20Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/f9812e3ffb2d097cd470873618eaba05bd6401ca"
+      "url": "https://github.com/Piotrunius/bio/commit/f9812e3ffb2d097cd470873618eaba05bd6401ca"
     },
     {
       "message": "Remove last online span from steam extra info",
-      "repo": "Bio",
+      "repo": "bio",
       "author": "Piotrunius",
       "date": "2025-12-21T04:55:20Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/831560f3f3b37658bb7e381da0b4ea55305e849d"
-    },
-    {
-      "message": "chore: update github stats",
-      "repo": "Bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T04:50:47Z",
-      "url": "https://github.com/Piotrunius/Bio/commit/fdb58446423d68610e7ca9f87ba5caa6886090de"
+      "url": "https://github.com/Piotrunius/bio/commit/831560f3f3b37658bb7e381da0b4ea55305e849d"
     },
     {
       "message": "Update AutoClicker.py",
@@ -101,7 +101,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 118334,
+      "stars": 118336,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -182,7 +182,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 160000,
+      "stars": 160001,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -200,7 +200,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88124,
+      "stars": 88128,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -269,5 +269,5 @@
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
-  "lastUpdate": "2025-12-21T06:23:10.453Z"
+  "lastUpdate": "2025-12-21T06:50:53.696Z"
 }
