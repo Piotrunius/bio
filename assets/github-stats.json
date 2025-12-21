@@ -20,6 +20,13 @@
       "message": "chore: update github stats",
       "repo": "bio",
       "author": "GitHub Action",
+      "date": "2025-12-21T06:50:53Z",
+      "url": "https://github.com/Piotrunius/bio/commit/fc1d2821c38fb9ab41859ea25584e94006991f84"
+    },
+    {
+      "message": "chore: update github stats",
+      "repo": "bio",
+      "author": "GitHub Action",
       "date": "2025-12-21T06:23:10Z",
       "url": "https://github.com/Piotrunius/bio/commit/245b0c31904c51fcc115108eb92dbf0cd1c6e3f1"
     },
@@ -43,13 +50,6 @@
       "author": "GitHub Action",
       "date": "2025-12-21T05:16:20Z",
       "url": "https://github.com/Piotrunius/bio/commit/f9812e3ffb2d097cd470873618eaba05bd6401ca"
-    },
-    {
-      "message": "Remove last online span from steam extra info",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T04:55:20Z",
-      "url": "https://github.com/Piotrunius/bio/commit/831560f3f3b37658bb7e381da0b4ea55305e849d"
     },
     {
       "message": "Update AutoClicker.py",
@@ -101,7 +101,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 118336,
+      "stars": 118338,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -146,7 +146,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52032,
+      "stars": 52034,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -164,7 +164,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 44323,
+      "stars": 44325,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -182,7 +182,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 160001,
+      "stars": 160003,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -200,7 +200,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88128,
+      "stars": 88132,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -263,11 +263,11 @@
       "name": "PeaZip",
       "owner": "peazip",
       "url": "https://github.com/peazip/PeaZip",
-      "stars": 6637,
+      "stars": 6638,
       "language": "Pascal",
       "description": "Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager. Features volume spanning, compression, authenticated encryption. Supports 7Z, 7-Zip sfx, ACE, ARJ, Brotli, BZ2, CAB, CHM, CPIO, DEB, GZ, ISO, JAR, LHA/LZH, NSIS, OOo, PAQ/LPAQ, PEA, QUAD, RAR, RPM, split, TAR, Z, ZIP, ZIPX, Zstandard.",
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
-  "lastUpdate": "2025-12-21T06:50:53.696Z"
+  "lastUpdate": "2025-12-21T07:15:24.371Z"
 }
