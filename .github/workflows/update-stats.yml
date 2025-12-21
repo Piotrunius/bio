@@ -103,9 +103,14 @@ jobs:
                   const steamResp = await fetch(\`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=\${steamKey}&steamids=\${steamId}\`);
                   const steamJson = await steamResp.json();
                   
-                  // Owned Games (for game count)
+                  // Owned Games (for game count and total playtime)
                   const gamesResp = await fetch(\`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=\${steamKey}&steamid=\${steamId}&include_appinfo=0&include_played_free_games=1\`);
                   const gamesJson = await gamesResp.json();
+                  
+                  let totalPlaytime = 0;
+                  if (gamesJson.response && gamesJson.response.games) {
+                    totalPlaytime = gamesJson.response.games.reduce((acc, game) => acc + (game.playtime_forever || 0), 0);
+                  }
 
                   if (steamJson.response && steamJson.response.players && steamJson.response.players[0]) {
                     const p = steamJson.response.players[0];
@@ -115,7 +120,8 @@ jobs:
                       avatar: p.avatarmedium,
                       timecreated: p.timecreated,
                       lastlogoff: p.lastlogoff,
-                      game_count: gamesJson.response?.game_count || 0
+                      game_count: gamesJson.response?.game_count || 0,
+                      total_playtime: Math.round(totalPlaytime / 60) // Convert to hours
                     };
                   }
                 } catch (se) { console.error('Steam fetch error:', se.message); }

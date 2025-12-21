@@ -257,6 +257,7 @@ async function updateGitHubStats() {
             // Update Extra Info
             const memberSince = document.getElementById('steam-member-since');
             const gameCount = document.getElementById('steam-game-count');
+            const playtime = document.getElementById('steam-total-playtime');
             const lastOnline = document.getElementById('steam-last-online');
             
             if (s.timecreated && memberSince) {
@@ -266,6 +267,16 @@ async function updateGitHubStats() {
 
             if (s.game_count !== undefined && gameCount) {
                 gameCount.innerHTML = `<i class="fas fa-gamepad"></i> ${s.game_count} Games`;
+            }
+
+            if (s.total_playtime !== undefined && playtime) {
+                playtime.innerHTML = `<i class="fas fa-hourglass-half"></i> ${s.total_playtime} hrs`;
+            }
+            
+            if (lastOnline && s.lastlogoff) {
+                const date = new Date(s.lastlogoff * 1000);
+                lastOnline.innerHTML = `<i class="fas fa-clock"></i> Seen ${date.toLocaleDateString()}`;
+                lastOnline.style.display = 'flex';
             }
             
             // Reset wrapper classes for colors
