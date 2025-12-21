@@ -31,20 +31,24 @@ jobs:
       - name: Fetch GitHub Stats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          STEAM_ID64: ${{ secrets.STEAM_ID64 }}
         run: |
           node -e "
           const githubUsername = 'Piotrunius';
-          const token = process.env.GITHUB_TOKEN;
+          const githubToken = process.env.GITHUB_TOKEN;
+          const steamKey = process.env.STEAM_API_KEY;
+          const steamId = '76561199034113344';
 
           async function fetchStats() {
-            const headers = token ? { 'Authorization': \`token \${token}\` } : {};
+            const headers = githubToken ? { 'Authorization': \`token \${githubToken}\` } : {};
 
             try {
-              // User info
+              // --- GITHUB DATA ---
               const userResp = await fetch(\`https://api.github.com/users/\${githubUsername}\`, { headers });
               const user = await userResp.json();
 
-              // Repositories (paginated)
+              // Repositories
               let allRepos = [];
               let page = 1;
               let hasMore = true;
@@ -57,12 +61,11 @@ jobs:
                 page++;
               }
 
-              // User's starred repos (paginated) with timestamp
+              // Starred repos
               let allStarred = [];
               page = 1;
               hasMore = true;
               const starHeaders = { ...headers, 'Accept': 'application/vnd.github.star+json' };
-              
               while (hasMore) {
                 const starredResp = await fetch(\`https://api.github.com/users/\${githubUsername}/starred?page=\${page}&per_page=100\`, { headers: starHeaders });
                 const starred = await starredResp.json();
@@ -72,7 +75,7 @@ jobs:
                 page++;
               }
 
-              // Commits (get recent commits across all repos)
+              // Commits
               let allCommits = [];
               for (const repo of allRepos.slice(0, 10)) {
                 const commitsResp = await fetch(\`https://api.github.com/repos/\${githubUsername}/\${repo.name}/commits?per_page=5\`, { headers });
@@ -89,15 +92,31 @@ jobs:
               }
               allCommits.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-              // Total commits count
               const commitsCountResp = await fetch(\`https://api.github.com/search/commits?q=author:\${githubUsername}&per_page=1\`, {
                 headers: { ...headers, 'Accept': 'application/vnd.github.cloak-preview' }
               });
               const commitsData = await commitsCountResp.json();
               const totalCommits = commitsData.total_count || 0;
 
+              // --- STEAM DATA ---
+              let steamData = { personastate: 0, gameextrainfo: null };
+              if (steamKey && steamId) {
+                try {
+                  const steamResp = await fetch(\`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=\${steamKey}&steamids=\${steamId}\`);
+                  const steamJson = await steamResp.json();
+                  if (steamJson.response && steamJson.response.players && steamJson.response.players[0]) {
+                    const p = steamJson.response.players[0];
+                    steamData = {
+                      personastate: p.personastate,
+                      gameextrainfo: p.gameextrainfo || null
+                    };
+                  }
+                } catch (se) { console.error('Steam fetch error:', se.message); }
+              }
+
               // Prepare stats
               const stats = {
+                steam: steamData,
                 summary: {
                   projects: user.public_repos || 0,
                   starredCount: allStarred.length,
@@ -105,15 +124,6 @@ jobs:
                   followers: user.followers || 0,
                   following: user.following || 0
                 },
-                repos: allRepos.map(r => ({
-                  name: r.name,
-                  url: r.html_url,
-                  description: r.description,
-                  stars: r.stargazers_count || 0,
-                  language: r.language,
-                  createdAt: r.created_at,
-                  updatedAt: r.updated_at
-                })),
                 recentCommits: allCommits.slice(0, 10),
                 starred: allStarred.slice(0, 50).map(item => ({
                   name: item.repo.name,
@@ -122,20 +132,15 @@ jobs:
                   stars: item.repo.stargazers_count || 0,
                   language: item.repo.language,
                   description: item.repo.description,
-                  starredAt: item.starred_at // Use real timestamp
+                  starredAt: item.starred_at
                 })),
                 lastUpdate: new Date().toISOString()
               };
 
               const fs = require('fs');
-              // Save to both locations to ensure compatibility
               fs.writeFileSync('assets/github-stats.json', JSON.stringify(stats, null, 2));
               fs.writeFileSync('github-stats.json', JSON.stringify(stats, null, 2));
-              
               console.log('Stats updated successfully');
-              console.log('Projects:', stats.summary.projects);
-              console.log('Starred repos:', stats.summary.starredCount);
-              console.log('Total commits:', stats.summary.commits);
             } catch (e) {
               console.error('Error fetching stats:', e.message);
               process.exit(1);
