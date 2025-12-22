@@ -9,16 +9,16 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 16602,
+      "stars": 16654,
       "language": "TypeScript",
-      "description": "Qwen Code is a coding agent that lives in the digital world.",
+      "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
     },
     {
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 118341,
+      "stars": 118476,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -27,7 +27,7 @@
       "name": "arcraiders-data",
       "owner": "RaidTheory",
       "url": "https://github.com/RaidTheory/arcraiders-data",
-      "stars": 196,
+      "stars": 197,
       "language": null,
       "description": "Free to use ARC Raiders game data in JSON Format.",
       "starredAt": "2025-11-30T11:02:20Z"
@@ -36,7 +36,7 @@
       "name": "RaiderCache",
       "owner": "otdavies",
       "url": "https://github.com/otdavies/RaiderCache",
-      "stars": 8,
+      "stars": 9,
       "language": "TypeScript",
       "description": "Searchable Arc Raider loot tiers",
       "starredAt": "2025-11-30T09:40:52Z"
@@ -45,7 +45,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18509,
+      "stars": 18552,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -54,7 +54,7 @@
       "name": "krohnkite",
       "owner": "esjeon",
       "url": "https://github.com/esjeon/krohnkite",
-      "stars": 1993,
+      "stars": 1995,
       "language": "TypeScript",
       "description": "A dynamic tiling extension for KWin",
       "starredAt": "2025-11-03T18:09:23Z"
@@ -63,7 +63,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52034,
+      "stars": 52051,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -72,7 +72,7 @@
       "name": "steam-presence",
       "owner": "JustTemmie",
       "url": "https://github.com/JustTemmie/steam-presence",
-      "stars": 372,
+      "stars": 373,
       "language": "Python",
       "description": "A script that actually displays the game you're playing on discord",
       "starredAt": "2025-10-14T16:33:26Z"
@@ -81,7 +81,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 44324,
+      "stars": 44396,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -90,7 +90,7 @@
       "name": "WinPwnage",
       "owner": "rootm0s",
       "url": "https://github.com/rootm0s/WinPwnage",
-      "stars": 2729,
+      "stars": 2730,
       "language": "Python",
       "description": "UAC bypass, Elevate, Persistence methods",
       "starredAt": "2025-09-29T20:41:42Z"
@@ -99,7 +99,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 160008,
+      "stars": 160170,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88142,
+      "stars": 88297,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -126,7 +126,7 @@
       "name": "moodist",
       "owner": "remvze",
       "url": "https://github.com/remvze/moodist",
-      "stars": 3141,
+      "stars": 3144,
       "language": "TypeScript",
       "description": "🌲 Ambient sounds for focus and calm.",
       "starredAt": "2025-09-04T00:18:52Z"
@@ -144,7 +144,7 @@
       "name": "YimMenuV2",
       "owner": "YimMenu",
       "url": "https://github.com/YimMenu/YimMenuV2",
-      "stars": 911,
+      "stars": 928,
       "language": "C++",
       "description": "Experimental menu for GTA 5: Enhanced",
       "starredAt": "2025-07-07T06:47:19Z"
@@ -153,7 +153,7 @@
       "name": "glazewm",
       "owner": "glzr-io",
       "url": "https://github.com/glzr-io/glazewm",
-      "stars": 10894,
+      "stars": 10912,
       "language": "Rust",
       "description": "GlazeWM is a tiling window manager for Windows inspired by i3wm.",
       "starredAt": "2025-06-17T03:39:52Z"
@@ -162,7 +162,7 @@
       "name": "yasb",
       "owner": "amnweb",
       "url": "https://github.com/amnweb/yasb",
-      "stars": 3744,
+      "stars": 3750,
       "language": "Python",
       "description": "A highly configurable Windows status bar written in Python. ",
       "starredAt": "2025-06-17T03:39:25Z"
@@ -180,7 +180,7 @@
       "name": "PeaZip",
       "owner": "peazip",
       "url": "https://github.com/peazip/PeaZip",
-      "stars": 6638,
+      "stars": 6640,
       "language": "Pascal",
       "description": "Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager. Features volume spanning, compression, authenticated encryption. Supports 7Z, 7-Zip sfx, ACE, ARJ, Brotli, BZ2, CAB, CHM, CPIO, DEB, GZ, ISO, JAR, LHA/LZH, NSIS, OOo, PAQ/LPAQ, PEA, QUAD, RAR, RPM, split, TAR, Z, ZIP, ZIPX, Zstandard.",
       "starredAt": "2023-08-09T22:42:02Z"
@@ -188,39 +188,39 @@
   ],
   "recentCommits": [
     {
-      "message": "chore: automated stats update",
-      "repo": "bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T08:41:27Z",
-      "url": "https://github.com/Piotrunius/bio/commit/095532fc235599094c08142ee643ecccc355e8e8"
-    },
-    {
-      "message": "chore: automated stats update",
-      "repo": "bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T08:20:34Z",
-      "url": "https://github.com/Piotrunius/bio/commit/264c3af6c2a6fd786f4ae52ba725f13ff454d835"
-    },
-    {
-      "message": "chore: automated stats update",
-      "repo": "bio",
-      "author": "GitHub Action",
-      "date": "2025-12-21T08:17:55Z",
-      "url": "https://github.com/Piotrunius/bio/commit/b5b2523c7431996f2c0f0620df9896f02cda3c39"
-    },
-    {
-      "message": "feat: trigger workflow on push (excluding data folder)",
+      "message": "Dodanie Cloudflare Web Analytics tuż przed </head> w index.html",
       "repo": "bio",
       "author": "Piotrunius",
-      "date": "2025-12-21T08:17:39Z",
-      "url": "https://github.com/Piotrunius/bio/commit/80cacc14d98b67f8eb7a27533efa64a5540745f3"
+      "date": "2025-12-22T23:06:04Z",
+      "url": "https://github.com/Piotrunius/bio/commit/77c4cc9f4c0f394f65f0b6f5ed7808d43ae343ec"
     },
     {
       "message": "chore: automated stats update",
       "repo": "bio",
       "author": "GitHub Action",
-      "date": "2025-12-21T08:16:34Z",
-      "url": "https://github.com/Piotrunius/bio/commit/5005c2ccbd9a2e16d4462a2554d27b1fc3e9b1b9"
+      "date": "2025-12-22T22:46:54Z",
+      "url": "https://github.com/Piotrunius/bio/commit/a33c9d6c4a7dd5361de03e6736c6a9263bac6b37"
+    },
+    {
+      "message": "chore: automated stats update",
+      "repo": "bio",
+      "author": "GitHub Action",
+      "date": "2025-12-22T22:26:18Z",
+      "url": "https://github.com/Piotrunius/bio/commit/4a3668fc98dfccc9bfea4982fda4f2dcc63dff5a"
+    },
+    {
+      "message": "chore: automated stats update",
+      "repo": "bio",
+      "author": "GitHub Action",
+      "date": "2025-12-22T21:55:06Z",
+      "url": "https://github.com/Piotrunius/bio/commit/a3a208202adc49594f3f321636c3fc70331f3f3e"
+    },
+    {
+      "message": "chore: automated stats update",
+      "repo": "bio",
+      "author": "GitHub Action",
+      "date": "2025-12-22T21:42:14Z",
+      "url": "https://github.com/Piotrunius/bio/commit/2a17c73815d1d0772e749676a88cb97bf7bd973a"
     },
     {
       "message": "Update AutoClicker.py",
@@ -293,5 +293,5 @@
       "url": "https://github.com/Piotrunius/Core-Scripts/commit/f100fd2f72589f5b83cfd1f325441859901cb9b7"
     }
   ],
-  "lastUpdate": "2025-12-21T08:54:23.802Z"
+  "lastUpdate": "2025-12-22T23:06:18.375Z"
 }
