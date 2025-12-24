@@ -1,12 +1,12 @@
 {
   "steam": {
     "personastate": 1,
-    "gameextrainfo": null,
+    "gameextrainfo": "Stray",
     "avatar": "https://avatars.steamstatic.com/a7b85c1debc6db3cb342f4f0a14f3bbe2d564f6d_medium.jpg",
     "timecreated": 1584306745,
     "lastlogoff": 1766308493,
     "game_count": 276,
     "total_playtime": 2698
   },
-  "lastUpdate": "2025-12-24T21:23:58.058Z"
+  "lastUpdate": "2025-12-24T21:41:56.532Z"
 }
