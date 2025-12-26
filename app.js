@@ -713,6 +713,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // --- WIP Notice Handler ---
+// Initializes the Work-in-Progress notice banner
+// Shows a dismissible notice to users that the site is under development
+// Uses localStorage to remember if the user has dismissed the notice
 function initWipNotice() {
     const notice = document.getElementById('wip-notice');
     const closeBtn = document.getElementById('wip-close');
