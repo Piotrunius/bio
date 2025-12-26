@@ -17,6 +17,40 @@ const deviceCapabilities = {
     connectionSpeed: 'fast'
 };
 
+// Performance monitoring
+function initPerformanceMonitoring() {
+    if (!window.performance || !window.PerformanceObserver) return;
+    
+    try {
+        // Monitor long tasks (tasks taking >50ms)
+        const observer = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+                if (entry.duration > 50) {
+                    console.warn('Long task detected:', entry.name, `${entry.duration.toFixed(2)}ms`);
+                }
+            }
+        });
+        
+        observer.observe({ entryTypes: ['measure', 'navigation'] });
+        
+        // Log initial load performance
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (perfData) {
+                    console.log('Performance Metrics:', {
+                        'DOM Content Loaded': `${perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart}ms`,
+                        'Load Complete': `${perfData.loadEventEnd - perfData.loadEventStart}ms`,
+                        'Total Load Time': `${perfData.loadEventEnd - perfData.fetchStart}ms`
+                    });
+                }
+            }, 0);
+        });
+    } catch (e) {
+        console.warn('Performance monitoring not available:', e.message);
+    }
+}
+
 function detectDeviceCapabilities() {
     // Detect mobile devices
     deviceCapabilities.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
@@ -809,6 +843,29 @@ function renderSpotifyEmpty(container) {
 
 // --- INIT ---
 document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize performance monitoring
+    initPerformanceMonitoring();
+    
+    // Register Service Worker for offline support
+    if ('serviceWorker' in navigator) {
+        try {
+            const registration = await navigator.serviceWorker.register('/sw.js');
+            console.log('Service Worker registered:', registration.scope);
+            
+            // Check for updates
+            registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        console.log('New version available! Refresh to update.');
+                    }
+                });
+            });
+        } catch (error) {
+            console.warn('Service Worker registration failed:', error);
+        }
+    }
+    
     // Detect device capabilities first
     detectDeviceCapabilities();
     applyPerformanceOptimizations();

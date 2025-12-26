@@ -267,9 +267,17 @@ jobs:
             git pull --rebase origin main
             git push origin main
             echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✅ Data updated successfully"
           else
             echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No changes detected"
           fi
+
+      - name: Check for Errors
+        if: failure()
+        run: |
+          echo "::warning::Workflow failed. Check the logs above for details."
+          echo "Last successful run data will be used for the website."
 
       - name: Setup Pages
         if: steps.commit.outputs.changed == 'true' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
