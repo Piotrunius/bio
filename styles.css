@@ -134,80 +134,10 @@ body::-webkit-scrollbar-thumb:hover {
 
 .bg-layer::before,
 .bg-layer::after {
-    content: '';
-    position: absolute;
-    width: 60vmax;
-    height: 60vmax;
-    filter: blur(60px) saturate(160%);
-    opacity: 0.35;
-    border-radius: 50%;
-    pointer-events: none; /* Ensure no interaction */
-    z-index: -10;
+    display: none;
 }
 
-.bg-layer::before {
-    left: -15vmax;
-    top: -20vmax;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 136, 0.6), rgba(0, 184, 255, 0.3) 40%, transparent 70%);
-    animation: blobMove1 35s ease-in-out infinite alternate;
-}
-
-.bg-layer::after {
-    right: -18vmax;
-    top: calc(100vh - 38vmax);
-    background: radial-gradient(circle at 70% 70%, rgba(0, 184, 255, 0.5), rgba(138, 43, 226, 0.3) 40%, transparent 70%);
-    animation: blobMove2 40s ease-in-out infinite alternate;
-}
-
-@keyframes hueShift {
-    0% {
-        filter: hue-rotate(0deg);
-    }
-
-    50% {
-        filter: hue-rotate(25deg);
-    }
-
-    100% {
-        filter: hue-rotate(0deg);
-    }
-}
-
-@keyframes blobMove1 {
-    0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-
-    33% {
-        transform: translate(12vmax, 6vmax) scale(1.15) rotate(120deg);
-    }
-
-    66% {
-        transform: translate(24vmax, 12vmax) scale(1.05) rotate(240deg);
-    }
-
-    100% {
-        transform: translate(0, 0) scale(1) rotate(360deg);
-    }
-}
-
-@keyframes blobMove2 {
-    0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-
-    33% {
-        transform: translate(-10vmax, -6vmax) scale(1.1) rotate(-120deg);
-    }
-
-    66% {
-        transform: translate(-22vmax, -12vmax) scale(1.2) rotate(-240deg);
-    }
-
-    100% {
-        transform: translate(0, 0) scale(1) rotate(-360deg);
-    }
-}
+/* Removed unused gradient animation keyframes */
 
 .bg-canvas {
     position: fixed;
@@ -1530,39 +1460,7 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     }
 }
 
-@keyframes slideInFromLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInFromRight {
-    from {
-        opacity: 0;
-        transform: translateX(60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
+/* Unified animation class */
 .animate-fade-in,
 .animate-slide-up,
 .animate-slide-right,
@@ -1574,25 +1472,8 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
 
 .in-view {
     visibility: visible;
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     animation-fill-mode: forwards;
-    animation-duration: 0.8s;
-    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.animate-fade-in.in-view {
-    animation-name: scaleIn;
-}
-
-.animate-slide-up.in-view {
-    animation-name: fadeInUp;
-}
-
-.animate-slide-right.in-view {
-    animation-name: slideInFromLeft;
-}
-
-.animate-slide-left.in-view {
-    animation-name: slideInFromRight;
 }
 
 /* Typing Cursor */
@@ -2100,11 +1981,6 @@ i:not(.social-link i) {
 
 /* Performance optimizations for low-end devices */
 @media (max-width: 768px), (max-height: 600px) {
-    .bg-layer::before,
-    .bg-layer::after {
-        filter: blur(40px) saturate(120%) !important;
-    }
-    
     .glass-card {
         backdrop-filter: blur(10px) saturate(150%) !important;
         -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
@@ -2671,12 +2547,9 @@ body.light-mode .theme-toggle i {
 }
 
 /* Light mode specific adjustments for better visibility */
-body.light-mode .bg-layer::before {
-    background: radial-gradient(circle at 30% 30%, rgba(0, 204, 112, 0.3), transparent 60%);
-}
-
+body.light-mode .bg-layer::before,
 body.light-mode .bg-layer::after {
-    background: radial-gradient(circle at 70% 70%, rgba(0, 150, 255, 0.25), transparent 60%);
+    display: none;
 }
 
 body.light-mode .wip-notice {
@@ -2870,15 +2743,9 @@ body.light-mode .avatar:hover {
     box-shadow: 0 0 50px rgba(0, 168, 89, 0.4);
 }
 
-/* Light Mode: Background adjustments for better contrast */
-body.light-mode .bg-layer::before {
-    background: radial-gradient(circle at 30% 30%, rgba(0, 168, 89, 0.15), transparent 60%);
-    opacity: 0.5;
-}
-
+body.light-mode .bg-layer::before,
 body.light-mode .bg-layer::after {
-    background: radial-gradient(circle at 70% 70%, rgba(0, 120, 200, 0.12), transparent 60%);
-    opacity: 0.5;
+    display: none;
 }
 
 /* Light Mode: Canvas opacity for cleaner look */

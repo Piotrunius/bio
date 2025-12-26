@@ -113,11 +113,6 @@ function applyPerformanceOptimizations() {
         const style = document.createElement('style');
         style.id = 'perf-optimizations';
         style.textContent = `
-            .low-performance .bg-layer::before,
-            .low-performance .bg-layer::after {
-                animation: none;
-                opacity: 0.2;
-            }
             .low-performance .glass-card {
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
@@ -749,13 +744,7 @@ function initParallaxEffect() {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 const scrolled = window.pageYOffset;
-                const bgLayer = document.querySelector('.bg-layer');
                 const bgCanvas = document.getElementById('bg-canvas');
-                
-                if (bgLayer) {
-                    // Parallax effect on background blobs
-                    bgLayer.style.transform = `translateY(${scrolled * 0.3}px)`;
-                }
                 
                 if (bgCanvas) {
                     // Slight parallax on particles
