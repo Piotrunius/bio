@@ -9,7 +9,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 16747,
+      "stars": 16748,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -81,7 +81,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 44619,
+      "stars": 44622,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -99,7 +99,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 160484,
+      "stars": 160487,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88670,
+      "stars": 88672,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -191,6 +191,13 @@
       "message": "chore: automated stats update",
       "repo": "bio",
       "author": "GitHub Action",
+      "date": "2025-12-26T06:40:13Z",
+      "url": "https://github.com/Piotrunius/bio/commit/749bf27639936e4bbfc9d52eebe7de1f7ff92caa"
+    },
+    {
+      "message": "chore: automated stats update",
+      "repo": "bio",
+      "author": "GitHub Action",
       "date": "2025-12-26T05:53:51Z",
       "url": "https://github.com/Piotrunius/bio/commit/b3eda80e1296be59d8a2d860b7a5183485452f14"
     },
@@ -214,13 +221,6 @@
       "author": "GitHub Action",
       "date": "2025-12-26T04:38:22Z",
       "url": "https://github.com/Piotrunius/bio/commit/17e60374e99c0b365c1d8fd47086c72ddb1e6311"
-    },
-    {
-      "message": "chore: automated stats update",
-      "repo": "bio",
-      "author": "GitHub Action",
-      "date": "2025-12-26T03:46:21Z",
-      "url": "https://github.com/Piotrunius/bio/commit/1b09034ec3ec5144db6a783d9a7c4298f6654ca7"
     },
     {
       "message": "Update AutoClicker.py",
@@ -293,5 +293,5 @@
       "url": "https://github.com/Piotrunius/Core-Scripts/commit/f100fd2f72589f5b83cfd1f325441859901cb9b7"
     }
   ],
-  "lastUpdate": "2025-12-26T06:40:12.414Z"
+  "lastUpdate": "2025-12-26T07:00:54.252Z"
 }
