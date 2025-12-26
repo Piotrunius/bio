@@ -2,14 +2,14 @@
   "summary": {
     "projects": 3,
     "starredCount": 20,
-    "commits": 75
+    "commits": 78
   },
   "starred": [
     {
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 16765,
+      "stars": 16768,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -18,7 +18,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119028,
+      "stars": 119036,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -45,7 +45,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18629,
+      "stars": 18632,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -63,7 +63,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52088,
+      "stars": 52089,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -81,7 +81,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 44656,
+      "stars": 44663,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -99,7 +99,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 160553,
+      "stars": 160569,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88739,
+      "stars": 88743,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -180,13 +180,34 @@
       "name": "PeaZip",
       "owner": "peazip",
       "url": "https://github.com/peazip/PeaZip",
-      "stars": 6659,
+      "stars": 6660,
       "language": "Pascal",
       "description": "Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager. Features volume spanning, compression, authenticated encryption. Supports 7Z, 7-Zip sfx, ACE, ARJ, Brotli, BZ",
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
   "recentCommits": [
+    {
+      "message": "Merge pull request #21 from Piotrunius/copilot/revert-main-branch-to-commit",
+      "repo": "bio",
+      "author": "Piotrunius",
+      "date": "2025-12-26T22:02:13Z",
+      "url": "https://github.com/Piotrunius/bio/commit/22493ea9cbadf199f2c4a9902a147775bcda4f4e"
+    },
+    {
+      "message": "Merge pull request #20 from Piotrunius/copilot/remove-gradient-and-unify-animations",
+      "repo": "bio",
+      "author": "Piotrunius",
+      "date": "2025-12-26T21:51:12Z",
+      "url": "https://github.com/Piotrunius/bio/commit/3edd4bea69b22b9bb5e279dfb0aaa486d27d9453"
+    },
+    {
+      "message": "Update index.html",
+      "repo": "bio",
+      "author": "Piotrunius",
+      "date": "2025-12-26T19:01:03Z",
+      "url": "https://github.com/Piotrunius/bio/commit/bcf4120af5b94478d0e766955f418a8cad7e3372"
+    },
     {
       "message": "Update main.yml",
       "repo": "bio",
@@ -221,27 +242,6 @@
       "author": "Piotrunius",
       "date": "2025-12-22T23:41:56Z",
       "url": "https://github.com/Piotrunius/bio/commit/c48f4b40b71f4d7cd73e2f986a17047e6ec4df73"
-    },
-    {
-      "message": "Merge pull request #1 from Piotrunius/copilot/revert-to-commit-80cacc1",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-22T23:11:56Z",
-      "url": "https://github.com/Piotrunius/bio/commit/d6ce22c4b0226ef267a2d125cfbc340891c7b933"
-    },
-    {
-      "message": "Dodanie Cloudflare Web Analytics tuż przed </head> w index.html",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-22T23:06:04Z",
-      "url": "https://github.com/Piotrunius/bio/commit/77c4cc9f4c0f394f65f0b6f5ed7808d43ae343ec"
-    },
-    {
-      "message": "feat: trigger workflow on push (excluding data folder)",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T08:17:39Z",
-      "url": "https://github.com/Piotrunius/bio/commit/80cacc14d98b67f8eb7a27533efa64a5540745f3"
     },
     {
       "message": "Update AutoClicker.py",
@@ -300,7 +300,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2025-12-26T19:00:36.690Z",
+  "lastUpdate": "2025-12-26T22:02:27.722Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -318,11 +318,35 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2025-12-26T19:00:36.987Z"
+    "lastChecked": "2025-12-26T22:02:28.027Z"
   },
   "pullRequests": {
-    "total": 1,
+    "total": 4,
     "recent": [
+      {
+        "title": "Add blur effects and improved gradient to feed-card background animations\n\nCo-authored-by: Piotrunius <93887193+Piotrunius@users.noreply.github.com>",
+        "repo": "bio",
+        "state": "closed",
+        "url": "https://github.com/Piotrunius/bio/pull/20",
+        "created": "2025-12-26T21:50:40Z",
+        "updated": "2025-12-26T21:51:12Z"
+      },
+      {
+        "title": "chore: automated stats update",
+        "repo": "bio",
+        "state": "closed",
+        "url": "https://github.com/Piotrunius/bio/pull/17",
+        "created": "2025-12-26T21:46:19Z",
+        "updated": "2025-12-26T21:47:48Z"
+      },
+      {
+        "title": "Add blur effects and improved gradient to feed-card background animations\n\nCo-authored-by: Piotrunius <93887193+Piotrunius@users.noreply.github.com>",
+        "repo": "bio",
+        "state": "closed",
+        "url": "https://github.com/Piotrunius/bio/pull/18",
+        "created": "2025-12-26T21:47:05Z",
+        "updated": "2025-12-26T21:47:44Z"
+      },
       {
         "title": "Merge pull request #2 from Piotrunius/copilot/remove-time-condition-github-data\n\n[WIP] Remove time condition for data fetching from GitHub",
         "repo": "bio",
