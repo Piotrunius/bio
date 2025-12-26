@@ -9,7 +9,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 16764,
+      "stars": 16765,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -18,7 +18,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119026,
+      "stars": 119027,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -328,5 +328,5 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/848b50c4a2a8d5a4bcfaf423a6a88760fb7478be"
     }
   ],
-  "lastUpdate": "2025-12-26T17:42:42.088Z"
+  "lastUpdate": "2025-12-26T17:55:30.968Z"
 }
