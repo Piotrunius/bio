@@ -99,7 +99,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 160545,
+      "stars": 160546,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88729,
+      "stars": 88731,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -328,5 +328,5 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/848b50c4a2a8d5a4bcfaf423a6a88760fb7478be"
     }
   ],
-  "lastUpdate": "2025-12-26T16:20:50.954Z"
+  "lastUpdate": "2025-12-26T16:31:02.635Z"
 }
