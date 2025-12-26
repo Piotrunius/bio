@@ -996,7 +996,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     initControls();
     
     // Initialize particles only after capability detection
-    initParticles();
+    // Disabled per user request - blob animations in CSS are enabled instead
+    // initParticles();
     
     initScrollReveal();   
     initTypingEffect();   
