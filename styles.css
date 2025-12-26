@@ -1473,7 +1473,6 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
 .in-view {
     visibility: visible;
     animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    animation-fill-mode: forwards;
 }
 
 /* Typing Cursor */
