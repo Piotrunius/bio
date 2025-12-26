@@ -583,6 +583,7 @@ function initParticles() {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
+    let geometricShapes = [];
 
     const resize = () => {
         width = canvas.width = window.innerWidth;
@@ -595,10 +596,11 @@ function initParticles() {
         constructor() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.4;
-            this.vy = (Math.random() - 0.5) * 0.4;
-            this.size = Math.random() * 3 + 2; // Increased size (2-5px)
-            this.color = `rgba(0, 255, 136, ${Math.random() * 0.3})`; // Slightly more opaque
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 3 + 2;
+            this.opacity = Math.random() * 0.4 + 0.1;
+            this.color = `rgba(0, 255, 136, ${this.opacity})`;
         }
         update() {
             this.x += this.vx;
@@ -609,10 +611,68 @@ function initParticles() {
             if (this.y > height) this.y = 0;
         }
         draw() {
+            // Set shadow properties once
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color;
             ctx.fillStyle = this.color;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
+            // Reset shadow
+            ctx.shadowBlur = 0;
+        }
+    }
+
+    class GeometricShape {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 40 + 20;
+            this.vx = (Math.random() - 0.5) * 0.3;
+            this.vy = (Math.random() - 0.5) * 0.3;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+            this.opacity = Math.random() * 0.15 + 0.05;
+            this.type = Math.floor(Math.random() * 3); // 0: circle, 1: triangle, 2: square
+            this.color = Math.random() > 0.5 ? 
+                `rgba(0, 255, 136, ${this.opacity})` : 
+                `rgba(0, 180, 255, ${this.opacity})`;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.rotation += this.rotationSpeed;
+            
+            if (this.x < -this.size) this.x = width + this.size;
+            if (this.x > width + this.size) this.x = -this.size;
+            if (this.y < -this.size) this.y = height + this.size;
+            if (this.y > height + this.size) this.y = -this.size;
+        }
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+            ctx.strokeStyle = this.color;
+            ctx.lineWidth = 2;
+            ctx.globalAlpha = this.opacity;
+            
+            ctx.beginPath();
+            if (this.type === 0) {
+                // Circle
+                ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+            } else if (this.type === 1) {
+                // Triangle
+                ctx.moveTo(0, -this.size / 2);
+                ctx.lineTo(this.size / 2, this.size / 2);
+                ctx.lineTo(-this.size / 2, this.size / 2);
+                ctx.closePath();
+            } else {
+                // Square
+                ctx.rect(-this.size / 2, -this.size / 2, this.size, this.size);
+            }
+            ctx.stroke();
+            
+            ctx.restore();
         }
     }
 
@@ -621,19 +681,54 @@ function initParticles() {
                          deviceCapabilities.isMobile ? PARTICLE_COUNTS.MOBILE : 
                          PARTICLE_COUNTS.DESKTOP;
     
+    const shapeCount = deviceCapabilities.isLowEnd ? 3 : 
+                      deviceCapabilities.isMobile ? 5 : 8;
+    
     for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+    for (let i = 0; i < shapeCount; i++) geometricShapes.push(new GeometricShape());
 
-    // Store animate function globally (or in a wider scope) to access it for visibility change
+    // Store animate function globally
     window.particlesAnimate = function () {
         if (document.hidden) {
             cancelAnimationFrame(particlesAnimationFrame);
             return;
         }
         ctx.clearRect(0, 0, width, height);
+        
+        // Draw connection lines between nearby particles
+        if (!deviceCapabilities.isLowEnd) {
+            const maxDistance = 120;
+            const maxDistanceSquared = maxDistance * maxDistance; // Avoid Math.sqrt
+            
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distanceSquared = dx * dx + dy * dy;
+                    
+                    if (distanceSquared < maxDistanceSquared) {
+                        const distance = Math.sqrt(distanceSquared);
+                        ctx.strokeStyle = `rgba(0, 255, 136, ${0.15 * (1 - distance / maxDistance)})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+        }
+        
+        geometricShapes.forEach(shape => {
+            shape.update();
+            shape.draw();
+        });
+        
         particles.forEach(p => {
             p.update();
             p.draw();
         });
+        
         particlesAnimationFrame = requestAnimationFrame(window.particlesAnimate);
     };
 
