@@ -189,6 +189,51 @@
                 </div>
             </section>
 
+            <section class="security-section glass-card animate-slide-up">
+                <h3 class="section-title">
+                    <i class="fas fa-shield-alt"></i>
+                    SECURITY DASHBOARD
+                </h3>
+                <div class="security-overview">
+                    <div class="security-stat-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div class="security-stat-value" id="security-total-alerts">0</div>
+                        <div class="security-stat-label">Total Alerts</div>
+                    </div>
+                    <div class="security-stat-card">
+                        <i class="fas fa-bug"></i>
+                        <div class="security-stat-value" id="security-dependabot">0</div>
+                        <div class="security-stat-label">Dependabot</div>
+                    </div>
+                    <div class="security-stat-card">
+                        <i class="fas fa-code"></i>
+                        <div class="security-stat-value" id="security-code-scanning">0</div>
+                        <div class="security-stat-label">Code Scan</div>
+                    </div>
+                    <div class="security-stat-card">
+                        <i class="fas fa-key"></i>
+                        <div class="security-stat-value" id="security-secret-scanning">0</div>
+                        <div class="security-stat-label">Secrets</div>
+                    </div>
+                </div>
+                <div class="security-tabs">
+                    <button class="security-tab active" data-tab="dependabot">
+                        <i class="fas fa-bug"></i> Dependabot
+                    </button>
+                    <button class="security-tab" data-tab="code-scanning">
+                        <i class="fas fa-code"></i> Code Scanning
+                    </button>
+                    <button class="security-tab" data-tab="secret-scanning">
+                        <i class="fas fa-key"></i> Secret Scanning
+                    </button>
+                </div>
+                <div class="security-content">
+                    <div id="dependabot-alerts" class="security-alerts-list active"></div>
+                    <div id="code-scanning-alerts" class="security-alerts-list"></div>
+                    <div id="secret-scanning-alerts" class="security-alerts-list"></div>
+                </div>
+            </section>
+
             <section class="activity-section glass-card animate-slide-up">
                 <h3 class="section-title">
                     <i class="fas fa-bolt"></i>
@@ -212,6 +257,38 @@
                 </div>
                 <div class="last-update-info">
                     <small id="stats-last-update">Updating...</small>
+                </div>
+            </section>
+
+            <section class="github-extras-section glass-card animate-slide-left">
+                <h3 class="section-title">
+                    <i class="fa-brands fa-github"></i>
+                    GITHUB INSIGHTS
+                </h3>
+                <div class="github-extras-grid">
+                    <div class="github-extra-card">
+                        <div class="extra-header">
+                            <i class="fas fa-code-branch"></i>
+                            Pull Requests
+                            <span class="extra-badge" id="pr-total">0</span>
+                        </div>
+                        <div id="pr-list" class="extra-list"></div>
+                    </div>
+                    <div class="github-extra-card">
+                        <div class="extra-header">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Issues
+                            <span class="extra-badge" id="issues-total">0</span>
+                        </div>
+                        <div id="issues-list" class="extra-list"></div>
+                    </div>
+                    <div class="github-extra-card">
+                        <div class="extra-header">
+                            <i class="fas fa-chart-bar"></i>
+                            Top Languages
+                        </div>
+                        <div id="languages-list" class="languages-chart"></div>
+                    </div>
                 </div>
             </section>
 

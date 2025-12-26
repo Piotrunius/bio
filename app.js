@@ -339,6 +339,282 @@ async function refreshGitHubStats() {
     }
 }
 
+// --- CORE FUNCTION: Render Security Dashboard ---
+function initSecurityDashboard() {
+    const tabs = document.querySelectorAll('.security-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active from all tabs and content
+            document.querySelectorAll('.security-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.security-alerts-list').forEach(c => c.classList.remove('active'));
+            
+            // Add active to clicked tab and corresponding content
+            tab.classList.add('active');
+            const tabName = tab.dataset.tab;
+            const content = document.getElementById(`${tabName}-alerts`);
+            if (content) content.classList.add('active');
+        });
+    });
+}
+
+async function refreshSecurityAlerts() {
+    const totalAlertsEl = document.getElementById('security-total-alerts');
+    const dependabotEl = document.getElementById('security-dependabot');
+    const codeScanningEl = document.getElementById('security-code-scanning');
+    const secretScanningEl = document.getElementById('security-secret-scanning');
+    
+    const dependabotList = document.getElementById('dependabot-alerts');
+    const codeScanningList = document.getElementById('code-scanning-alerts');
+    const secretScanningList = document.getElementById('secret-scanning-alerts');
+
+    let stats = { security: { 
+        totalOpen: 0, 
+        dependabot: { open: 0, alerts: [] },
+        codeScanning: { open: 0, alerts: [] },
+        secretScanning: { open: 0, alerts: [] }
+    }};
+    
+    try {
+        const resp = await fetch(`data/github-stats.json?t=${Date.now()}`);
+        if (resp.ok) {
+            stats = await resp.json();
+        }
+    } catch (e) {
+        console.warn('Error loading security data:', e.message);
+    }
+
+    const security = stats.security || stats.security;
+    
+    // Update stats
+    if (totalAlertsEl) totalAlertsEl.textContent = security.totalOpen || 0;
+    if (dependabotEl) dependabotEl.textContent = security.dependabot.open || 0;
+    if (codeScanningEl) codeScanningEl.textContent = security.codeScanning.open || 0;
+    if (secretScanningEl) secretScanningEl.textContent = security.secretScanning.open || 0;
+
+    // Render Dependabot alerts
+    if (dependabotList) {
+        if (security.dependabot.alerts.length === 0) {
+            dependabotList.innerHTML = '<div class="no-alerts"><i class="fas fa-check-circle"></i> No Dependabot alerts</div>';
+        } else {
+            const fragment = document.createDocumentFragment();
+            security.dependabot.alerts.forEach((alert, index) => {
+                const item = document.createElement('div');
+                item.className = 'security-alert-item';
+                item.style.animationDelay = `${index * 0.05}s`;
+                
+                const severityClass = `severity-${alert.severity}`;
+                item.innerHTML = `
+                    <div class="alert-header">
+                        <span class="severity-badge ${severityClass}">${alert.severity}</span>
+                        <a href="${alert.url}" class="alert-link" target="_blank" rel="noreferrer">
+                            ${alert.package}
+                        </a>
+                    </div>
+                    <div class="alert-summary">${alert.summary}</div>
+                    <div class="alert-meta">
+                        <span class="alert-repo"><i class="fas fa-folder"></i> ${alert.repo}</span>
+                        <span class="alert-date">${formatPLDateTime(alert.created, true)}</span>
+                    </div>
+                `;
+                fragment.appendChild(item);
+            });
+            dependabotList.innerHTML = '';
+            dependabotList.appendChild(fragment);
+        }
+    }
+
+    // Render Code Scanning alerts
+    if (codeScanningList) {
+        if (security.codeScanning.alerts.length === 0) {
+            codeScanningList.innerHTML = '<div class="no-alerts"><i class="fas fa-check-circle"></i> No code scanning alerts</div>';
+        } else {
+            const fragment = document.createDocumentFragment();
+            security.codeScanning.alerts.forEach((alert, index) => {
+                const item = document.createElement('div');
+                item.className = 'security-alert-item';
+                item.style.animationDelay = `${index * 0.05}s`;
+                
+                const severityClass = `severity-${alert.severity}`;
+                item.innerHTML = `
+                    <div class="alert-header">
+                        <span class="severity-badge ${severityClass}">${alert.severity}</span>
+                        <a href="${alert.url}" class="alert-link" target="_blank" rel="noreferrer">
+                            ${alert.rule}
+                        </a>
+                    </div>
+                    <div class="alert-meta">
+                        <span class="alert-repo"><i class="fas fa-folder"></i> ${alert.repo}</span>
+                        <span class="alert-tool"><i class="fas fa-wrench"></i> ${alert.tool}</span>
+                        <span class="alert-date">${formatPLDateTime(alert.created, true)}</span>
+                    </div>
+                `;
+                fragment.appendChild(item);
+            });
+            codeScanningList.innerHTML = '';
+            codeScanningList.appendChild(fragment);
+        }
+    }
+
+    // Render Secret Scanning alerts
+    if (secretScanningList) {
+        if (security.secretScanning.alerts.length === 0) {
+            secretScanningList.innerHTML = '<div class="no-alerts"><i class="fas fa-check-circle"></i> No secret scanning alerts</div>';
+        } else {
+            const fragment = document.createDocumentFragment();
+            security.secretScanning.alerts.forEach((alert, index) => {
+                const item = document.createElement('div');
+                item.className = 'security-alert-item';
+                item.style.animationDelay = `${index * 0.05}s`;
+                
+                item.innerHTML = `
+                    <div class="alert-header">
+                        <span class="severity-badge severity-high">secret</span>
+                        <a href="${alert.url}" class="alert-link" target="_blank" rel="noreferrer">
+                            ${alert.secret_type}
+                        </a>
+                    </div>
+                    <div class="alert-meta">
+                        <span class="alert-repo"><i class="fas fa-folder"></i> ${alert.repo}</span>
+                        <span class="alert-date">${formatPLDateTime(alert.created, true)}</span>
+                    </div>
+                `;
+                fragment.appendChild(item);
+            });
+            secretScanningList.innerHTML = '';
+            secretScanningList.appendChild(fragment);
+        }
+    }
+}
+
+// --- CORE FUNCTION: Render GitHub Extras ---
+async function refreshGitHubExtras() {
+    const prTotalEl = document.getElementById('pr-total');
+    const issuesTotalEl = document.getElementById('issues-total');
+    const prListEl = document.getElementById('pr-list');
+    const issuesListEl = document.getElementById('issues-list');
+    const languagesListEl = document.getElementById('languages-list');
+
+    let stats = { 
+        pullRequests: { total: 0, recent: [] },
+        issues: { total: 0, recent: [] },
+        languages: []
+    };
+    
+    try {
+        const resp = await fetch(`data/github-stats.json?t=${Date.now()}`);
+        if (resp.ok) {
+            stats = await resp.json();
+        }
+    } catch (e) {
+        console.warn('Error loading GitHub extras:', e.message);
+    }
+
+    // Update totals
+    if (prTotalEl) prTotalEl.textContent = stats.pullRequests?.total || 0;
+    if (issuesTotalEl) issuesTotalEl.textContent = stats.issues?.total || 0;
+
+    // Render PRs
+    if (prListEl) {
+        const prs = stats.pullRequests?.recent || [];
+        if (prs.length === 0) {
+            prListEl.innerHTML = '<div class="extra-empty">No recent pull requests</div>';
+        } else {
+            const fragment = document.createDocumentFragment();
+            prs.forEach((pr, index) => {
+                const item = document.createElement('div');
+                item.className = 'extra-item';
+                item.style.animationDelay = `${index * 0.05}s`;
+                
+                const stateClass = pr.state === 'open' ? 'state-open' : 'state-closed';
+                const stateIcon = pr.state === 'open' ? 'fa-code-branch' : 'fa-check';
+                
+                item.innerHTML = `
+                    <div class="extra-item-header">
+                        <span class="state-badge ${stateClass}">
+                            <i class="fas ${stateIcon}"></i> ${pr.state}
+                        </span>
+                        <a href="${pr.url}" class="extra-link" target="_blank" rel="noreferrer">
+                            ${pr.title}
+                        </a>
+                    </div>
+                    <div class="extra-meta">
+                        <span><i class="fas fa-folder"></i> ${pr.repo}</span>
+                        <span>${formatPLDateTime(pr.updated, true)}</span>
+                    </div>
+                `;
+                fragment.appendChild(item);
+            });
+            prListEl.innerHTML = '';
+            prListEl.appendChild(fragment);
+        }
+    }
+
+    // Render Issues
+    if (issuesListEl) {
+        const issues = stats.issues?.recent || [];
+        if (issues.length === 0) {
+            issuesListEl.innerHTML = '<div class="extra-empty">No recent issues</div>';
+        } else {
+            const fragment = document.createDocumentFragment();
+            issues.forEach((issue, index) => {
+                const item = document.createElement('div');
+                item.className = 'extra-item';
+                item.style.animationDelay = `${index * 0.05}s`;
+                
+                const stateClass = issue.state === 'open' ? 'state-open' : 'state-closed';
+                const stateIcon = issue.state === 'open' ? 'fa-exclamation-circle' : 'fa-check-circle';
+                
+                item.innerHTML = `
+                    <div class="extra-item-header">
+                        <span class="state-badge ${stateClass}">
+                            <i class="fas ${stateIcon}"></i> ${issue.state}
+                        </span>
+                        <a href="${issue.url}" class="extra-link" target="_blank" rel="noreferrer">
+                            ${issue.title}
+                        </a>
+                    </div>
+                    <div class="extra-meta">
+                        <span><i class="fas fa-folder"></i> ${issue.repo}</span>
+                        <span>${formatPLDateTime(issue.updated, true)}</span>
+                    </div>
+                `;
+                fragment.appendChild(item);
+            });
+            issuesListEl.innerHTML = '';
+            issuesListEl.appendChild(fragment);
+        }
+    }
+
+    // Render Languages
+    if (languagesListEl) {
+        const languages = stats.languages || [];
+        if (languages.length === 0) {
+            languagesListEl.innerHTML = '<div class="extra-empty">No language data</div>';
+        } else {
+            const maxRepos = Math.max(...languages.map(l => l.repos), 1);
+            const fragment = document.createDocumentFragment();
+            languages.forEach((lang, index) => {
+                const item = document.createElement('div');
+                item.className = 'language-bar';
+                item.style.animationDelay = `${index * 0.05}s`;
+                
+                const percentage = (lang.repos / maxRepos) * 100;
+                
+                item.innerHTML = `
+                    <div class="language-name">${lang.name}</div>
+                    <div class="language-bar-container">
+                        <div class="language-bar-fill" style="width: ${percentage}%"></div>
+                    </div>
+                    <div class="language-count">${lang.repos} repos</div>
+                `;
+                fragment.appendChild(item);
+            });
+            languagesListEl.innerHTML = '';
+            languagesListEl.appendChild(fragment);
+        }
+    }
+}
+
 // --- CORE FUNCTION: Render Steam Status ---
 async function refreshSteamStatus() {
     const steamPanel = document.getElementById('steam-status-panel');
@@ -897,6 +1173,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     refreshSteamStatus();
     updateSpotifyStatus();
     initControls();
+    initSecurityDashboard();
+    refreshSecurityAlerts();
+    refreshGitHubExtras();
     
     // Initialize particles only after capability detection
     initParticles();
@@ -916,6 +1195,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     setInterval(refreshGitHubStats, statsInterval);
     setInterval(refreshSteamStatus, steamInterval);
     setInterval(updateSpotifyStatus, spotifyInterval);
+    setInterval(refreshSecurityAlerts, statsInterval); // Same as GitHub stats
+    setInterval(refreshGitHubExtras, statsInterval); // Same as GitHub stats
 });
 
 // --- WIP Notice Handler ---

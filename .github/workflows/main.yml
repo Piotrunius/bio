@@ -233,6 +233,220 @@ jobs:
                   )
                   .slice(0, 40); // Reduced from 50 to 40 for smaller file size
                 
+                // Fetch security alerts (Dependabot, Code Scanning, Secret Scanning)
+                const securityData = {
+                  dependabot: { open: 0, closed: 0, alerts: [] },
+                  codeScanning: { open: 0, closed: 0, alerts: [] },
+                  secretScanning: { open: 0, closed: 0, alerts: [] },
+                  totalOpen: 0,
+                  lastChecked: new Date().toISOString()
+                };
+                
+                // Fetch vulnerability alerts from all repos
+                const securityPromises = repos.slice(0, 20).map(async r => {
+                  const repoFullName = `${r.owner.login}/${r.name}`;
+                  const results = { repo: r.name, dependabot: [], codeScanning: [], secretScanning: [] };
+                  
+                  try {
+                    // Dependabot alerts
+                    try {
+                      const depR = await fetchWithRetry(
+                        `https://api.github.com/repos/${repoFullName}/dependabot/alerts?state=open&per_page=10`,
+                        { headers: gHeaders }
+                      );
+                      if (depR.ok) {
+                        const depAlerts = await depR.json();
+                        if (Array.isArray(depAlerts)) {
+                          results.dependabot = depAlerts.map(a => ({
+                            number: a.number,
+                            state: a.state,
+                            severity: sanitizeString(a.security_advisory?.severity || 'unknown', 20),
+                            package: sanitizeString(a.dependency?.package?.name || 'unknown', 100),
+                            summary: sanitizeString(a.security_advisory?.summary || 'No summary', 200),
+                            url: sanitizeString(a.html_url || '#', 200),
+                            created: a.created_at || new Date().toISOString()
+                          }));
+                        }
+                      }
+                    } catch (e) {
+                      console.log(`Dependabot alerts not available for ${r.name}`);
+                    }
+                    
+                    // Code scanning alerts
+                    try {
+                      const codeR = await fetchWithRetry(
+                        `https://api.github.com/repos/${repoFullName}/code-scanning/alerts?state=open&per_page=10`,
+                        { headers: gHeaders }
+                      );
+                      if (codeR.ok) {
+                        const codeAlerts = await codeR.json();
+                        if (Array.isArray(codeAlerts)) {
+                          results.codeScanning = codeAlerts.map(a => ({
+                            number: a.number,
+                            state: a.state,
+                            severity: sanitizeString(a.rule?.severity || 'unknown', 20),
+                            rule: sanitizeString(a.rule?.description || 'Unknown rule', 200),
+                            tool: sanitizeString(a.tool?.name || 'unknown', 50),
+                            url: sanitizeString(a.html_url || '#', 200),
+                            created: a.created_at || new Date().toISOString()
+                          }));
+                        }
+                      }
+                    } catch (e) {
+                      console.log(`Code scanning alerts not available for ${r.name}`);
+                    }
+                    
+                    // Secret scanning alerts
+                    try {
+                      const secretR = await fetchWithRetry(
+                        `https://api.github.com/repos/${repoFullName}/secret-scanning/alerts?state=open&per_page=10`,
+                        { headers: gHeaders }
+                      );
+                      if (secretR.ok) {
+                        const secretAlerts = await secretR.json();
+                        if (Array.isArray(secretAlerts)) {
+                          results.secretScanning = secretAlerts.map(a => ({
+                            number: a.number,
+                            state: a.state,
+                            secret_type: sanitizeString(a.secret_type || 'unknown', 100),
+                            url: sanitizeString(a.html_url || '#', 200),
+                            created: a.created_at || new Date().toISOString()
+                          }));
+                        }
+                      }
+                    } catch (e) {
+                      console.log(`Secret scanning alerts not available for ${r.name}`);
+                    }
+                  } catch (e) {
+                    console.log(`Security check failed for ${r.name}: ${e.message}`);
+                  }
+                  
+                  return results;
+                });
+                
+                const securityResults = await Promise.allSettled(securityPromises);
+                
+                // Aggregate security data
+                securityResults.forEach(result => {
+                  if (result.status === 'fulfilled' && result.value) {
+                    const data = result.value;
+                    
+                    data.dependabot.forEach(alert => {
+                      securityData.dependabot.open++;
+                      securityData.dependabot.alerts.push({
+                        ...alert,
+                        repo: data.repo
+                      });
+                    });
+                    
+                    data.codeScanning.forEach(alert => {
+                      securityData.codeScanning.open++;
+                      securityData.codeScanning.alerts.push({
+                        ...alert,
+                        repo: data.repo
+                      });
+                    });
+                    
+                    data.secretScanning.forEach(alert => {
+                      securityData.secretScanning.open++;
+                      securityData.secretScanning.alerts.push({
+                        ...alert,
+                        repo: data.repo
+                      });
+                    });
+                  }
+                });
+                
+                // Sort alerts by severity and date
+                const severityOrder = { critical: 0, high: 1, medium: 2, low: 3, unknown: 4 };
+                securityData.dependabot.alerts.sort((a, b) => {
+                  const severityDiff = (severityOrder[a.severity] || 4) - (severityOrder[b.severity] || 4);
+                  if (severityDiff !== 0) return severityDiff;
+                  return new Date(b.created) - new Date(a.created);
+                });
+                
+                securityData.codeScanning.alerts.sort((a, b) => {
+                  const severityDiff = (severityOrder[a.severity] || 4) - (severityOrder[b.severity] || 4);
+                  if (severityDiff !== 0) return severityDiff;
+                  return new Date(b.created) - new Date(a.created);
+                });
+                
+                securityData.secretScanning.alerts.sort((a, b) => 
+                  new Date(b.created) - new Date(a.created)
+                );
+                
+                // Limit alerts to top 20 each
+                securityData.dependabot.alerts = securityData.dependabot.alerts.slice(0, 20);
+                securityData.codeScanning.alerts = securityData.codeScanning.alerts.slice(0, 20);
+                securityData.secretScanning.alerts = securityData.secretScanning.alerts.slice(0, 20);
+                
+                securityData.totalOpen = securityData.dependabot.open + 
+                                        securityData.codeScanning.open + 
+                                        securityData.secretScanning.open;
+                
+                stats.security = securityData;
+                
+                // Fetch pull requests
+                try {
+                  const prR = await fetchWithRetry(
+                    `https://api.github.com/search/issues?q=author:${gUser}+type:pr&sort=updated&per_page=10`,
+                    { headers: gHeaders }
+                  );
+                  const prData = await prR.json();
+                  
+                  stats.pullRequests = {
+                    total: prData.total_count || 0,
+                    recent: Array.isArray(prData.items) ? prData.items.slice(0, 10).map(pr => ({
+                      title: sanitizeString(pr.title || 'No title', 150),
+                      repo: sanitizeString(pr.repository_url?.split('/').slice(-1)[0] || 'Unknown', 100),
+                      state: pr.state || 'unknown',
+                      url: sanitizeString(pr.html_url || '#', 200),
+                      created: pr.created_at || new Date().toISOString(),
+                      updated: pr.updated_at || new Date().toISOString()
+                    })) : []
+                  };
+                } catch (e) {
+                  console.log('PR fetch failed:', e.message);
+                  stats.pullRequests = { total: 0, recent: [] };
+                }
+                
+                // Fetch issues
+                try {
+                  const issueR = await fetchWithRetry(
+                    `https://api.github.com/search/issues?q=author:${gUser}+type:issue&sort=updated&per_page=10`,
+                    { headers: gHeaders }
+                  );
+                  const issueData = await issueR.json();
+                  
+                  stats.issues = {
+                    total: issueData.total_count || 0,
+                    recent: Array.isArray(issueData.items) ? issueData.items.slice(0, 10).map(issue => ({
+                      title: sanitizeString(issue.title || 'No title', 150),
+                      repo: sanitizeString(issue.repository_url?.split('/').slice(-1)[0] || 'Unknown', 100),
+                      state: issue.state || 'unknown',
+                      url: sanitizeString(issue.html_url || '#', 200),
+                      created: issue.created_at || new Date().toISOString(),
+                      updated: issue.updated_at || new Date().toISOString()
+                    })) : []
+                  };
+                } catch (e) {
+                  console.log('Issues fetch failed:', e.message);
+                  stats.issues = { total: 0, recent: [] };
+                }
+                
+                // Calculate language statistics
+                const languageStats = {};
+                repos.forEach(r => {
+                  if (r.language) {
+                    languageStats[r.language] = (languageStats[r.language] || 0) + 1;
+                  }
+                });
+                
+                stats.languages = Object.entries(languageStats)
+                  .sort((a, b) => b[1] - a[1])
+                  .slice(0, 10)
+                  .map(([lang, count]) => ({ name: lang, repos: count }));
+                
                 fs.writeFileSync('./data/github-stats.json', JSON.stringify(stats, null, 2));
                 console.log('GitHub data updated successfully');
               } catch (e) {
