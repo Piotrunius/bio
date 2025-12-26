@@ -383,17 +383,22 @@ async function refreshSecurityAlerts() {
         console.warn('Error loading security data:', e.message);
     }
 
-    const security = stats.security || stats.security;
+    const security = stats.security || { 
+        totalOpen: 0, 
+        dependabot: { open: 0, alerts: [] },
+        codeScanning: { open: 0, alerts: [] },
+        secretScanning: { open: 0, alerts: [] }
+    };
     
     // Update stats
     if (totalAlertsEl) totalAlertsEl.textContent = security.totalOpen || 0;
-    if (dependabotEl) dependabotEl.textContent = security.dependabot.open || 0;
-    if (codeScanningEl) codeScanningEl.textContent = security.codeScanning.open || 0;
-    if (secretScanningEl) secretScanningEl.textContent = security.secretScanning.open || 0;
+    if (dependabotEl) dependabotEl.textContent = security.dependabot?.open || 0;
+    if (codeScanningEl) codeScanningEl.textContent = security.codeScanning?.open || 0;
+    if (secretScanningEl) secretScanningEl.textContent = security.secretScanning?.open || 0;
 
     // Render Dependabot alerts
     if (dependabotList) {
-        if (security.dependabot.alerts.length === 0) {
+        if (!security.dependabot?.alerts?.length) {
             dependabotList.innerHTML = '<div class="no-alerts"><i class="fas fa-check-circle"></i> No Dependabot alerts</div>';
         } else {
             const fragment = document.createDocumentFragment();
@@ -425,7 +430,7 @@ async function refreshSecurityAlerts() {
 
     // Render Code Scanning alerts
     if (codeScanningList) {
-        if (security.codeScanning.alerts.length === 0) {
+        if (!security.codeScanning?.alerts?.length) {
             codeScanningList.innerHTML = '<div class="no-alerts"><i class="fas fa-check-circle"></i> No code scanning alerts</div>';
         } else {
             const fragment = document.createDocumentFragment();
@@ -457,7 +462,7 @@ async function refreshSecurityAlerts() {
 
     // Render Secret Scanning alerts
     if (secretScanningList) {
-        if (security.secretScanning.alerts.length === 0) {
+        if (!security.secretScanning?.alerts?.length) {
             secretScanningList.innerHTML = '<div class="no-alerts"><i class="fas fa-check-circle"></i> No secret scanning alerts</div>';
         } else {
             const fragment = document.createDocumentFragment();
