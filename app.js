@@ -222,9 +222,13 @@ async function refreshGitHubStats() {
     let stats = fallback;
     try {
         const resp = await fetch(`data/github-stats.json?t=${Date.now()}`);
-        if (resp.ok) stats = await resp.json();
+        if (resp.ok) {
+            stats = await resp.json();
+        } else {
+            console.warn('GitHub stats request failed:', resp.status);
+        }
     } catch (e) {
-        console.warn('Error loading GitHub stats:', e);
+        console.warn('Error loading GitHub stats:', e.message);
     }
 
     const summary = stats.summary || {};
@@ -235,30 +239,33 @@ async function refreshGitHubStats() {
         lastUpdateEl.textContent = `Last updated: ${formatPLDateTime(stats.lastUpdate || new Date().toISOString())}`;
     }
 
-    if (activityStarsEl && stats.starred) {
-        activityStarsEl.innerHTML = '';
+    // Use DocumentFragment for better performance
+    if (activityStarsEl && Array.isArray(stats.starred)) {
+        const fragment = document.createDocumentFragment();
         stats.starred.slice(0, 20).forEach((star, index) => {
             const item = document.createElement('div');
             item.className = 'activity-item';
             item.style.animationDelay = `${index * 0.05}s`;
             item.innerHTML = `
                 <div class="activity-header">
-                    <a href="${star.url}" class="activity-link" target="_blank" rel="noreferrer">${star.name}</a>
-                    <div class="meta-badge" title="Stars"><i class="fas fa-star"></i> ${star.stars}</div>
+                    <a href="${star.url || '#'}" class="activity-link" target="_blank" rel="noreferrer">${star.name || 'Unknown'}</a>
+                    <div class="meta-badge" title="Stars"><i class="fas fa-star"></i> ${star.stars || 0}</div>
                 </div>
                 <div class="activity-desc">${star.description || 'No description.'}</div>
                 <div class="activity-meta-row">
-                    <div class="meta-badge"><i class="fas fa-user"></i> ${star.owner}</div>
+                    <div class="meta-badge"><i class="fas fa-user"></i> ${star.owner || 'Unknown'}</div>
                     <div class="meta-badge"><i class="fas fa-code"></i> ${star.language || 'Code'}</div>
                     <span class="meta-date">${formatPLDateTime(star.starredAt, true)}</span>
                 </div>
             `;
-            activityStarsEl.appendChild(item);
+            fragment.appendChild(item);
         });
+        activityStarsEl.innerHTML = '';
+        activityStarsEl.appendChild(fragment);
     }
 
-    if (activityCommitsEl && stats.recentCommits) {
-        activityCommitsEl.innerHTML = '';
+    if (activityCommitsEl && Array.isArray(stats.recentCommits)) {
+        const fragment = document.createDocumentFragment();
         stats.recentCommits
             .filter(c => {
                 const msg = (c.message || '').toLowerCase();
@@ -275,16 +282,18 @@ async function refreshGitHubStats() {
                 item.style.animationDelay = `${index * 0.05}s`;
                 item.innerHTML = `
                     <div class="activity-header">
-                        <a href="${commit.url}" class="activity-link" target="_blank" rel="noreferrer">${commit.message}</a>
+                        <a href="${commit.url || '#'}" class="activity-link" target="_blank" rel="noreferrer">${commit.message || 'No message'}</a>
                     </div>
-                    <div class="activity-desc">Repository: ${commit.repo}</div>
+                    <div class="activity-desc">Repository: ${commit.repo || 'Unknown'}</div>
                     <div class="activity-meta-row">
-                        <div class="meta-badge"><i class="fas fa-user-circle"></i> ${commit.author}</div>
+                        <div class="meta-badge"><i class="fas fa-user-circle"></i> ${commit.author || 'Unknown'}</div>
                         <span class="meta-date">${formatPLDateTime(commit.date, true)}</span>
                     </div>
                 `;
-                activityCommitsEl.appendChild(item);
+                fragment.appendChild(item);
             });
+        activityCommitsEl.innerHTML = '';
+        activityCommitsEl.appendChild(fragment);
     }
 }
 
@@ -296,23 +305,28 @@ async function refreshSteamStatus() {
     let stats = { steam: { personastate: 0, gameextrainfo: null } };
     try {
         const resp = await fetch(`data/steam-status.json?t=${Date.now()}`);
-        if (resp.ok) stats = await resp.json();
+        if (resp.ok) {
+            stats = await resp.json();
+        } else {
+            console.warn('Steam status request failed:', resp.status);
+        }
     } catch (e) {
-        console.warn('Error loading Steam status:', e);
+        console.warn('Error loading Steam status:', e.message);
     }
 
     const s = stats.steam || {};
     const statusText = document.getElementById('steam-status-text');
     const gameInfo = document.getElementById('steam-game-info');
-    const dotContainer = document.getElementById('steam-dot').parentElement;
+    const dotContainer = document.getElementById('steam-dot')?.parentElement;
     const steamPfp = document.getElementById('steam-pfp');
 
-    if (s.avatar && steamPfp) steamPfp.src = s.avatar;
+    if (s.avatar && steamPfp) {
+        steamPfp.src = s.avatar;
+        steamPfp.onerror = () => { steamPfp.src = 'assets/pfp.png'; };
+    }
 
     const memberSince = document.getElementById('steam-member-since');
     const gameCount = document.getElementById('steam-game-count');
-    const playtime = document.getElementById('steam-total-playtime');
-    const lastOnline = document.getElementById('steam-last-online');
 
     if (s.timecreated && memberSince) {
         memberSince.innerHTML = `<i class="fas fa-calendar-alt"></i> Since ${new Date(s.timecreated * 1000).getFullYear()}`;
@@ -320,47 +334,44 @@ async function refreshSteamStatus() {
     if (s.game_count !== undefined && gameCount) {
         gameCount.innerHTML = `<i class="fas fa-gamepad"></i> ${s.game_count} Games`;
     }
-    if (s.total_playtime !== undefined && playtime) {
-        playtime.innerHTML = `<i class="fas fa-hourglass-half"></i> ${s.total_playtime} hrs`;
-    }
-    if (lastOnline && s.lastlogoff) {
-        lastOnline.innerHTML = `<i class="fas fa-clock"></i> Seen ${new Date(s.lastlogoff * 1000).toLocaleDateString()}`;
-        lastOnline.style.display = 'flex';
-    }
 
+    if (!dotContainer) return;
+    
     dotContainer.className = 'steam-avatar-wrapper';
     if (s.gameextrainfo) {
         dotContainer.classList.add('in-game');
-        statusText.textContent = 'In-game';
-        gameInfo.textContent = `Playing: ${s.gameextrainfo}`;
-        gameInfo.style.color = '#90ff47';
-        gameInfo.style.display = 'block';
+        if (statusText) statusText.textContent = 'In-game';
+        if (gameInfo) {
+            gameInfo.textContent = `Playing: ${s.gameextrainfo}`;
+            gameInfo.style.color = '#90ff47';
+            gameInfo.style.display = 'block';
+        }
     } else {
-        gameInfo.style.display = 'none';
+        if (gameInfo) gameInfo.style.display = 'none';
         // Map personastate values properly:
         // 0 = Offline, 1 = Online, 2 = Busy, 3 = Away, 4 = Snooze, 5 = Looking to trade, 6 = Looking to play
         switch(s.personastate) {
             case 1:
                 dotContainer.classList.add('online');
-                statusText.textContent = 'Online';
+                if (statusText) statusText.textContent = 'Online';
                 break;
             case 2:
                 dotContainer.classList.add('busy');
-                statusText.textContent = 'Busy';
+                if (statusText) statusText.textContent = 'Busy';
                 break;
             case 3:
             case 4:
                 dotContainer.classList.add('away');
-                statusText.textContent = 'Away';
+                if (statusText) statusText.textContent = 'Away';
                 break;
             case 5:
             case 6:
                 dotContainer.classList.add('online');
-                statusText.textContent = 'Online';
+                if (statusText) statusText.textContent = 'Online';
                 break;
             default:
                 dotContainer.classList.add('offline');
-                statusText.textContent = 'Offline';
+                if (statusText) statusText.textContent = 'Offline';
         }
     }
 }
