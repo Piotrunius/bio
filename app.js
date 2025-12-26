@@ -616,7 +616,7 @@ function initParticles() {
         }
         update() {
             // Mouse interaction
-            if (mouse.x != null && mouse.y != null) {
+            if (mouse.x !== null && mouse.y !== null) {
                 const dx = mouse.x - this.x;
                 const dy = mouse.y - this.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
@@ -668,9 +668,14 @@ function initParticles() {
             }
         }
         
-        // Connect nearby particles
-        connect(particles) {
-            particles.forEach(particle => {
+        // Connect nearby particles (optimized to avoid creating new arrays)
+        connect(particles, startIndex) {
+            // Limit connections to improve performance
+            const maxConnections = 3;
+            let connectionCount = 0;
+            
+            for (let i = startIndex + 1; i < particles.length && connectionCount < maxConnections; i++) {
+                const particle = particles[i];
                 const dx = this.x - particle.x;
                 const dy = this.y - particle.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
@@ -682,8 +687,9 @@ function initParticles() {
                     ctx.moveTo(this.x, this.y);
                     ctx.lineTo(particle.x, particle.y);
                     ctx.stroke();
+                    connectionCount++;
                 }
-            });
+            }
         }
     }
 
@@ -707,7 +713,7 @@ function initParticles() {
             p.draw();
             // Only connect particles if not on mobile/low-end
             if (!deviceCapabilities.isMobile && !deviceCapabilities.isLowEnd) {
-                p.connect(particles.slice(i + 1));
+                p.connect(particles, i);
             }
         });
         
@@ -822,13 +828,7 @@ function initMouseEffects() {
             const rotateX = (y - centerY) / 10;
             const rotateY = (centerX - x) / 10;
             
-            card.style.transform = `
-                perspective(1000px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                translateY(-12px)
-                scale(1.02)
-            `;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.02)`;
         });
         
         card.addEventListener('mouseleave', () => {
