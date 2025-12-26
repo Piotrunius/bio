@@ -21,12 +21,15 @@ concurrency:
 jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -49,7 +52,7 @@ jobs:
             if (!fs.existsSync('./data')) fs.mkdirSync('./data');
             
             // --- STEAM ---
-            const sKey = process.env.STEAM_API_KEY || 'C30489D3CF1DD7A12966E112F3272B98';
+            const sKey = process.env.STEAM_API_KEY;
             const sId = process.env.STEAM_ID64 || '76561199034113344';
             if (sKey) {
               try {
