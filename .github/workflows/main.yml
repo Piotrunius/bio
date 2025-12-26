@@ -48,7 +48,7 @@ jobs:
             if (!fs.existsSync('./data')) fs.mkdirSync('./data');
             
             // --- STEAM ---
-            const sKey = process.env.STEAM_API_KEY '';
+            const sKey = process.env.STEAM_API_KEY;
             const sId = process.env.STEAM_ID64 || '76561199034113344';
             if (sKey) {
               try {
