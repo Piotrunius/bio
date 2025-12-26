@@ -1965,19 +1965,30 @@ i:not(.social-link i) {
     }
     
     .wip-notice {
-        padding: 0.75rem 1rem;
+        bottom: 1rem;
+        width: calc(100% - 1rem);
+        padding: 1rem;
     }
     
     .wip-content {
         gap: 0.75rem;
     }
     
-    .wip-content i {
+    .wip-icon-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .wip-icon-wrapper i {
         font-size: 1.2rem;
     }
     
-    .wip-main-text {
-        font-size: 0.85rem;
+    .wip-title {
+        font-size: 0.9rem;
+    }
+    
+    .wip-description {
+        font-size: 0.8rem;
     }
     
     .wip-close {
@@ -2161,93 +2172,142 @@ i:not(.social-link i) {
 /* WIP Notice Banner - Glassmorphism Design */
 .wip-notice {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(20, 24, 30, 0.75);
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
+    width: calc(100% - 2rem);
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 184, 255, 0.1));
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 16px;
     z-index: 10000;
-    padding: 1rem 2rem;
-    animation: slideDown 0.5s ease-out;
-    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.15), 0 0 40px rgba(0, 255, 136, 0.1);
+    padding: 1.5rem;
+    animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 0 40px rgba(0, 255, 136, 0.2);
 }
 
 .wip-notice.hidden {
-    animation: slideUp 0.3s ease-out forwards;
+    animation: slideOutDown 0.4s cubic-bezier(0.6, 0, 0.84, 0) forwards;
 }
 
 .wip-content {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
     color: var(--text);
-    font-weight: 600;
 }
 
-.wip-content i {
+.wip-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 184, 255, 0.2));
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    flex-shrink: 0;
+}
+
+.wip-icon-wrapper i {
     font-size: 1.5rem;
     background: linear-gradient(135deg, #00ff88, #00b8ff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: iconPulse 2s ease-in-out infinite;
+    animation: iconBounce 2s ease-in-out infinite;
     filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.6));
-    flex-shrink: 0;
 }
 
-.wip-main-text {
+.wip-text-content {
     flex: 1;
-    font-size: 0.95rem;
-    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.wip-title {
+    font-size: 1rem;
+    font-weight: 700;
     color: rgba(255, 255, 255, 0.95);
+    letter-spacing: -0.02em;
+}
+
+.wip-description {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .wip-close {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 255, 136, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text);
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
     font-size: 1rem;
+    flex-shrink: 0;
 }
 
 .wip-close i {
     background: none !important;
     -webkit-text-fill-color: currentColor !important;
-    color: inherit;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
+    transition: all 0.3s ease;
 }
 
 .wip-close:hover {
     background: var(--primary);
-    color: #000;
     border-color: var(--primary);
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
 }
 
 .wip-close:hover i {
     color: #000;
+    -webkit-text-fill-color: #000 !important;
 }
 
-@keyframes slideDown {
+@keyframes slideInUp {
     from {
-        transform: translateY(-100%);
+        transform: translate(-50%, 100px);
         opacity: 0;
     }
     to {
-        transform: translateY(0);
+        transform: translate(-50%, 0);
         opacity: 1;
+    }
+}
+
+@keyframes slideOutDown {
+    from {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, 100px);
+        opacity: 0;
+    }
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
     }
 }
 
@@ -2344,23 +2404,44 @@ body.light-mode .bg-layer::after {
 }
 
 body.light-mode .wip-notice {
-    background: rgba(255, 255, 255, 0.85);
-    border-bottom: 1px solid rgba(0, 204, 112, 0.3);
-    box-shadow: 0 4px 20px rgba(0, 204, 112, 0.1);
+    background: linear-gradient(135deg, rgba(0, 168, 89, 0.08), rgba(0, 184, 255, 0.08));
+    border: 1px solid rgba(0, 168, 89, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(0, 0, 0, 0.05) inset,
+        0 0 40px rgba(0, 168, 89, 0.15);
 }
 
-body.light-mode .wip-main-text {
-    color: rgba(0, 0, 0, 0.9);
+body.light-mode .wip-icon-wrapper {
+    background: linear-gradient(135deg, rgba(0, 168, 89, 0.15), rgba(0, 184, 255, 0.15));
+    border: 1px solid rgba(0, 168, 89, 0.3);
+}
+
+body.light-mode .wip-title {
+    color: rgba(0, 0, 0, 0.95);
+}
+
+body.light-mode .wip-description {
+    color: rgba(0, 0, 0, 0.7);
 }
 
 body.light-mode .wip-close {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 204, 112, 0.3);
+    background: rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .wip-close i {
+    color: rgba(0, 0, 0, 0.7);
 }
 
 body.light-mode .wip-close:hover {
     background: var(--primary);
+    border-color: var(--primary);
+}
+
+body.light-mode .wip-close:hover i {
     color: #fff;
+    -webkit-text-fill-color: #fff !important;
 }
 
 /* Light Mode: Enhanced text visibility and contrast */
