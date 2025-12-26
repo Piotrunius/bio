@@ -42,14 +42,13 @@ jobs:
         run: |
           cat << 'EOF' > update.js
           const fs = require('fs');
-          const isManual = process.env.IS_MANUAL === 'true';
-          const isGithubTime = isManual || (new Date().getMinutes() < 15 && new Date().getHours() % 12 === 0);
+          const isGithubTime = true;
           
           async function run() {
             if (!fs.existsSync('./data')) fs.mkdirSync('./data');
             
             // --- STEAM ---
-            const sKey = process.env.STEAM_API_KEY || 'C30489D3CF1DD7A12966E112F3272B98';
+            const sKey = process.env.STEAM_API_KEY '';
             const sId = process.env.STEAM_ID64 || '76561199034113344';
             if (sKey) {
               try {
