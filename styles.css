@@ -147,8 +147,23 @@ body::-webkit-scrollbar-thumb {
 .bg-layer::before {
     left: -20vmax;
     top: -25vmax;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 136, 0.7), rgba(0, 180, 255, 0.3) 40%, transparent 70%);
-    animation: blobMove1 20s ease-in-out infinite alternate;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(0, 255, 136, 0.7), rgba(0, 180, 255, 0.3) 40%, transparent 70%),
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 255, 136, 0.03) 0px,
+            transparent 1px,
+            transparent 40px,
+            rgba(0, 255, 136, 0.03) 41px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 180, 255, 0.03) 0px,
+            transparent 1px,
+            transparent 40px,
+            rgba(0, 180, 255, 0.03) 41px
+        );
+    animation: blobMove1 20s ease-in-out infinite alternate, gridShift 30s linear infinite;
 }
 
 .bg-layer::after {
@@ -234,27 +249,6 @@ body::-webkit-scrollbar-thumb {
     z-index: -1;
     opacity: 0.95;
     transition: opacity 0.5s ease;
-}
-
-/* Animated Grid Background */
-.bg-layer::before {
-    background: 
-        radial-gradient(circle at 30% 30%, rgba(0, 255, 136, 0.7), rgba(0, 180, 255, 0.3) 40%, transparent 70%),
-        repeating-linear-gradient(
-            0deg,
-            rgba(0, 255, 136, 0.03) 0px,
-            transparent 1px,
-            transparent 40px,
-            rgba(0, 255, 136, 0.03) 41px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            rgba(0, 180, 255, 0.03) 0px,
-            transparent 1px,
-            transparent 40px,
-            rgba(0, 180, 255, 0.03) 41px
-        );
-    animation: blobMove1 20s ease-in-out infinite alternate, gridShift 30s linear infinite;
 }
 
 .glass-card {
@@ -2186,7 +2180,7 @@ i:not(.social-link i) {
 /* Additional mobile optimizations */
 @media (max-width: 480px) {
     .main-container {
-        padding: 1.25rem 0.875rem;
+        padding: 1.25rem 0.9rem;
         gap: 1.25rem;
     }
     

@@ -611,15 +611,14 @@ function initParticles() {
             if (this.y > height) this.y = 0;
         }
         draw() {
+            // Set shadow properties once
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color;
             ctx.fillStyle = this.color;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
-            
-            // Add glow effect
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = this.color;
-            ctx.fill();
+            // Reset shadow
             ctx.shadowBlur = 0;
         }
     }
@@ -698,14 +697,18 @@ function initParticles() {
         
         // Draw connection lines between nearby particles
         if (!deviceCapabilities.isLowEnd) {
+            const maxDistance = 120;
+            const maxDistanceSquared = maxDistance * maxDistance; // Avoid Math.sqrt
+            
             particles.forEach((p1, i) => {
                 particles.slice(i + 1).forEach(p2 => {
                     const dx = p1.x - p2.x;
                     const dy = p1.y - p2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const distanceSquared = dx * dx + dy * dy;
                     
-                    if (distance < 120) {
-                        ctx.strokeStyle = `rgba(0, 255, 136, ${0.15 * (1 - distance / 120)})`;
+                    if (distanceSquared < maxDistanceSquared) {
+                        const distance = Math.sqrt(distanceSquared);
+                        ctx.strokeStyle = `rgba(0, 255, 136, ${0.15 * (1 - distance / maxDistance)})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
