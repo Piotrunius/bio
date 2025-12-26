@@ -154,7 +154,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .bg-layer::after {
     right: -18vmax;
-    bottom: -22vmax;
+    top: calc(100vh - 38vmax);
     background: radial-gradient(circle at 70% 70%, rgba(0, 184, 255, 0.5), rgba(138, 43, 226, 0.3) 40%, transparent 70%);
     animation: blobMove2 40s ease-in-out infinite alternate;
 }
