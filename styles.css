@@ -130,7 +130,6 @@ body::-webkit-scrollbar-thumb:hover {
     pointer-events: none;
     animation: none;
     z-index: -10;
-    will-change: auto;
 }
 
 .bg-layer::before,
