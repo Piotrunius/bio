@@ -13,6 +13,8 @@
     --shadow: rgba(0, 0, 0, 0.45);
     --gradient-1: linear-gradient(135deg, #00ff88 0%, #00b8ff 100%);
     --gradient-2: linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(0, 184, 255, 0.2) 100%);
+    --bounce-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --smooth-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Light Mode Colors */
