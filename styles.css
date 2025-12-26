@@ -33,6 +33,9 @@ body.light-mode {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
 }
 
 body {
@@ -46,6 +49,7 @@ body {
     /* Global Scrollbar Styling */
     scrollbar-width: thin;
     scrollbar-color: var(--primary) var(--bg);
+    transition: background-color 0.5s ease, color 0.3s ease;
 }
 
 html {
@@ -2874,6 +2878,27 @@ body.light-mode .bg-canvas {
 
 .glow-pulse {
     animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Page load animation */
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+body {
+    animation: pageLoad 0.6s ease-out;
+}
+
+/* Smooth reveal for main container */
+.main-container {
+    animation: pageLoad 0.8s ease-out 0.2s both;
 }
 
 /* Light Mode: Better contrast for language sliders */

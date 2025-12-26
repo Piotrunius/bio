@@ -583,6 +583,7 @@ function initParticles() {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
+    let mouse = { x: null, y: null, radius: 150 };
 
     const resize = () => {
         width = canvas.width = window.innerWidth;
@@ -591,28 +592,98 @@ function initParticles() {
     window.addEventListener('resize', resize);
     resize();
 
+    // Track mouse position
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+    });
+
+    window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
     class Particle {
         constructor() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.4;
-            this.vy = (Math.random() - 0.5) * 0.4;
-            this.size = Math.random() * 3 + 2; // Increased size (2-5px)
-            this.color = `rgba(0, 255, 136, ${Math.random() * 0.3})`; // Slightly more opaque
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 3 + 2;
+            this.baseSize = this.size;
+            this.opacity = Math.random() * 0.4 + 0.1;
+            this.color = Math.random() > 0.5 ? 'rgba(0, 255, 136,' : 'rgba(0, 184, 255,';
         }
         update() {
+            // Mouse interaction
+            if (mouse.x != null && mouse.y != null) {
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < mouse.radius) {
+                    const force = (mouse.radius - distance) / mouse.radius;
+                    const angle = Math.atan2(dy, dx);
+                    this.vx -= Math.cos(angle) * force * 0.5;
+                    this.vy -= Math.sin(angle) * force * 0.5;
+                    this.size = this.baseSize * (1 + force * 0.5);
+                } else {
+                    this.size += (this.baseSize - this.size) * 0.1;
+                }
+            }
+
+            // Add subtle drift back to center
+            this.vx += (Math.random() - 0.5) * 0.02;
+            this.vy += (Math.random() - 0.5) * 0.02;
+            
+            // Limit velocity
+            const maxSpeed = 1;
+            const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+            if (speed > maxSpeed) {
+                this.vx = (this.vx / speed) * maxSpeed;
+                this.vy = (this.vy / speed) * maxSpeed;
+            }
+
             this.x += this.vx;
             this.y += this.vy;
+
+            // Wrap around edges
             if (this.x < 0) this.x = width;
             if (this.x > width) this.x = 0;
             if (this.y < 0) this.y = height;
             if (this.y > height) this.y = 0;
         }
         draw() {
-            ctx.fillStyle = this.color;
+            ctx.fillStyle = this.color + this.opacity + ')';
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
+            
+            // Add glow effect
+            if (this.size > this.baseSize) {
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color + '0.5)';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+        
+        // Connect nearby particles
+        connect(particles) {
+            particles.forEach(particle => {
+                const dx = this.x - particle.x;
+                const dy = this.y - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 120) {
+                    ctx.strokeStyle = `rgba(0, 255, 136, ${0.15 * (1 - distance / 120)})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(particle.x, particle.y);
+                    ctx.stroke();
+                }
+            });
         }
     }
 
@@ -623,17 +694,23 @@ function initParticles() {
     
     for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
-    // Store animate function globally (or in a wider scope) to access it for visibility change
+    // Store animate function globally
     window.particlesAnimate = function () {
         if (document.hidden) {
             cancelAnimationFrame(particlesAnimationFrame);
             return;
         }
         ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => {
+        
+        particles.forEach((p, i) => {
             p.update();
             p.draw();
+            // Only connect particles if not on mobile/low-end
+            if (!deviceCapabilities.isMobile && !deviceCapabilities.isLowEnd) {
+                p.connect(particles.slice(i + 1));
+            }
         });
+        
         particlesAnimationFrame = requestAnimationFrame(window.particlesAnimate);
     };
 
@@ -659,6 +736,46 @@ function initScrollReveal() {
     animatedElements.forEach(el => observer.observe(el));
 }
 
+function initParallaxEffect() {
+    let ticking = false;
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset;
+                const bgLayer = document.querySelector('.bg-layer');
+                const bgCanvas = document.getElementById('bg-canvas');
+                
+                if (bgLayer) {
+                    // Parallax effect on background blobs
+                    bgLayer.style.transform = `translateY(${scrolled * 0.3}px)`;
+                }
+                
+                if (bgCanvas) {
+                    // Slight parallax on particles
+                    bgCanvas.style.transform = `translateY(${scrolled * 0.15}px)`;
+                }
+                
+                // Add depth to cards based on scroll position
+                const cards = document.querySelectorAll('.glass-card');
+                cards.forEach((card, index) => {
+                    const rect = card.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                    
+                    if (isVisible) {
+                        const scrollProgress = (window.innerHeight - rect.top) / window.innerHeight;
+                        const parallaxSpeed = 0.05 * (index % 2 === 0 ? 1 : -1);
+                        card.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+                    }
+                });
+                
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
 function initTypingEffect() {
     const bioEl = document.getElementById('profile-bio');
     if (!bioEl) return;
@@ -681,9 +798,42 @@ function initTypingEffect() {
 
 function initMouseEffects() {
     const cards = document.querySelectorAll('.glass-card');
+    
     cards.forEach(card => {
-        card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-8px) scale(1.01)');
-        card.addEventListener('mouseleave', () => card.style.transform = '');
+        // Hover effects
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        });
+
+        // 3D tilt effect on mouse move
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `
+                perspective(1000px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-12px)
+                scale(1.02)
+            `;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
     });
 }
 
@@ -903,7 +1053,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize particles only after capability detection
     initParticles();
     
-    initScrollReveal();   
+    initScrollReveal();
+    initParallaxEffect();   
     initTypingEffect();   
     initMouseEffects();
     initVisibilityOptimization();
