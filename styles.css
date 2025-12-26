@@ -966,6 +966,7 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     opacity: 0;
     transition: opacity 0.5s ease, transform 1s ease;
     pointer-events: none;
+    filter: blur(40px);
 }
 
 .feed-card:hover::before {
@@ -977,10 +978,17 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(0, 255, 136, 0.15), transparent 60%);
+    background: radial-gradient(
+        ellipse at 30% 30%,
+        rgba(0, 255, 136, 0.2) 0%,
+        rgba(0, 220, 180, 0.15) 25%,
+        rgba(0, 184, 255, 0.1) 50%,
+        transparent 75%
+    );
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
+    filter: blur(30px);
 }
 
 .feed-card:hover::after {
