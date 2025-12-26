@@ -401,12 +401,12 @@ async function refreshSteamStatus() {
     dotContainer.className = 'steam-avatar-wrapper';
     
     // Show error indicator if Steam API is having issues
-    if (hasError && stats.error) {
+    if (stats.error) {
         if (gameInfo) {
             gameInfo.textContent = `⚠️ Steam API issue - showing cached status`;
             gameInfo.style.color = '#ff6b6b';
             gameInfo.style.display = 'block';
-            gameInfo.title = stats.error || 'Unable to fetch Steam status';
+            gameInfo.title = stats.error;
         }
     }
     
