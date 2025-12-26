@@ -28,7 +28,7 @@
       "owner": "RaidTheory",
       "url": "https://github.com/RaidTheory/arcraiders-data",
       "stars": 203,
-      "language": null,
+      "language": "Code",
       "description": "Free to use ARC Raiders game data in JSON Format.",
       "starredAt": "2025-11-30T11:02:20Z"
     },
@@ -81,7 +81,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 44653,
+      "stars": 44654,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -164,7 +164,7 @@
       "url": "https://github.com/amnweb/yasb",
       "stars": 3774,
       "language": "Python",
-      "description": "A highly configurable Windows status bar written in Python. ",
+      "description": "A highly configurable Windows status bar written in Python.",
       "starredAt": "2025-06-17T03:39:25Z"
     },
     {
@@ -182,7 +182,7 @@
       "url": "https://github.com/peazip/PeaZip",
       "stars": 6657,
       "language": "Pascal",
-      "description": "Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager. Features volume spanning, compression, authenticated encryption. Supports 7Z, 7-Zip sfx, ACE, ARJ, Brotli, BZ2, CAB, CHM, CPIO, DEB, GZ, ISO, JAR, LHA/LZH, NSIS, OOo, PAQ/LPAQ, PEA, QUAD, RAR, RPM, split, TAR, Z, ZIP, ZIPX, Zstandard.",
+      "description": "Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager. Features volume spanning, compression, authenticated encryption. Supports 7Z, 7-Zip sfx, ACE, ARJ, Brotli, BZ",
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
@@ -244,20 +244,6 @@
       "url": "https://github.com/Piotrunius/bio/commit/80cacc14d98b67f8eb7a27533efa64a5540745f3"
     },
     {
-      "message": "Remove total playtime span from steam extra info",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T08:16:06Z",
-      "url": "https://github.com/Piotrunius/bio/commit/4fe58f1885d0d1afb997767e2ceb14e500604c72"
-    },
-    {
-      "message": "fix: add missing environment to main workflow",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-21T08:11:54Z",
-      "url": "https://github.com/Piotrunius/bio/commit/28393bfcf8972bb1bb26a7d742600dc644bec8f3"
-    },
-    {
       "message": "Update AutoClicker.py",
       "repo": "AutoClicker-AntiAFK",
       "author": "Piotrunius",
@@ -312,21 +298,7 @@
       "author": "Piotrunius",
       "date": "2025-08-19T17:26:05Z",
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
-    },
-    {
-      "message": "Update README.md",
-      "repo": "AutoClicker-AntiAFK",
-      "author": "Piotrunius",
-      "date": "2025-08-19T17:00:16Z",
-      "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/804365ec99df3f06a7ad3bda866a0b215be36ecd"
-    },
-    {
-      "message": "Update README.md",
-      "repo": "AutoClicker-AntiAFK",
-      "author": "Piotrunius",
-      "date": "2025-08-19T16:59:43Z",
-      "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/848b50c4a2a8d5a4bcfaf423a6a88760fb7478be"
     }
   ],
-  "lastUpdate": "2025-12-26T17:55:30.968Z"
+  "lastUpdate": "2025-12-26T17:59:28.718Z"
 }
