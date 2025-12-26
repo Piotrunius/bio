@@ -161,7 +161,14 @@ async function refreshGitHubStats() {
     if (activityCommitsEl && stats.recentCommits) {
         activityCommitsEl.innerHTML = '';
         stats.recentCommits
-            .filter(c => !((c.author || '').toLowerCase().includes('bot') || (c.message || '').toLowerCase().includes('chore:')))
+            .filter(c => {
+                const msg = (c.message || '').toLowerCase();
+                const author = (c.author || '').toLowerCase();
+                // Filter out bot commits and automated chore commits
+                return !author.includes('bot') && 
+                       !author.includes('action') &&
+                       !msg.startsWith('chore: automated');
+            })
             .slice(0, 20)
             .forEach((commit, index) => {
                 const item = document.createElement('div');
@@ -231,12 +238,30 @@ async function refreshSteamStatus() {
         gameInfo.style.display = 'block';
     } else {
         gameInfo.style.display = 'none';
-        if (s.personastate > 0) {
-            dotContainer.classList.add('online');
-            statusText.textContent = 'Online';
-        } else {
-            dotContainer.classList.add('offline');
-            statusText.textContent = 'Offline';
+        // Map personastate values properly:
+        // 0 = Offline, 1 = Online, 2 = Busy, 3 = Away, 4 = Snooze, 5 = Looking to trade, 6 = Looking to play
+        switch(s.personastate) {
+            case 1:
+                dotContainer.classList.add('online');
+                statusText.textContent = 'Online';
+                break;
+            case 2:
+                dotContainer.classList.add('busy');
+                statusText.textContent = 'Busy';
+                break;
+            case 3:
+            case 4:
+                dotContainer.classList.add('away');
+                statusText.textContent = 'Away';
+                break;
+            case 5:
+            case 6:
+                dotContainer.classList.add('online');
+                statusText.textContent = 'Online';
+                break;
+            default:
+                dotContainer.classList.add('offline');
+                statusText.textContent = 'Offline';
         }
     }
 }
@@ -679,9 +704,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     initTypingEffect();   
     initMouseEffects();
     initVisibilityOptimization();
+    initWipNotice();
 
     // Auto-refresh stats
     setInterval(refreshGitHubStats, 300000); // GitHub co 5 minut
     setInterval(refreshSteamStatus, 60000);  // Steam co 1 minutę
     setInterval(updateSpotifyStatus, 30000);
 });
+
+// --- WIP Notice Handler ---
+function initWipNotice() {
+    const notice = document.getElementById('wip-notice');
+    const closeBtn = document.getElementById('wip-close');
+    
+    if (!notice || !closeBtn) return;
+    
+    // Check if user has dismissed the notice before
+    const dismissed = localStorage.getItem('wip-notice-dismissed');
+    if (dismissed === 'true') {
+        notice.style.display = 'none';
+        return;
+    }
+    
+    // Handle close button
+    closeBtn.addEventListener('click', () => {
+        notice.classList.add('hidden');
+        localStorage.setItem('wip-notice-dismissed', 'true');
+        setTimeout(() => {
+            notice.style.display = 'none';
+        }, 300);
+    });
+}
