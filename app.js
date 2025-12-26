@@ -357,6 +357,16 @@ function initSecurityDashboard() {
     });
 }
 
+// Default security data structure
+function getDefaultSecurityData() {
+    return {
+        totalOpen: 0, 
+        dependabot: { open: 0, alerts: [] },
+        codeScanning: { open: 0, alerts: [] },
+        secretScanning: { open: 0, alerts: [] }
+    };
+}
+
 async function refreshSecurityAlerts() {
     const totalAlertsEl = document.getElementById('security-total-alerts');
     const dependabotEl = document.getElementById('security-dependabot');
@@ -367,12 +377,7 @@ async function refreshSecurityAlerts() {
     const codeScanningList = document.getElementById('code-scanning-alerts');
     const secretScanningList = document.getElementById('secret-scanning-alerts');
 
-    let stats = { security: { 
-        totalOpen: 0, 
-        dependabot: { open: 0, alerts: [] },
-        codeScanning: { open: 0, alerts: [] },
-        secretScanning: { open: 0, alerts: [] }
-    }};
+    let stats = { security: getDefaultSecurityData() };
     
     try {
         const resp = await fetch(`data/github-stats.json?t=${Date.now()}`);
@@ -383,12 +388,7 @@ async function refreshSecurityAlerts() {
         console.warn('Error loading security data:', e.message);
     }
 
-    const security = stats.security || { 
-        totalOpen: 0, 
-        dependabot: { open: 0, alerts: [] },
-        codeScanning: { open: 0, alerts: [] },
-        secretScanning: { open: 0, alerts: [] }
-    };
+    const security = stats.security || getDefaultSecurityData();
     
     // Update stats
     if (totalAlertsEl) totalAlertsEl.textContent = security.totalOpen || 0;
@@ -473,7 +473,7 @@ async function refreshSecurityAlerts() {
                 
                 item.innerHTML = `
                     <div class="alert-header">
-                        <span class="severity-badge severity-high">secret</span>
+                        <span class="severity-badge severity-critical">secret</span>
                         <a href="${alert.url}" class="alert-link" target="_blank" rel="noreferrer">
                             ${alert.secret_type}
                         </a>

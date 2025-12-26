@@ -2,6 +2,8 @@
     --primary: #00ff88;
     --bg: #050b10;
     --text: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
     --border: #1d242c;
     --card-bg: rgba(20, 24, 30, 0.65);
     --glass-bg: rgba(255, 255, 255, 0.06);
@@ -14,6 +16,8 @@ body.light-mode {
     --primary: #00a859;
     --bg: #f0f4f8;
     --text: #0f1419;
+    --text-primary: #0f1419;
+    --text-secondary: rgba(15, 20, 25, 0.7);
     --border: #d0d7de;
     --card-bg: rgba(255, 255, 255, 0.85);
     --glass-bg: rgba(255, 255, 255, 0.75);
@@ -2890,7 +2894,7 @@ body.light-mode ::selection {
 
 .github-extras-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
