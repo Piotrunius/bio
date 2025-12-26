@@ -27,7 +27,7 @@
       "name": "arcraiders-data",
       "owner": "RaidTheory",
       "url": "https://github.com/RaidTheory/arcraiders-data",
-      "stars": 206,
+      "stars": 207,
       "language": "Code",
       "description": "Free to use ARC Raiders game data in JSON Format.",
       "starredAt": "2025-11-30T11:02:20Z"
@@ -81,7 +81,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 44663,
+      "stars": 44664,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 88744,
+      "stars": 88745,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -188,6 +188,13 @@
   ],
   "recentCommits": [
     {
+      "message": "Merge pull request #22 from Piotrunius/copilot/improve-responsiveness-and-animations",
+      "repo": "bio",
+      "author": "Piotrunius",
+      "date": "2025-12-26T22:36:15Z",
+      "url": "https://github.com/Piotrunius/bio/commit/6d09619ddbb56294742918788cf54d86138d16a0"
+    },
+    {
       "message": "Merge pull request #21 from Piotrunius/copilot/revert-main-branch-to-commit",
       "repo": "bio",
       "author": "Piotrunius",
@@ -235,13 +242,6 @@
       "author": "Piotrunius",
       "date": "2025-12-26T00:31:08Z",
       "url": "https://github.com/Piotrunius/bio/commit/d8d7f73a43a257911f0b2837cc94e5b4fa4eda68"
-    },
-    {
-      "message": "fix",
-      "repo": "bio",
-      "author": "Piotrunius",
-      "date": "2025-12-22T23:41:56Z",
-      "url": "https://github.com/Piotrunius/bio/commit/c48f4b40b71f4d7cd73e2f986a17047e6ec4df73"
     },
     {
       "message": "Update AutoClicker.py",
@@ -300,7 +300,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2025-12-26T22:25:15.049Z",
+  "lastUpdate": "2025-12-26T22:36:29.429Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -318,7 +318,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2025-12-26T22:25:15.344Z"
+    "lastChecked": "2025-12-26T22:36:29.824Z"
   },
   "pullRequests": {
     "total": 4,
