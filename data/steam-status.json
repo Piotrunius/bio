@@ -1,13 +1,12 @@
 {
   "steam": {
-    "personastate": 3,
+    "personastate": 4,
     "gameextrainfo": null,
     "avatar": "https://avatars.steamstatic.com/a7b85c1debc6db3cb342f4f0a14f3bbe2d564f6d_medium.jpg",
     "timecreated": 1584306745,
-    "lastlogoff": 1766308493,
-    "game_count": 276,
-    "total_playtime": 2708
+    "lastlogoff": 1766701567,
+    "game_count": 280,
+    "total_playtime": 2709
   },
-  "lastUpdate": "2025-12-26T19:00:35.749Z",
-  "error": "HTTP 403: Forbidden"
+  "lastUpdate": "2025-12-26T23:13:10.981Z"
 }
