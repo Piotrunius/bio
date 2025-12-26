@@ -705,6 +705,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initMouseEffects();
     initVisibilityOptimization();
     initWipNotice();
+    initThemeToggle();
 
     // Auto-refresh stats
     setInterval(refreshGitHubStats, 300000); // GitHub every 5 minutes
@@ -737,4 +738,45 @@ function initWipNotice() {
             notice.style.display = 'none';
         }, 300);
     });
+}
+
+// --- Theme Toggle Handler ---
+// Initializes the theme toggle button for switching between dark and light modes
+// Uses localStorage to persist user's theme preference
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+    
+    // Check saved theme preference or default to dark mode
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Apply saved theme
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        updateThemeIcon(themeToggle, 'light');
+    }
+    
+    // Handle theme toggle
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        const theme = isLight ? 'light' : 'dark';
+        
+        // Save preference
+        localStorage.setItem('theme', theme);
+        
+        // Update icon
+        updateThemeIcon(themeToggle, theme);
+    });
+}
+
+function updateThemeIcon(button, theme) {
+    const icon = button.querySelector('i');
+    if (!icon) return;
+    
+    if (theme === 'light') {
+        icon.className = 'fas fa-moon';
+    } else {
+        icon.className = 'fas fa-sun';
+    }
 }
