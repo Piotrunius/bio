@@ -1866,11 +1866,84 @@ i:not(.social-link i) {
     }
 }
 
+/* Performance optimizations for low-end devices */
+@media (max-width: 768px), (max-height: 600px) {
+    .bg-layer::before,
+    .bg-layer::after {
+        filter: blur(40px) saturate(120%) !important;
+    }
+    
+    .glass-card {
+        backdrop-filter: blur(10px) saturate(150%) !important;
+        -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+    }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 480px) {
+    .main-container {
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+    
+    .glass-card {
+        padding: 1.25rem !important;
+        border-radius: 16px;
+    }
+    
+    .section-title {
+        font-size: 1rem;
+    }
+    
+    .profile-name {
+        font-size: 1.5rem;
+    }
+    
+    .avatar-container {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .visualizer-canvas {
+        height: 100px !important;
+    }
+}
+
+/* Touch optimization */
+@media (hover: none) and (pointer: coarse) {
+    .glass-card:hover {
+        transform: none;
+    }
+    
+    .stat-card:hover,
+    .social-link:hover,
+    .contact-btn:hover,
+    .music-btn:hover {
+        transform: none;
+    }
+    
+    .stat-card:active,
+    .social-link:active,
+    .contact-btn:active,
+    .music-btn:active {
+        transform: scale(0.95);
+    }
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .main-container {
         display: flex;
         flex-direction: column;
+        padding: 2rem 1rem;
     }
 
     .stats-grid,
@@ -1889,6 +1962,48 @@ i:not(.social-link i) {
     .contact-card,
     .about-card {
         width: 100%;
+    }
+    
+    /* Improve touch targets */
+    .music-btn,
+    .contact-btn,
+    .social-link {
+        min-height: 48px;
+        padding: 0.85rem 1.2rem;
+    }
+    
+    .theme-toggle {
+        width: 48px;
+        height: 48px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    /* Optimize text sizes */
+    body {
+        font-size: 15px;
+    }
+    
+    .wip-notice {
+        padding: 0.75rem 1rem;
+    }
+    
+    .wip-content {
+        gap: 0.75rem;
+    }
+    
+    .wip-content i {
+        font-size: 1.2rem;
+    }
+    
+    .wip-main-text {
+        font-size: 0.85rem;
+    }
+    
+    .wip-close {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
     }
 }
 
@@ -2049,8 +2164,6 @@ i:not(.social-link i) {
         width: 100%;
     }
 }
-
-/* Status Dot Colors (Global / Re-used) */
 .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #767d85; transition: all 0.3s ease; }
 .online .status-dot { background: #57cbff; box-shadow: 0 0 10px #57cbff; }
 .away .status-dot { background: #ffc82c; box-shadow: 0 0 10px #ffc82c; }
@@ -2170,32 +2283,26 @@ i:not(.social-link i) {
 }
 
 @media (max-width: 768px) {
-    .wip-notice {
-        padding: 0.75rem 1rem;
-    }
-    
-    .wip-content {
-        gap: 0.75rem;
-    }
-    
-    .wip-content i {
-        font-size: 1.2rem;
-    }
-    
-    .wip-main-text {
-        font-size: 0.85rem;
-    }
-    
-    .wip-close {
-        width: 28px;
-        height: 28px;
-        font-size: 0.9rem;
+    .steam-status-panel {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
     }
 
-    .theme-toggle {
-        width: 48px;
-        height: 48px;
+    .steam-user-info {
+        flex-direction: column;
+        width: 100%;
     }
+
+    .steam-name-row {
+        justify-content: center;
+    }
+
+    .steam-profile-link {
+        width: 100%;
+    }
+    
+    /* Removed duplicate WIP notice styles - now in main mobile block */
 }
 
 /* Theme Toggle Button */

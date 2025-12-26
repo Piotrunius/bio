@@ -42,31 +42,109 @@ jobs:
         run: |
           cat << 'EOF' > update.js
           const fs = require('fs');
+          const https = require('https');
           const isGithubTime = true;
+          
+          // Utility: Retry logic with exponential backoff
+          async function fetchWithRetry(url, options = {}, retries = 3, delay = 1000) {
+            for (let i = 0; i < retries; i++) {
+              try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                  const rateLimitRemaining = response.headers.get('x-ratelimit-remaining');
+                  const rateLimitReset = response.headers.get('x-ratelimit-reset');
+                  
+                  if (response.status === 403 && rateLimitRemaining === '0') {
+                    const resetTime = new Date(rateLimitReset * 1000);
+                    console.warn(`Rate limit exceeded. Resets at ${resetTime}`);
+                    if (i < retries - 1) {
+                      await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                      continue;
+                    }
+                  }
+                  throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response;
+              } catch (error) {
+                console.error(`Attempt ${i + 1} failed:`, error.message);
+                if (i < retries - 1) {
+                  await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                } else {
+                  throw error;
+                }
+              }
+            }
+          }
+          
+          // Utility: Validate and sanitize data
+          function sanitizeString(str, maxLength = 500) {
+            if (typeof str !== 'string') return '';
+            return str.slice(0, maxLength).trim();
+          }
           
           async function run() {
             if (!fs.existsSync('./data')) fs.mkdirSync('./data');
+            
+            // Load previous data as fallback
+            let previousSteamData = {};
+            let previousGithubData = {};
+            
+            try {
+              if (fs.existsSync('./data/steam-status.json')) {
+                previousSteamData = JSON.parse(fs.readFileSync('./data/steam-status.json', 'utf8'));
+              }
+            } catch (e) {
+              console.warn('Could not load previous Steam data:', e.message);
+            }
+            
+            try {
+              if (fs.existsSync('./data/github-stats.json')) {
+                previousGithubData = JSON.parse(fs.readFileSync('./data/github-stats.json', 'utf8'));
+              }
+            } catch (e) {
+              console.warn('Could not load previous GitHub data:', e.message);
+            }
             
             // --- STEAM ---
             const sKey = process.env.STEAM_API_KEY;
             const sId = process.env.STEAM_ID64 || '76561199034113344';
             if (sKey) {
               try {
-                const r1 = await fetch(`http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${sKey}&steamids=${sId}`);
+                const r1 = await fetchWithRetry(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${sKey}&steamids=${sId}`);
                 const j1 = await r1.json();
-                const r2 = await fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${sKey}&steamid=${sId}&include_appinfo=0&include_played_free_games=1`);
+                
+                if (!j1.response || !j1.response.players || j1.response.players.length === 0) {
+                  throw new Error('Invalid Steam API response');
+                }
+                
+                const r2 = await fetchWithRetry(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${sKey}&steamid=${sId}&include_appinfo=0&include_played_free_games=1`);
                 const j2 = await r2.json();
                 const p = j1.response.players[0];
+                
                 const stats = {
                   steam: {
-                    personastate: p.personastate, gameextrainfo: p.gameextrainfo || null, avatar: p.avatarmedium,
-                    timecreated: p.timecreated, lastlogoff: p.lastlogoff, game_count: j2.response?.game_count || 0,
+                    personastate: p.personastate || 0,
+                    gameextrainfo: sanitizeString(p.gameextrainfo) || null,
+                    avatar: sanitizeString(p.avatarmedium) || '',
+                    timecreated: p.timecreated || 0,
+                    lastlogoff: p.lastlogoff || 0,
+                    game_count: j2.response?.game_count || 0,
                     total_playtime: Math.round((j2.response?.games?.reduce((a,b)=>a+(b.playtime_forever||0),0)||0)/60)
                   },
                   lastUpdate: new Date().toISOString()
                 };
                 fs.writeFileSync('./data/steam-status.json', JSON.stringify(stats, null, 2));
-              } catch (e) { console.error('Steam error:', e.message); }
+                console.log('Steam data updated successfully');
+              } catch (e) {
+                console.error('Steam error:', e.message);
+                // Keep previous data if update fails
+                if (previousSteamData.steam) {
+                  previousSteamData.lastUpdate = new Date().toISOString();
+                  previousSteamData.error = e.message;
+                  fs.writeFileSync('./data/steam-status.json', JSON.stringify(previousSteamData, null, 2));
+                  console.log('Using previous Steam data as fallback');
+                }
+              }
             }
 
             // --- GITHUB ---
@@ -74,57 +152,106 @@ jobs:
               const gUser = 'Piotrunius';
               const gHeaders = process.env.GITHUB_TOKEN ? { 'Authorization': `token ${process.env.GITHUB_TOKEN}` } : {};
               try {
-                const uR = await fetch(`https://api.github.com/users/${gUser}`, { headers: gHeaders });
+                const uR = await fetchWithRetry(`https://api.github.com/users/${gUser}`, { headers: gHeaders });
                 const uJ = await uR.json();
-                const sR = await fetch(`https://api.github.com/users/${gUser}/starred?per_page=100`, { headers: {...gHeaders, 'Accept': 'application/vnd.github.star+json'} });
-                const starred = await sR.json();
-                const cR = await fetch(`https://api.github.com/search/commits?q=author:${gUser}`, { headers: {...gHeaders, 'Accept': 'application/vnd.github.cloak-preview'} });
-                const cJ = await cR.json();
-                const stats = {
-                  summary: { projects: uJ.public_repos, starredCount: Array.isArray(starred) ? starred.length : 0, commits: cJ.total_count || 0 },
-                  starred: Array.isArray(starred) ? starred.slice(0, 30).map(i => ({
-                    name: i.repo.name, owner: i.repo.owner.login, url: i.repo.html_url, stars: i.repo.stargazers_count,
-                    language: i.repo.language, description: i.repo.description, starredAt: i.starred_at
-                  })) : [],
-                  recentCommits: [], lastUpdate: new Date().toISOString()
-                };
                 
-                // Fetch ALL user repositories
-                const reposR = await fetch(`https://api.github.com/users/${gUser}/repos?per_page=100&sort=updated`, { headers: gHeaders });
-                const repos = await reposR.json();
-                
-                // Get commits from all repos, not just top 5
-                // Limiting to 20 repos to balance between freshness and API efficiency
-                // (we have rate limit budget but want to avoid excessive requests)
-                const allCommits = [];
-                for (const r of repos.slice(0, 20)) { // Process top 20 most recently updated repos
-                  try {
-                    const cr = await fetch(`https://api.github.com/repos/${r.owner.login}/${r.name}/commits?per_page=10&author=${gUser}`, { headers: gHeaders });
-                    const cm = await cr.json();
-                    if (Array.isArray(cm)) {
-                      allCommits.push(...cm.map(c => ({
-                        message: c.commit.message.split('\n')[0], 
-                        repo: r.name, 
-                        author: c.commit.author.name, 
-                        date: c.commit.author.date, 
-                        url: c.html_url
-                      })));
-                    }
-                  } catch (e) {
-                    console.log(`Skipping repo ${r.name}: ${e.message}`);
-                  }
+                if (!uJ.login) {
+                  throw new Error('Invalid GitHub user response');
                 }
                 
-                // Sort all commits by date and take the most recent ones
+                const sR = await fetchWithRetry(`https://api.github.com/users/${gUser}/starred?per_page=100`, { 
+                  headers: {...gHeaders, 'Accept': 'application/vnd.github.star+json'} 
+                });
+                const starred = await sR.json();
+                
+                const cR = await fetchWithRetry(`https://api.github.com/search/commits?q=author:${gUser}`, { 
+                  headers: {...gHeaders, 'Accept': 'application/vnd.github.cloak-preview'} 
+                });
+                const cJ = await cR.json();
+                
+                const stats = {
+                  summary: { 
+                    projects: uJ.public_repos || 0, 
+                    starredCount: Array.isArray(starred) ? starred.length : 0, 
+                    commits: cJ.total_count || 0 
+                  },
+                  starred: Array.isArray(starred) ? starred.slice(0, 30).map(i => ({
+                    name: sanitizeString(i.repo?.name || 'Unknown', 100),
+                    owner: sanitizeString(i.repo?.owner?.login || 'Unknown', 50),
+                    url: sanitizeString(i.repo?.html_url || '#', 200),
+                    stars: i.repo?.stargazers_count || 0,
+                    language: sanitizeString(i.repo?.language || 'Code', 30),
+                    description: sanitizeString(i.repo?.description || 'No description.', 200),
+                    starredAt: i.starred_at || new Date().toISOString()
+                  })) : [],
+                  recentCommits: [],
+                  lastUpdate: new Date().toISOString()
+                };
+                
+                // Fetch repositories with better error handling
+                const reposR = await fetchWithRetry(`https://api.github.com/users/${gUser}/repos?per_page=100&sort=updated`, { headers: gHeaders });
+                const repos = await reposR.json();
+                
+                if (!Array.isArray(repos)) {
+                  throw new Error('Invalid repositories response');
+                }
+                
+                // Parallel commit fetching with Promise.allSettled for better error handling
+                const commitPromises = repos.slice(0, 15).map(async r => { // Reduced from 20 to 15 for efficiency
+                  try {
+                    const cr = await fetchWithRetry(
+                      `https://api.github.com/repos/${r.owner.login}/${r.name}/commits?per_page=8&author=${gUser}`, 
+                      { headers: gHeaders }
+                    );
+                    const cm = await cr.json();
+                    if (Array.isArray(cm)) {
+                      return cm.map(c => ({
+                        message: sanitizeString(c.commit?.message?.split('\n')[0] || 'No message', 150),
+                        repo: sanitizeString(r.name, 100),
+                        author: sanitizeString(c.commit?.author?.name || 'Unknown', 50),
+                        date: c.commit?.author?.date || new Date().toISOString(),
+                        url: sanitizeString(c.html_url || '#', 200)
+                      }));
+                    }
+                    return [];
+                  } catch (e) {
+                    console.log(`Skipping repo ${r.name}: ${e.message}`);
+                    return [];
+                  }
+                });
+                
+                const allCommitsResults = await Promise.allSettled(commitPromises);
+                const allCommits = allCommitsResults
+                  .filter(r => r.status === 'fulfilled')
+                  .flatMap(r => r.value);
+                
+                // Sort and deduplicate commits
                 stats.recentCommits = allCommits
-                  .sort((a,b) => new Date(b.date) - new Date(a.date))
-                  .slice(0, 50); // Keep top 50 most recent commits
+                  .sort((a, b) => new Date(b.date) - new Date(a.date))
+                  .filter((commit, index, self) => 
+                    index === self.findIndex(c => c.url === commit.url)
+                  )
+                  .slice(0, 40); // Reduced from 50 to 40 for smaller file size
                 
                 fs.writeFileSync('./data/github-stats.json', JSON.stringify(stats, null, 2));
-              } catch (e) { console.error('GitHub error:', e.message); }
+                console.log('GitHub data updated successfully');
+              } catch (e) {
+                console.error('GitHub error:', e.message);
+                // Keep previous data if update fails
+                if (previousGithubData.summary) {
+                  previousGithubData.lastUpdate = new Date().toISOString();
+                  previousGithubData.error = e.message;
+                  fs.writeFileSync('./data/github-stats.json', JSON.stringify(previousGithubData, null, 2));
+                  console.log('Using previous GitHub data as fallback');
+                }
+              }
             }
           }
-          run();
+          
+          run().catch(error => {
+            console.error('Fatal error:', error);
+            process.exit(1);
+          });
           EOF
           export IS_MANUAL="${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}"
           node update.js

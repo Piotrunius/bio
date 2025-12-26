@@ -5,9 +5,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Piotrunius - Bio</title>
+        <meta name="description" content="Minimalist designer & developer. Linux enthusiast from Katowice.">
         <link rel="icon" type="image/png" href="assets/pfp.png">
         <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="6fe44ce6-f537-41a6-9f7f-227556b3ba84"></script>
     </head>
 
@@ -53,7 +56,7 @@
             <!-- CENTER: Profile Section -->
             <section class="profile-section glass-card animate-fade-in">
                 <div class="avatar-container">
-                    <img id="avatar" src="assets/pfp.png" alt="Avatar" class="avatar">
+                    <img id="avatar" src="assets/pfp.png" alt="Avatar" class="avatar" loading="lazy" width="180" height="180">
                     <div class="avatar-ring"></div>
                 </div>
                 <h2 id="profile-name" class="profile-name">Piotrunius</h2>
@@ -129,7 +132,7 @@
                 <div id="steam-status-panel" class="steam-status-panel">
                     <div class="steam-user-info">
                         <div class="steam-avatar-wrapper">
-                            <img id="steam-pfp" src="assets/pfp.png" alt="Steam Avatar" class="steam-avatar">
+                            <img id="steam-pfp" src="assets/pfp.png" alt="Steam Avatar" class="steam-avatar" loading="lazy" width="80" height="80">
                             <span id="steam-dot" class="status-dot"></span>
                         </div>
                         <div class="steam-details">
@@ -268,7 +271,7 @@
                 </h3>
                 <div class="system-card">
                     <div class="system-left">
-                        <img src="assets/Bazzite_Logo.png" alt="Bazzite" class="system-logo">
+                        <img src="assets/Bazzite_Logo.png" alt="Bazzite" class="system-logo" loading="lazy" width="52" height="52">
                         <div>
                             <div class="system-name">Bazzite (KDE Plasma)</div>
                             <a class="system-link" href="https://bazzite.gg" target="_blank"
