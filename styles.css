@@ -227,9 +227,9 @@ body::-webkit-scrollbar-thumb:hover {
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     box-shadow: 0 8px 32px var(--shadow), 0 0 20px rgba(0, 255, 136, 0.05);
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-                border-color 0.4s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.3s ease;
     transform-style: preserve-3d;
     perspective: 1000px;
     will-change: transform, box-shadow;
@@ -253,11 +253,11 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .glass-card:hover {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 255, 136, 0.3),
-                inset 0 0 20px rgba(0, 255, 136, 0.05);
-    border-color: rgba(0, 255, 136, 0.6);
-    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 
+                0 0 30px rgba(0, 255, 136, 0.2),
+                inset 0 0 15px rgba(0, 255, 136, 0.03);
+    border-color: rgba(0, 255, 136, 0.4);
+    transform: translateY(-5px);
 }
 
 .glass-card:hover::after {
@@ -363,7 +363,7 @@ body::-webkit-scrollbar-thumb:hover {
     font-weight: 700;
     cursor: pointer;
     width: 100%;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     text-decoration: none !important;
     font-size: 0.95rem;
     box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
@@ -406,9 +406,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .music-btn:hover {
-    transform: translateY(-4px) scale(1.05);
-    filter: brightness(1.15);
-    box-shadow: 0 10px 35px rgba(0, 255, 136, 0.5);
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 25px rgba(0, 255, 136, 0.4);
 }
 
 .spotify-btn:hover {
@@ -605,15 +605,15 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     text-decoration: none !important;
     font-weight: 700;
     font-size: 0.9rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     white-space: nowrap;
 }
 
 .steam-profile-link:hover {
     background: var(--primary) !important;
     color: #000 !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.4);
 }
 
 .steam-profile-link:hover i {
@@ -670,7 +670,7 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     box-shadow: 0 0 40px rgba(0, 255, 136, 0.4),
                 0 0 80px rgba(0, 255, 136, 0.2),
                 0 0 120px rgba(0, 184, 255, 0.1);
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     animation: avatarGlow 4s ease-in-out infinite;
 }
 
@@ -912,7 +912,7 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     color: var(--text);
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
 }
@@ -947,10 +947,10 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
 }
 
 .social-link:hover {
-    transform: translateX(12px) scale(1.08);
+    transform: translateX(5px);
     border-color: var(--social-color, var(--primary));
-    box-shadow: 0 8px 30px var(--social-color, var(--primary)),
-                0 0 40px rgba(0, 255, 136, 0.2);
+    box-shadow: 0 4px 20px var(--social-color, var(--primary)),
+                0 0 25px rgba(0, 255, 136, 0.15);
     background: rgba(255, 255, 255, 0.05);
 }
 
@@ -959,33 +959,17 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     background: linear-gradient(135deg, #00ff88, #00b8ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: all 0.4s ease;
-    animation: iconPulse 3s ease-in-out infinite;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     z-index: 1;
 }
 
-@keyframes iconPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        filter: brightness(1) drop-shadow(0 0 5px rgba(0, 255, 136, 0.3));
-    }
-
-    50% {
-        transform: scale(1.15);
-        filter: brightness(1.3) drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
-    }
-}
-
 .social-link:hover i {
-    transform: scale(1.3) rotate(15deg);
+    transform: scale(1.15);
     background: none;
     -webkit-text-fill-color: initial;
     color: var(--social-color, var(--primary));
-    filter: drop-shadow(0 0 12px var(--social-color, var(--primary)));
-    animation: none;
+    filter: drop-shadow(0 0 8px var(--social-color, var(--primary)));
 }
 
 .stats-section {
@@ -1013,7 +997,7 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     border-radius: 16px;
     padding: 1.25rem;
     box-shadow: 0 12px 32px var(--shadow);
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
 }
@@ -1058,9 +1042,9 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
 }
 
 .feed-card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-4px);
     border-color: var(--primary);
-    box-shadow: 0 20px 50px rgba(0, 255, 136, 0.4);
+    box-shadow: 0 12px 30px rgba(0, 255, 136, 0.25);
 }
 
 .feed-header {
@@ -1111,9 +1095,9 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0;
-    animation: fadeInUp 0.6s ease forwards;
+    animation: fadeInUp 0.4s ease forwards;
     position: relative;
     flex-shrink: 0;
     overflow: hidden;
@@ -1137,8 +1121,8 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
 .activity-item:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(0, 255, 136, 0.4);
-    transform: translateX(8px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
+    transform: translateX(5px);
+    box-shadow: 0 4px 16px rgba(0, 255, 136, 0.15);
 }
 
 .activity-header {
@@ -1168,14 +1152,14 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     bottom: -2px;
     left: 0;
     background: linear-gradient(90deg, var(--primary), var(--secondary));
-    transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 0 0 10px var(--primary);
 }
 
 .activity-link:hover {
     color: var(--secondary);
-    text-shadow: 0 0 12px rgba(0, 255, 136, 0.5);
-    transform: translateX(4px);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+    transform: translateX(2px);
 }
 
 .activity-link:hover::after {
@@ -1234,14 +1218,14 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     align-items: flex-start;
 }
 
 .feed-item:hover {
-    transform: translateX(6px);
+    transform: translateX(4px);
     border-color: var(--primary);
-    box-shadow: 0 8px 24px rgba(0, 255, 136, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 255, 136, 0.15);
 }
 
 .last-update-info {
@@ -1308,7 +1292,7 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     background: var(--glass-bg);
     border-radius: 16px;
     border: 1px solid var(--glass-border);
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
 }
@@ -1345,48 +1329,26 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
 }
 
 .stat-card:hover {
-    transform: scale(1.12) translateY(-12px) rotate(2deg);
+    transform: translateY(-5px);
     border-color: var(--primary);
-    box-shadow: 0 15px 45px rgba(0, 255, 136, 0.5),
-                0 0 60px rgba(0, 255, 136, 0.3),
-                inset 0 0 20px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3),
+                0 0 30px rgba(0, 255, 136, 0.15),
+                inset 0 0 15px rgba(0, 255, 136, 0.05);
 }
 
 .stat-card i {
     font-size: 2.2rem;
     color: var(--primary);
     margin-bottom: 0.75rem;
-    animation: bounce 3s ease-in-out infinite;
     position: relative;
     z-index: 1;
-    transition: all 0.5s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.4));
 }
 
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0) rotate(0deg) scale(1);
-    }
-
-    25% {
-        transform: translateY(-10px) rotate(5deg) scale(1.05);
-    }
-
-    50% {
-        transform: translateY(-5px) rotate(-5deg) scale(1.1);
-    }
-
-    75% {
-        transform: translateY(-10px) rotate(3deg) scale(1.05);
-    }
-}
-
 .stat-card:hover i {
-    transform: scale(1.4) rotate(360deg);
-    filter: drop-shadow(0 0 20px var(--primary)) drop-shadow(0 0 40px rgba(0, 184, 255, 0.5));
-    animation: none;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 15px var(--primary)) drop-shadow(0 0 25px rgba(0, 184, 255, 0.3));
 }
 
 .stat-value {
@@ -1450,7 +1412,7 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     border-radius: 14px;
     font-weight: 700;
     font-size: 1.05rem;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 0 4px 16px rgba(0, 255, 136, 0.3);
     position: relative;
     overflow: hidden;
@@ -1475,8 +1437,8 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
 }
 
 .contact-btn:hover {
-    transform: scale(1.1) translateY(-6px);
-    box-shadow: 0 15px 50px rgba(0, 255, 136, 0.7);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.5);
 }
 
 .contact-btn i {
@@ -1518,51 +1480,19 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     display: none;
 }
 
+/* Unified panel entrance animation - subtle and elegant */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-@keyframes slideInFromLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInFromRight {
-    from {
-        opacity: 0;
-        transform: translateX(60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
+/* All panels now use the same subtle fade-up animation */
 .animate-fade-in,
 .animate-slide-up,
 .animate-slide-right,
@@ -1574,25 +1504,18 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
 
 .in-view {
     visibility: visible;
-    animation-fill-mode: forwards;
-    animation-duration: 0.8s;
-    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.animate-fade-in.in-view {
-    animation-name: scaleIn;
-}
-
-.animate-slide-up.in-view {
     animation-name: fadeInUp;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.animate-slide-right.in-view {
-    animation-name: slideInFromLeft;
-}
-
+/* Consistent staggered delays for smooth sequential appearance */
+.animate-fade-in.in-view,
+.animate-slide-up.in-view,
+.animate-slide-right.in-view,
 .animate-slide-left.in-view {
-    animation-name: slideInFromRight;
+    animation-name: fadeInUp;
 }
 
 /* Typing Cursor */
@@ -1697,18 +1620,18 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     background: linear-gradient(120deg, rgba(0, 255, 136, 0.08), rgba(0, 0, 0, 0.25));
     border: 1px solid rgba(0, 255, 136, 0.25);
     border-radius: 12px;
-    transition: all 0.3s ease;
-    animation: fadeInUp 0.6s ease forwards;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: fadeInUp 0.4s ease forwards;
     opacity: 0;
     text-decoration: none;
     color: var(--text);
 }
 
 .spec-item:hover {
-    transform: translateY(-4px) scale(1.02);
+    transform: translateY(-3px);
     background: rgba(0, 255, 136, 0.1);
     border-color: var(--primary);
-    box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 255, 136, 0.2);
 }
 
 /* Unified Icon Style for Consistency */
@@ -1725,12 +1648,12 @@ i:not(.social-link i) {
     /* Gradient is applied by general rule above */
     filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5)); /* Replaced text-shadow for gradient text */
     margin-bottom: 0; /* Fix alignment */
-    transition: all 0.4s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .spec-item:hover i {
-    transform: scale(1.15) rotate(5deg);
-    filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.8));
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.7));
 }
 
 .spec-item span {
@@ -1864,13 +1787,13 @@ i:not(.social-link i) {
     border-radius: 14px;
     padding: 1rem 1.2rem;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .about-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: var(--primary);
-    box-shadow: 0 10px 28px rgba(0, 255, 136, 0.25);
+    box-shadow: 0 8px 22px rgba(0, 255, 136, 0.2);
 }
 
 .about-title {
@@ -2076,13 +1999,13 @@ i:not(.social-link i) {
 }
 
 /* Animacja wejścia */
- @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-10px); }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-8px); }
     to { opacity: 1; transform: translateX(0); }
 }
 
 .item-animate {
-    animation: slideIn 0.4s ease forwards;
+    animation: slideIn 0.3s ease forwards;
     opacity: 0; /* Ensure hidden before animation */
 }
 
@@ -2369,15 +2292,15 @@ i:not(.social-link i) {
     text-decoration: none !important;
     font-weight: 700;
     font-size: 0.9rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     white-space: nowrap;
 }
 
 .steam-profile-link:hover {
     background: var(--primary) !important;
     color: #000 !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.4);
 }
 
 .steam-profile-link:hover i {
@@ -2436,24 +2359,25 @@ i:not(.social-link i) {
     border-radius: 18px;
     z-index: 10000;
     padding: 1.5rem;
-    animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slideInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 
         0 10px 40px rgba(0, 0, 0, 0.5),
         0 0 0 1px rgba(255, 255, 255, 0.08) inset,
         0 0 50px rgba(0, 255, 136, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .wip-notice:hover {
-    transform: translateX(-50%) translateY(-4px);
+    transform: translateX(-50%) translateY(-3px);
     box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.6),
+        0 12px 45px rgba(0, 0, 0, 0.55),
         0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-        0 0 60px rgba(0, 255, 136, 0.5);
+        0 0 55px rgba(0, 255, 136, 0.4);
 }
 
 .wip-notice.hidden {
-    animation: slideOutDown 0.4s cubic-bezier(0.6, 0, 0.84, 0) forwards;
+    animation: slideOutDown 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .wip-content {
@@ -2481,7 +2405,6 @@ i:not(.social-link i) {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: iconBounce 2s ease-in-out infinite;
     filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.6));
 }
 
@@ -2543,7 +2466,7 @@ i:not(.social-link i) {
 
 @keyframes slideInUp {
     from {
-        transform: translate(-50%, 100px);
+        transform: translate(-50%, 80px);
         opacity: 0;
     }
     to {
@@ -2558,27 +2481,7 @@ i:not(.social-link i) {
         opacity: 1;
     }
     to {
-        transform: translate(-50%, 100px);
-        opacity: 0;
-    }
-}
-
-@keyframes iconBounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-4px);
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-100%);
+        transform: translate(-50%, 80px);
         opacity: 0;
     }
 }
@@ -2623,7 +2526,7 @@ i:not(.social-link i) {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 0 8px 32px var(--shadow), 0 0 20px rgba(0, 255, 136, 0.05);
     z-index: 9999;
     font-size: 1.3rem;
@@ -2645,9 +2548,9 @@ i:not(.social-link i) {
 }
 
 .theme-toggle:hover {
-    transform: translateY(-6px) scale(1.1) rotate(20deg);
+    transform: translateY(-3px) scale(1.05);
     border-color: var(--primary);
-    box-shadow: 0 15px 45px rgba(0, 255, 136, 0.4);
+    box-shadow: 0 10px 35px rgba(0, 255, 136, 0.3);
 }
 
 .theme-toggle i {
@@ -2655,11 +2558,11 @@ i:not(.social-link i) {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .theme-toggle:hover i {
-    transform: rotate(360deg) scale(1.2);
+    transform: rotate(180deg);
 }
 
 /* Light mode adjustments */
@@ -2983,19 +2886,19 @@ body {
 /* Smooth stagger animations for grid items */
 .socials-grid .social-link,
 .stats-grid .stat-card {
-    animation: scaleIn 0.6s ease-out both;
+    animation: fadeInUp 0.4s ease-out both;
 }
 
-.socials-grid .social-link:nth-child(1) { animation-delay: 0.1s; }
-.socials-grid .social-link:nth-child(2) { animation-delay: 0.15s; }
-.socials-grid .social-link:nth-child(3) { animation-delay: 0.2s; }
-.socials-grid .social-link:nth-child(4) { animation-delay: 0.25s; }
-.socials-grid .social-link:nth-child(5) { animation-delay: 0.3s; }
-.socials-grid .social-link:nth-child(6) { animation-delay: 0.35s; }
+.socials-grid .social-link:nth-child(1) { animation-delay: 0.05s; }
+.socials-grid .social-link:nth-child(2) { animation-delay: 0.1s; }
+.socials-grid .social-link:nth-child(3) { animation-delay: 0.15s; }
+.socials-grid .social-link:nth-child(4) { animation-delay: 0.2s; }
+.socials-grid .social-link:nth-child(5) { animation-delay: 0.25s; }
+.socials-grid .social-link:nth-child(6) { animation-delay: 0.3s; }
 
-.stats-grid .stat-card:nth-child(1) { animation-delay: 0.2s; }
-.stats-grid .stat-card:nth-child(2) { animation-delay: 0.3s; }
-.stats-grid .stat-card:nth-child(3) { animation-delay: 0.4s; }
+.stats-grid .stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stats-grid .stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stats-grid .stat-card:nth-child(3) { animation-delay: 0.3s; }
 
 /* Light Mode: Better contrast for language sliders */
 body.light-mode .lang-track {
