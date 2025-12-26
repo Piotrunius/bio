@@ -8,6 +8,105 @@ let audioPlaying = false;
 let wasAudioPlaying = false; // Track audio state before tab switch
 const githubUsername = 'Piotrunius';
 
+// Performance detection and adaptive configuration
+const deviceCapabilities = {
+    isLowEnd: false,
+    isMobile: false,
+    supportsWebGL: false,
+    memoryLimit: Infinity,
+    connectionSpeed: 'fast'
+};
+
+function detectDeviceCapabilities() {
+    // Detect mobile devices
+    deviceCapabilities.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                                   window.innerWidth <= 768;
+    
+    // Detect hardware concurrency (CPU cores)
+    const cores = navigator.hardwareConcurrency || 2;
+    
+    // Detect device memory (if available)
+    const memory = navigator.deviceMemory || 4; // Default to 4GB if not available
+    deviceCapabilities.memoryLimit = memory;
+    
+    // Detect connection speed
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (connection) {
+        const effectiveType = connection.effectiveType || '4g';
+        deviceCapabilities.connectionSpeed = effectiveType;
+    }
+    
+    // Detect WebGL support
+    try {
+        const canvas = document.createElement('canvas');
+        deviceCapabilities.supportsWebGL = !!(window.WebGLRenderingContext && 
+            (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+    } catch (e) {
+        deviceCapabilities.supportsWebGL = false;
+    }
+    
+    // Determine if device is low-end based on multiple factors
+    deviceCapabilities.isLowEnd = (
+        cores <= 2 || 
+        memory <= 2 || 
+        (connection && ['slow-2g', '2g', '3g'].includes(connection.effectiveType)) ||
+        (deviceCapabilities.isMobile && memory <= 4)
+    );
+    
+    console.log('Device capabilities detected:', deviceCapabilities);
+    return deviceCapabilities;
+}
+
+// Apply performance optimizations based on device
+function applyPerformanceOptimizations() {
+    const caps = deviceCapabilities;
+    
+    if (caps.isLowEnd) {
+        console.log('Low-end device detected - applying optimizations');
+        
+        // Reduce particle count
+        document.body.classList.add('low-performance');
+        
+        // Disable heavy animations
+        const style = document.createElement('style');
+        style.id = 'perf-optimizations';
+        style.textContent = `
+            .low-performance .bg-layer::before,
+            .low-performance .bg-layer::after {
+                animation: none !important;
+                opacity: 0.2 !important;
+            }
+            .low-performance .glass-card {
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                will-change: auto !important;
+            }
+            .low-performance .avatar {
+                animation: none !important;
+            }
+            .low-performance .avatar-ring {
+                animation: none !important;
+            }
+            .low-performance .stat-card i {
+                animation: none !important;
+            }
+            .low-performance .social-link i {
+                animation: none !important;
+            }
+            .low-performance * {
+                transition-duration: 0.15s !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Reduce quality for slow connections
+    if (caps.connectionSpeed === 'slow-2g' || caps.connectionSpeed === '2g') {
+        // Defer non-critical resource loading
+        console.log('Slow connection detected - deferring heavy resources');
+    }
+}
+
 // --- DATA: Setup & Gear (Hardcoded - FIX FOR INVISIBLE BUTTONS) ---
 // Dane są tutaj, renderujemy je dynamicznie, aby mieć pełną kontrolę nad ich wyglądem i klasami.
 const setupData = {
@@ -453,7 +552,11 @@ function initParticles() {
         }
     }
 
-    for (let i = 0; i < 120; i++) particles.push(new Particle()); // More particles (120)
+    // Adaptive particle count based on device
+    const particleCount = deviceCapabilities.isLowEnd ? 40 : 
+                         deviceCapabilities.isMobile ? 60 : 120;
+    
+    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
     // Store animate function globally (or in a wider scope) to access it for visibility change
     window.particlesAnimate = function () {
@@ -469,7 +572,12 @@ function initParticles() {
         particlesAnimationFrame = requestAnimationFrame(window.particlesAnimate);
     };
 
-    window.particlesAnimate();
+    // Only start particles if not low-end device
+    if (!deviceCapabilities.isLowEnd) {
+        window.particlesAnimate();
+    } else {
+        console.log('Particles disabled for low-end device');
+    }
 }
 
 function initScrollReveal() {
@@ -690,6 +798,10 @@ function renderSpotifyEmpty(container) {
 
 // --- INIT ---
 document.addEventListener('DOMContentLoaded', async () => {
+    // Detect device capabilities first
+    detectDeviceCapabilities();
+    applyPerformanceOptimizations();
+    
     await loadConfig();
     initProfile();
     initSocials();
@@ -699,7 +811,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     refreshSteamStatus();
     updateSpotifyStatus();
     initControls();
-    initParticles();      
+    
+    // Initialize particles only after capability detection
+    initParticles();
+    
     initScrollReveal();   
     initTypingEffect();   
     initMouseEffects();
@@ -707,10 +822,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     initWipNotice();
     initThemeToggle();
 
-    // Auto-refresh stats
-    setInterval(refreshGitHubStats, 300000); // GitHub every 5 minutes
-    setInterval(refreshSteamStatus, 60000);  // Steam every 1 minute
-    setInterval(updateSpotifyStatus, 30000); // Spotify every 30 seconds
+    // Auto-refresh stats with adaptive intervals
+    const statsInterval = deviceCapabilities.isLowEnd ? 600000 : 300000; // 10 or 5 minutes
+    const steamInterval = deviceCapabilities.isLowEnd ? 120000 : 60000;   // 2 or 1 minute
+    const spotifyInterval = deviceCapabilities.isLowEnd ? 45000 : 30000;  // 45 or 30 seconds
+    
+    setInterval(refreshGitHubStats, statsInterval);
+    setInterval(refreshSteamStatus, steamInterval);
+    setInterval(updateSpotifyStatus, spotifyInterval);
 });
 
 // --- WIP Notice Handler ---
