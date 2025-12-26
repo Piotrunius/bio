@@ -11,14 +11,14 @@
 
 /* Light Mode Colors */
 body.light-mode {
-    --primary: #00cc70;
-    --bg: #f5f7fa;
-    --text: #1a1a1a;
-    --border: #e0e4e8;
-    --card-bg: rgba(255, 255, 255, 0.75);
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --shadow: rgba(0, 0, 0, 0.1);
+    --primary: #00a859;
+    --bg: #f0f4f8;
+    --text: #0f1419;
+    --border: #d0d7de;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(0, 0, 0, 0.12);
+    --shadow: rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -2274,4 +2274,298 @@ body.light-mode .wip-close {
 body.light-mode .wip-close:hover {
     background: var(--primary);
     color: #fff;
+}
+
+/* Light Mode: Enhanced text visibility and contrast */
+body.light-mode .about-value {
+    color: rgba(0, 0, 0, 0.85);
+}
+
+body.light-mode .about-title {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+body.light-mode .profile-bio {
+    color: rgba(0, 0, 0, 0.75);
+    opacity: 1;
+}
+
+body.light-mode #music-artist {
+    color: var(--text);
+    opacity: 0.65;
+}
+
+body.light-mode .spotify-placeholder span {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+body.light-mode .spotify-artist-name {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .spotify-album-name {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .stat-label {
+    color: var(--text);
+    opacity: 0.7;
+}
+
+body.light-mode .feed-meta {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+body.light-mode .activity-desc {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .activity-meta-row {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .steam-status-text {
+    color: var(--text);
+    opacity: 0.7;
+}
+
+body.light-mode .steam-extra-info {
+    color: var(--text);
+    opacity: 0.6;
+}
+
+body.light-mode .last-update-info small {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .system-desc {
+    color: rgba(0, 0, 0, 0.75);
+}
+
+body.light-mode .spec-item span {
+    color: rgba(0, 0, 0, 0.85);
+}
+
+body.light-mode .spec-item small {
+    color: rgba(0, 0, 0, 0.55);
+}
+
+body.light-mode .copyright-bar {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* Light Mode: Improved shadows for depth without harshness */
+body.light-mode .glass-card {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 168, 89, 0.04);
+}
+
+body.light-mode .glass-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 16px rgba(0, 168, 89, 0.1);
+}
+
+body.light-mode .stat-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .stat-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 168, 89, 0.15);
+}
+
+body.light-mode .social-link:hover {
+    box-shadow: 0 0 16px rgba(0, 168, 89, 0.2);
+}
+
+body.light-mode .feed-card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .feed-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 168, 89, 0.15);
+}
+
+body.light-mode .about-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .about-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 168, 89, 0.12);
+}
+
+body.light-mode .music-btn {
+    box-shadow: 0 4px 12px rgba(0, 168, 89, 0.2);
+}
+
+body.light-mode .music-btn:hover {
+    box-shadow: 0 6px 20px rgba(0, 168, 89, 0.3);
+}
+
+body.light-mode .contact-btn {
+    box-shadow: 0 4px 12px rgba(0, 168, 89, 0.2);
+}
+
+body.light-mode .contact-btn:hover {
+    box-shadow: 0 8px 24px rgba(0, 168, 89, 0.35);
+}
+
+body.light-mode .theme-toggle {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 168, 89, 0.04);
+}
+
+body.light-mode .theme-toggle:hover {
+    box-shadow: 0 8px 24px rgba(0, 168, 89, 0.2);
+}
+
+/* Light Mode: Avatar adjustments */
+body.light-mode .avatar {
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(0, 168, 89, 0.25);
+}
+
+body.light-mode .avatar:hover {
+    box-shadow: 0 0 50px rgba(0, 168, 89, 0.4);
+}
+
+/* Light Mode: Background adjustments for better contrast */
+body.light-mode .bg-layer::before {
+    background: radial-gradient(circle at 30% 30%, rgba(0, 168, 89, 0.15), transparent 60%);
+    opacity: 0.5;
+}
+
+body.light-mode .bg-layer::after {
+    background: radial-gradient(circle at 70% 70%, rgba(0, 120, 200, 0.12), transparent 60%);
+    opacity: 0.5;
+}
+
+/* Light Mode: Canvas opacity for cleaner look */
+body.light-mode .bg-canvas {
+    opacity: 0.6;
+}
+
+/* Light Mode: Better contrast for language sliders */
+body.light-mode .lang-track {
+    background: rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .lang-fill {
+    background: linear-gradient(90deg, #00a859, #00c670, #00d88a);
+    box-shadow: 0 0 12px rgba(0, 168, 89, 0.3);
+}
+
+/* Light Mode: Visualizer border */
+body.light-mode .visualizer-canvas {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 168, 89, 0.15);
+}
+
+/* Light Mode: Better feed item visibility */
+body.light-mode .activity-item {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .activity-item:hover {
+    background: rgba(0, 168, 89, 0.05);
+    border-color: rgba(0, 168, 89, 0.2);
+}
+
+body.light-mode .feed-item {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .feed-item:hover {
+    background: rgba(0, 168, 89, 0.04);
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 168, 89, 0.15);
+}
+
+/* Light Mode: Meta badges visibility */
+body.light-mode .meta-badge {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/* Light Mode: Steam panel adjustments */
+body.light-mode .steam-status-panel {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .steam-game-info {
+    color: var(--primary);
+}
+
+/* Light Mode: System card */
+body.light-mode .system-card {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .system-logo {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Light Mode: Contact card */
+body.light-mode .contact-card {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* Light Mode: PC specs container */
+body.light-mode .pc-specs-container {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .spec-item {
+    background: linear-gradient(120deg, rgba(0, 168, 89, 0.06), rgba(0, 0, 0, 0.02));
+    border: 1px solid rgba(0, 168, 89, 0.2);
+}
+
+body.light-mode .spec-item:hover {
+    background: rgba(0, 168, 89, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 168, 89, 0.2);
+}
+
+/* Light Mode: Social links with proper backgrounds */
+body.light-mode .social-link {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-mode .social-link:hover {
+    background: rgba(0, 168, 89, 0.06);
+}
+
+/* Light Mode: Feed icon */
+body.light-mode .feed-icon {
+    background: rgba(0, 168, 89, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(0, 168, 89, 0.15);
+}
+
+/* Light Mode: Scrollbar adjustments */
+body.light-mode::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    box-shadow: 0 0 8px rgba(0, 168, 89, 0.4);
+}
+
+body.light-mode .feed-list::-webkit-scrollbar-track,
+body.light-mode .scrollable-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .feed-list::-webkit-scrollbar-thumb,
+body.light-mode .scrollable-content::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    box-shadow: 0 0 8px rgba(0, 168, 89, 0.4);
+}
+
+/* Light Mode: Selection color */
+body.light-mode ::selection {
+    background: rgba(0, 168, 89, 0.25);
+    color: #000;
+    text-shadow: none;
 }
