@@ -3593,3 +3593,82 @@ body.light-mode .language-bar-container {
     font-size: 0.8rem;
     color: var(--text-secondary);
 }
+
+/* Responsive adjustments for new sections */
+@media (max-width: 1200px) {
+    .github-extras-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .security-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .security-tabs {
+        flex-direction: column;
+    }
+    
+    .security-tab {
+        min-width: 100%;
+    }
+    
+    .github-extras-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .extra-list {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .security-overview {
+        grid-template-columns: 1fr;
+    }
+    
+    .alert-header,
+    .extra-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .alert-meta,
+    .extra-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Light mode support */
+body.light-mode .security-stat-card,
+body.light-mode .security-tab,
+body.light-mode .security-alert-item,
+body.light-mode .github-extra-card,
+body.light-mode .extra-item {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .security-stat-card:hover,
+body.light-mode .security-alert-item:hover,
+body.light-mode .github-extra-card:hover,
+body.light-mode .extra-item:hover {
+    background: rgba(0, 168, 89, 0.04);
+    border-color: var(--primary);
+}
+
+body.light-mode .security-tab.active {
+    background: rgba(0, 168, 89, 0.1);
+}
+
+body.light-mode .alert-repo,
+body.light-mode .alert-tool,
+body.light-mode .alert-date {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+body.light-mode .language-bar-container {
+    background: rgba(0, 0, 0, 0.06);
+}
