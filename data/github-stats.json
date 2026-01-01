@@ -18,7 +18,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119444,
+      "stars": 119445,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -63,7 +63,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52167,
+      "stars": 52168,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -72,7 +72,7 @@
       "name": "steam-presence",
       "owner": "JustTemmie",
       "url": "https://github.com/JustTemmie/steam-presence",
-      "stars": 378,
+      "stars": 379,
       "language": "Python",
       "description": "A script that actually displays the game you're playing on discord",
       "starredAt": "2025-10-14T16:33:26Z"
@@ -153,7 +153,7 @@
       "name": "glazewm",
       "owner": "glzr-io",
       "url": "https://github.com/glzr-io/glazewm",
-      "stars": 10969,
+      "stars": 10970,
       "language": "Rust",
       "description": "GlazeWM is a tiling window manager for Windows inspired by i3wm.",
       "starredAt": "2025-06-17T03:39:52Z"
@@ -300,7 +300,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-01T22:46:31.774Z",
+  "lastUpdate": "2026-01-01T23:25:18.593Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -318,7 +318,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-01T22:46:32.164Z"
+    "lastChecked": "2026-01-01T23:25:18.854Z"
   },
   "pullRequests": {
     "total": 4,
