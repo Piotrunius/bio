@@ -9,7 +9,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 16937,
+      "stars": 16938,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -45,7 +45,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18745,
+      "stars": 18746,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -63,7 +63,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52166,
+      "stars": 52165,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89359,
+      "stars": 89360,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -162,7 +162,7 @@
       "name": "yasb",
       "owner": "amnweb",
       "url": "https://github.com/amnweb/yasb",
-      "stars": 3824,
+      "stars": 3825,
       "language": "Python",
       "description": "A highly configurable Windows status bar written in Python.",
       "starredAt": "2025-06-17T03:39:25Z"
@@ -300,7 +300,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-01T16:33:41.802Z",
+  "lastUpdate": "2026-01-01T16:59:21.518Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -318,7 +318,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-01T16:33:42.165Z"
+    "lastChecked": "2026-01-01T16:59:21.850Z"
   },
   "pullRequests": {
     "total": 4,
