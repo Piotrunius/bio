@@ -9,7 +9,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 16942,
+      "stars": 16943,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -99,7 +99,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 161066,
+      "stars": 161070,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89367,
+      "stars": 89369,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -300,7 +300,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-01T19:53:56.596Z",
+  "lastUpdate": "2026-01-01T20:30:04.232Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -318,7 +318,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-01T19:53:57.081Z"
+    "lastChecked": "2026-01-01T20:30:04.800Z"
   },
   "pullRequests": {
     "total": 4,
