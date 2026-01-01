@@ -117,7 +117,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89331,
+      "stars": 89332,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -300,7 +300,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-01T10:29:07.214Z",
+  "lastUpdate": "2026-01-01T10:50:10.787Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -318,7 +318,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-01T10:29:07.517Z"
+    "lastChecked": "2026-01-01T10:50:11.141Z"
   },
   "pullRequests": {
     "total": 4,
