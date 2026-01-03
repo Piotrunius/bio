@@ -27,7 +27,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119553,
+      "stars": 119552,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -54,7 +54,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18794,
+      "stars": 18795,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -126,7 +126,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89514,
+      "stars": 89516,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -135,7 +135,7 @@
       "name": "moodist",
       "owner": "remvze",
       "url": "https://github.com/remvze/moodist",
-      "stars": 3186,
+      "stars": 3187,
       "language": "TypeScript",
       "description": "🌲 Ambient sounds for focus and calm.",
       "starredAt": "2025-09-04T00:18:52Z"
@@ -309,7 +309,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-03T15:27:28.101Z",
+  "lastUpdate": "2026-01-03T15:43:53.735Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -327,7 +327,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-03T15:27:28.590Z"
+    "lastChecked": "2026-01-03T15:43:54.234Z"
   },
   "pullRequests": {
     "total": 4,
