@@ -27,7 +27,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119540,
+      "stars": 119541,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -108,7 +108,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 161217,
+      "stars": 161218,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -126,7 +126,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89488,
+      "stars": 89490,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -189,7 +189,7 @@
       "name": "PeaZip",
       "owner": "peazip",
       "url": "https://github.com/peazip/PeaZip",
-      "stars": 6690,
+      "stars": 6691,
       "language": "Pascal",
       "description": "Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager. Features volume spanning, compression, authenticated encryption. Supports 7Z, 7-Zip sfx, ACE, ARJ, Brotli, BZ",
       "starredAt": "2023-08-09T22:42:02Z"
@@ -309,7 +309,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-03T07:28:08.114Z",
+  "lastUpdate": "2026-01-03T07:43:29.350Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -327,7 +327,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-03T07:28:08.466Z"
+    "lastChecked": "2026-01-03T07:43:29.834Z"
   },
   "pullRequests": {
     "total": 4,
