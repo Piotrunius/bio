@@ -1016,7 +1016,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     initThemeToggle();
     updateCopyrightYear();
     initBackToTop();
-    updateVisitorCount();
 
     // Auto-refresh stats with adaptive intervals
     const statsInterval = deviceCapabilities.isLowEnd ? 600000 : 300000; // 10 or 5 minutes
@@ -1392,51 +1391,4 @@ function getTimeAgo(dateString) {
     if (seconds < 604800) return `${Math.floor(seconds / 86400)}d ago`;
     if (seconds < 2592000) return `${Math.floor(seconds / 604800)}w ago`;
     return `${Math.floor(seconds / 2592000)}mo ago`;
-}
-
-// --- VISITOR COUNTER ---
-async function updateVisitorCount() {
-    const visitorCountEl = document.getElementById('visitor-count-floating');
-    if (!visitorCountEl) return;
-
-    try {
-        // Use Umami API to get stats
-        const response = await fetch('https://umami-proxy.piotrunius.workers.dev/api/websites/6fe44ce6-f537-41a6-9f7f-227556b3ba84/stats', {
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            const visits = data.pageviews?.value || data.visits?.value || 0;
-            animateCounter(visitorCountEl, visits);
-        } else {
-            visitorCountEl.textContent = '---';
-        }
-    } catch (error) {
-        console.warn('Unable to fetch visitor count:', error);
-        visitorCountEl.textContent = '---';
-    }
-}
-
-function animateCounter(element, target) {
-    const duration = 2000;
-    const start = 0;
-    const startTime = performance.now();
-
-    function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(start + (target - start) * easeOut);
-
-        element.textContent = current.toLocaleString();
-
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        }
-    }
-
-    requestAnimationFrame(update);
 }
