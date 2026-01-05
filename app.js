@@ -650,8 +650,8 @@ function initParticles() {
         console.log('Particles disabled for low-end device');
     }
 }
-    const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right, .animate-slide-left');
-    animatedElements.forEach(el => observer.observe(el));
+const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right, .animate-slide-left');
+animatedElements.forEach(el => observer.observe(el));
 }
 
 function initTypingEffect() {
