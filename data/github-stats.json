@@ -18,7 +18,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 17054,
+      "stars": 17057,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -27,7 +27,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119714,
+      "stars": 119718,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -54,7 +54,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18895,
+      "stars": 18897,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -72,7 +72,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52211,
+      "stars": 52212,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -90,7 +90,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 45151,
+      "stars": 45153,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -108,7 +108,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 161432,
+      "stars": 161436,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -126,7 +126,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89697,
+      "stars": 89703,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -198,38 +198,38 @@
   "recentCommits": [
     {
       "message": "Add files via upload",
-      "repo": "test",
+      "repo": "broadcast-generator",
       "author": "Piotrunius",
       "date": "2026-01-05T07:53:59Z",
-      "url": "https://github.com/Piotrunius/test/commit/2baf865dac0411b3e0323fad7f8261de4ee88c89"
+      "url": "https://github.com/Piotrunius/broadcast-generator/commit/2baf865dac0411b3e0323fad7f8261de4ee88c89"
     },
     {
       "message": "Delete index.html",
-      "repo": "test",
+      "repo": "broadcast-generator",
       "author": "Piotrunius",
       "date": "2026-01-05T07:53:29Z",
-      "url": "https://github.com/Piotrunius/test/commit/00edd9a857749314dd8c8f361b362113324bba87"
+      "url": "https://github.com/Piotrunius/broadcast-generator/commit/00edd9a857749314dd8c8f361b362113324bba87"
     },
     {
       "message": "Delete src directory",
-      "repo": "test",
+      "repo": "broadcast-generator",
       "author": "Piotrunius",
       "date": "2026-01-05T07:53:22Z",
-      "url": "https://github.com/Piotrunius/test/commit/6aec943fb369267a3065bdefde21d249319635a9"
+      "url": "https://github.com/Piotrunius/broadcast-generator/commit/6aec943fb369267a3065bdefde21d249319635a9"
     },
     {
       "message": "Delete pages directory",
-      "repo": "test",
+      "repo": "broadcast-generator",
       "author": "Piotrunius",
       "date": "2026-01-05T07:53:16Z",
-      "url": "https://github.com/Piotrunius/test/commit/bfdc2cf51556ad8a1eadc737ec8ebf52187ea88e"
+      "url": "https://github.com/Piotrunius/broadcast-generator/commit/bfdc2cf51556ad8a1eadc737ec8ebf52187ea88e"
     },
     {
       "message": "Delete assets/icons directory",
-      "repo": "test",
+      "repo": "broadcast-generator",
       "author": "Piotrunius",
       "date": "2026-01-05T07:53:10Z",
-      "url": "https://github.com/Piotrunius/test/commit/ac6cfff228369673488de47876311e618f90091c"
+      "url": "https://github.com/Piotrunius/broadcast-generator/commit/ac6cfff228369673488de47876311e618f90091c"
     },
     {
       "message": "Delete .well-known directory",
@@ -247,24 +247,24 @@
     },
     {
       "message": "Add files via upload",
-      "repo": "test",
+      "repo": "broadcast-generator",
       "author": "Piotrunius",
       "date": "2026-01-05T07:34:08Z",
-      "url": "https://github.com/Piotrunius/test/commit/45b525139758f5b9d0aa36212adfd028234fb425"
+      "url": "https://github.com/Piotrunius/broadcast-generator/commit/45b525139758f5b9d0aa36212adfd028234fb425"
     },
     {
       "message": "Delete index.html",
-      "repo": "test",
+      "repo": "broadcast-generator",
       "author": "Piotrunius",
       "date": "2026-01-05T07:33:33Z",
-      "url": "https://github.com/Piotrunius/test/commit/2d0c4e91f368a598eb640433e4c0a1c4b1ca86a9"
+      "url": "https://github.com/Piotrunius/broadcast-generator/commit/2d0c4e91f368a598eb640433e4c0a1c4b1ca86a9"
     },
     {
       "message": "Delete src directory",
-      "repo": "test",
+      "repo": "broadcast-generator",
       "author": "Piotrunius",
       "date": "2026-01-05T07:33:26Z",
-      "url": "https://github.com/Piotrunius/test/commit/d70fa454f1519822fc8df1c9c19161774842738b"
+      "url": "https://github.com/Piotrunius/broadcast-generator/commit/d70fa454f1519822fc8df1c9c19161774842738b"
     },
     {
       "message": "Update meta description in index.html",
@@ -365,7 +365,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-05T07:56:59.621Z",
+  "lastUpdate": "2026-01-05T08:46:31.028Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -383,7 +383,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-05T07:57:00.316Z"
+    "lastChecked": "2026-01-05T08:46:31.411Z"
   },
   "pullRequests": {
     "total": 4,
