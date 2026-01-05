@@ -915,6 +915,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     initVisibilityOptimization();
     initWipNotice();
     initThemeToggle();
+    updateCopyrightYear();
+    initBackToTop();
+    loadGitHubTimeline();
+    updateVisitorCount();
 
     // Auto-refresh stats with adaptive intervals
     const statsInterval = deviceCapabilities.isLowEnd ? 600000 : 300000; // 10 or 5 minutes
@@ -922,6 +926,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const spotifyInterval = deviceCapabilities.isLowEnd ? 45000 : 30000;  // 45 or 30 seconds
 
     setInterval(refreshGitHubStats, statsInterval);
+    setInterval(loadGitHubTimeline, statsInterval);
     setInterval(refreshSteamStatus, steamInterval);
     setInterval(updateSpotifyStatus, spotifyInterval);
 
@@ -1149,4 +1154,191 @@ function updateThemeIcon(button, theme) {
     } else {
         icon.className = 'fas fa-sun';
     }
+}
+
+function updateCopyrightYear() {
+    const copyrightEl = document.getElementById('copyright-year');
+    if (!copyrightEl) return;
+    const currentYear = new Date().getFullYear();
+    copyrightEl.querySelector('.copyright-content span:first-child').textContent = `© ${currentYear} Piotrunius - All Rights Reserved`;
+}
+
+// --- BACK TO TOP BUTTON ---
+function initBackToTop() {
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (!backToTopBtn) return;
+
+    // Show/hide button on scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    // Scroll to top on click
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// --- GITHUB ACTIVITY TIMELINE ---
+async function loadGitHubTimeline() {
+    const timeline = document.getElementById('activity-timeline');
+    if (!timeline) return;
+
+    try {
+        const resp = await fetch(`data/github-stats.json?t=${Date.now()}`);
+        if (!resp.ok) throw new Error('Failed to load stats');
+        
+        const stats = await resp.json();
+        const activities = [];
+
+        // Add commits
+        if (stats.recentCommits) {
+            stats.recentCommits
+                .filter(c => {
+                    const msg = (c.message || '').toLowerCase();
+                    const author = (c.author || '').toLowerCase();
+                    return !author.includes('bot') && !author.includes('action');
+                })
+                .slice(0, 10)
+                .forEach(commit => {
+                    activities.push({
+                        type: 'commit',
+                        icon: 'fa-code-commit',
+                        action: commit.message || 'Commit',
+                        repo: commit.repo,
+                        time: commit.date,
+                        url: commit.url
+                    });
+                });
+        }
+
+        // Add starred repos
+        if (stats.starred) {
+            stats.starred.slice(0, 5).forEach(star => {
+                activities.push({
+                    type: 'star',
+                    icon: 'fa-star',
+                    action: `Starred ${star.name}`,
+                    details: star.description,
+                    repo: star.owner,
+                    time: star.starredAt,
+                    url: star.url
+                });
+            });
+        }
+
+        // Sort by time
+        activities.sort((a, b) => new Date(b.time) - new Date(a.time));
+
+        // Render timeline
+        const fragment = document.createDocumentFragment();
+        activities.slice(0, 15).forEach((activity, index) => {
+            const item = document.createElement('div');
+            item.className = 'timeline-item';
+            item.style.animationDelay = `${index * 0.05}s`;
+            
+            const timeAgo = getTimeAgo(activity.time);
+            
+            item.innerHTML = `
+                <div class="timeline-icon">
+                    <i class="fas ${activity.icon}"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div class="timeline-action">${escapeHtml(activity.action)}</div>
+                        <div class="timeline-time">${timeAgo}</div>
+                    </div>
+                    ${activity.details ? `<div class="timeline-details">${escapeHtml(activity.details)}</div>` : ''}
+                    ${activity.repo ? `<div class="timeline-repo"><i class="fas fa-code-branch"></i>${escapeHtml(activity.repo)}</div>` : ''}
+                </div>
+            `;
+            
+            if (activity.url) {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', () => {
+                    window.open(activity.url, '_blank', 'noreferrer');
+                });
+            }
+            
+            fragment.appendChild(item);
+        });
+
+        timeline.innerHTML = '';
+        timeline.appendChild(fragment);
+    } catch (error) {
+        console.error('Error loading GitHub timeline:', error);
+        timeline.innerHTML = `
+            <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                <i class="fas fa-exclamation-circle" style="font-size: 2rem; opacity: 0.5;"></i>
+                <p>Unable to load activity timeline</p>
+            </div>
+        `;
+    }
+}
+
+function getTimeAgo(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    
+    if (seconds < 60) return 'just now';
+    if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+    if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+    if (seconds < 604800) return `${Math.floor(seconds / 86400)}d ago`;
+    if (seconds < 2592000) return `${Math.floor(seconds / 604800)}w ago`;
+    return `${Math.floor(seconds / 2592000)}mo ago`;
+}
+
+// --- VISITOR COUNTER ---
+async function updateVisitorCount() {
+    const visitorCountEl = document.getElementById('visitor-count');
+    if (!visitorCountEl) return;
+
+    try {
+        // Use Umami API to get stats
+        const response = await fetch('https://umami-proxy.piotrunius.workers.dev/api/websites/6fe44ce6-f537-41a6-9f7f-227556b3ba84/stats', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const visits = data.pageviews?.value || data.visits?.value || 0;
+            animateCounter(visitorCountEl, visits);
+        } else {
+            visitorCountEl.textContent = '---';
+        }
+    } catch (error) {
+        console.warn('Unable to fetch visitor count:', error);
+        visitorCountEl.textContent = '---';
+    }
+}
+
+function animateCounter(element, target) {
+    const duration = 2000;
+    const start = 0;
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(start + (target - start) * easeOut);
+        
+        element.textContent = current.toLocaleString();
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+    
+    requestAnimationFrame(update);
 }
