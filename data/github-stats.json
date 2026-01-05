@@ -1,15 +1,15 @@
 {
   "summary": {
-    "projects": 3,
+    "projects": 4,
     "starredCount": 21,
-    "commits": 125
+    "commits": 180
   },
   "starred": [
     {
       "name": "github-profile-readme-generator",
       "owner": "rahuldkjain",
       "url": "https://github.com/rahuldkjain/github-profile-readme-generator",
-      "stars": 23896,
+      "stars": 23897,
       "language": "TypeScript",
       "description": "🚀 Generate GitHub profile README easily with the latest add-ons like visitors count, GitHub stats, etc using minimal UI.",
       "starredAt": "2026-01-03T02:14:42Z"
@@ -18,7 +18,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 17056,
+      "stars": 17057,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -27,7 +27,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119725,
+      "stars": 119730,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -54,7 +54,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18904,
+      "stars": 18906,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -72,7 +72,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52214,
+      "stars": 52215,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -90,7 +90,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 45161,
+      "stars": 45164,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -108,7 +108,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 161451,
+      "stars": 161455,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -126,7 +126,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89720,
+      "stars": 89722,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -171,7 +171,7 @@
       "name": "yasb",
       "owner": "amnweb",
       "url": "https://github.com/amnweb/yasb",
-      "stars": 3850,
+      "stars": 3851,
       "language": "Python",
       "description": "A highly configurable Windows status bar written in Python.",
       "starredAt": "2025-06-17T03:39:25Z"
@@ -189,13 +189,20 @@
       "name": "PeaZip",
       "owner": "peazip",
       "url": "https://github.com/peazip/PeaZip",
-      "stars": 6700,
+      "stars": 6701,
       "language": "Pascal",
       "description": "Free Zip / Unzip software and Rar file extractor. Cross-platform file and archive manager. Features volume spanning, compression, authenticated encryption. Supports 7Z, 7-Zip sfx, ACE, ARJ, Brotli, BZ",
       "starredAt": "2023-08-09T22:42:02Z"
     }
   ],
   "recentCommits": [
+    {
+      "message": "Update Umami script URL to use Cloudflare proxy",
+      "repo": "piotrunius.github.io",
+      "author": "Piotrunius",
+      "date": "2026-01-05T12:34:55Z",
+      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/da9901ccc5a3b46a38c81b1f88bb9e372c029120"
+    },
     {
       "message": "Remove section tracking from initScrollReveal",
       "repo": "piotrunius.github.io",
@@ -244,13 +251,6 @@
       "author": "Piotrunius",
       "date": "2026-01-05T09:02:11Z",
       "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/f180d2a43744a48267966d648d1108fc8d1c02b1"
-    },
-    {
-      "message": "Delete sw.js",
-      "repo": "piotrunius.github.io",
-      "author": "Piotrunius",
-      "date": "2026-01-05T09:01:56Z",
-      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/875d4c188ecf3fc2d0cc4ed250235fdceeefea2f"
     },
     {
       "message": "Update AutoClicker.py",
@@ -309,7 +309,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-05T11:46:28.102Z",
+  "lastUpdate": "2026-01-05T12:35:26.774Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -327,7 +327,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-05T11:46:28.627Z"
+    "lastChecked": "2026-01-05T12:35:27.312Z"
   },
   "pullRequests": {
     "total": 4,
@@ -390,6 +390,10 @@
   "languages": [
     {
       "name": "CSS",
+      "repos": 1
+    },
+    {
+      "name": "JavaScript",
       "repos": 1
     },
     {
