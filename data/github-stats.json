@@ -2,7 +2,7 @@
   "summary": {
     "projects": 3,
     "starredCount": 21,
-    "commits": 119
+    "commits": 121
   },
   "starred": [
     {
@@ -27,7 +27,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119718,
+      "stars": 119721,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -90,7 +90,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 45154,
+      "stars": 45155,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -108,7 +108,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 161439,
+      "stars": 161440,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -126,7 +126,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89703,
+      "stars": 89704,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -153,7 +153,7 @@
       "name": "YimMenuV2",
       "owner": "YimMenu",
       "url": "https://github.com/YimMenu/YimMenuV2",
-      "stars": 974,
+      "stars": 975,
       "language": "C++",
       "description": "Experimental menu for GTA 5: Enhanced",
       "starredAt": "2025-07-07T06:47:19Z"
@@ -196,6 +196,13 @@
     }
   ],
   "recentCommits": [
+    {
+      "message": "Update app.js",
+      "repo": "piotrunius.github.io",
+      "author": "Piotrunius",
+      "date": "2026-01-05T09:18:27Z",
+      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/a64fbfbabbb045579ee857dd836ca929b380a59a"
+    },
     {
       "message": "feat: update project loading to include external repository",
       "repo": "piotrunius.github.io",
@@ -244,13 +251,6 @@
       "author": "Piotrunius",
       "date": "2026-01-05T09:01:03Z",
       "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/dc3a3063c69816245fe418e037b7f1ac842d548e"
-    },
-    {
-      "message": "Delete app.js",
-      "repo": "piotrunius.github.io",
-      "author": "Piotrunius",
-      "date": "2026-01-05T09:00:57Z",
-      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/1390340b97c3f8d856023f23a7864a96cc95bc0a"
     },
     {
       "message": "Update AutoClicker.py",
@@ -309,7 +309,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-05T09:13:31.166Z",
+  "lastUpdate": "2026-01-05T09:18:42.512Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -327,7 +327,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-05T09:13:31.684Z"
+    "lastChecked": "2026-01-05T09:18:42.855Z"
   },
   "pullRequests": {
     "total": 4,
