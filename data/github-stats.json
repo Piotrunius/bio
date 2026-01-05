@@ -108,7 +108,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 161430,
+      "stars": 161431,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -196,6 +196,13 @@
     }
   ],
   "recentCommits": [
+    {
+      "message": "Delete .well-known directory",
+      "repo": "piotrunius.github.io",
+      "author": "Piotrunius",
+      "date": "2026-01-05T07:50:39Z",
+      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/3aa5143ee4b57c4d43e220ee40ed29a56aee92c6"
+    },
     {
       "message": "chore: add Discord configuration file",
       "repo": "piotrunius.github.io",
@@ -302,13 +309,6 @@
       "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/fdc71918fd66f8e11b784fcc08ee92d49b8d6412"
     },
     {
-      "message": "Update Discord link in contact card",
-      "repo": "piotrunius.github.io",
-      "author": "Piotrunius",
-      "date": "2025-12-28T16:01:02Z",
-      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/6c6a7feaf94660bd0122d813be42a48fdcdeebc9"
-    },
-    {
       "message": "Update AutoClicker.py",
       "repo": "AutoClicker-AntiAFK",
       "author": "Piotrunius",
@@ -365,7 +365,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-05T07:50:03.040Z",
+  "lastUpdate": "2026-01-05T07:50:53.365Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -383,7 +383,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-05T07:50:03.649Z"
+    "lastChecked": "2026-01-05T07:50:53.698Z"
   },
   "pullRequests": {
     "total": 4,
