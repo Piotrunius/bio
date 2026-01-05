@@ -650,8 +650,19 @@ function initParticles() {
         console.log('Particles disabled for low-end device');
     }
 }
-const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right, .animate-slide-left');
-animatedElements.forEach(el => observer.observe(el));
+
+function initScrollReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right, .animate-slide-left');
+    animatedElements.forEach(el => observer.observe(el));
 }
 
 function initTypingEffect() {
