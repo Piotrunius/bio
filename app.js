@@ -943,7 +943,7 @@ async function loadProjects() {
 
         // Add external project from aresysite
         try {
-            const externalResponse = await fetch('https://api.github.com/repos/aresysite/aresysite.github.io', {
+            const externalResponse = await fetch('https://api.github.com/repos/aresysite/Broadcast-generator', {
                 headers: {
                     'Accept': 'application/vnd.github.v3+json'
                 }
@@ -984,7 +984,7 @@ async function loadProjects() {
             let badgeClass = '';
             let projectLink = repo.html_url; // default link
 
-            if (repo.name === 'aresysite.github.io') {
+            if (repo.name === 'Broadcast-generator') {
                 badge = 'active';
                 badgeClass = 'project-badge-active';
                 projectLink = 'https://cloud.umami.is/q/2SQPbwqnb';
