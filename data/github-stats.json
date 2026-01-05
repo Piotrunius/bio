@@ -2,7 +2,7 @@
   "summary": {
     "projects": 4,
     "starredCount": 21,
-    "commits": 102
+    "commits": 109
   },
   "starred": [
     {
@@ -108,7 +108,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 161431,
+      "stars": 161432,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -197,6 +197,41 @@
   ],
   "recentCommits": [
     {
+      "message": "Add files via upload",
+      "repo": "test",
+      "author": "Piotrunius",
+      "date": "2026-01-05T07:53:59Z",
+      "url": "https://github.com/Piotrunius/test/commit/2baf865dac0411b3e0323fad7f8261de4ee88c89"
+    },
+    {
+      "message": "Delete index.html",
+      "repo": "test",
+      "author": "Piotrunius",
+      "date": "2026-01-05T07:53:29Z",
+      "url": "https://github.com/Piotrunius/test/commit/00edd9a857749314dd8c8f361b362113324bba87"
+    },
+    {
+      "message": "Delete src directory",
+      "repo": "test",
+      "author": "Piotrunius",
+      "date": "2026-01-05T07:53:22Z",
+      "url": "https://github.com/Piotrunius/test/commit/6aec943fb369267a3065bdefde21d249319635a9"
+    },
+    {
+      "message": "Delete pages directory",
+      "repo": "test",
+      "author": "Piotrunius",
+      "date": "2026-01-05T07:53:16Z",
+      "url": "https://github.com/Piotrunius/test/commit/bfdc2cf51556ad8a1eadc737ec8ebf52187ea88e"
+    },
+    {
+      "message": "Delete assets/icons directory",
+      "repo": "test",
+      "author": "Piotrunius",
+      "date": "2026-01-05T07:53:10Z",
+      "url": "https://github.com/Piotrunius/test/commit/ac6cfff228369673488de47876311e618f90091c"
+    },
+    {
       "message": "Delete .well-known directory",
       "repo": "piotrunius.github.io",
       "author": "Piotrunius",
@@ -230,41 +265,6 @@
       "author": "Piotrunius",
       "date": "2026-01-05T07:33:26Z",
       "url": "https://github.com/Piotrunius/test/commit/d70fa454f1519822fc8df1c9c19161774842738b"
-    },
-    {
-      "message": "Delete pages directory",
-      "repo": "test",
-      "author": "Piotrunius",
-      "date": "2026-01-05T07:33:19Z",
-      "url": "https://github.com/Piotrunius/test/commit/13f2af676845ef48c2e3bd23513c41a9b2b79f56"
-    },
-    {
-      "message": "Delete assets/icons directory",
-      "repo": "test",
-      "author": "Piotrunius",
-      "date": "2026-01-05T07:33:02Z",
-      "url": "https://github.com/Piotrunius/test/commit/7be744b555cd68ee5243ed516e9713f4d8122961"
-    },
-    {
-      "message": "Add files via upload",
-      "repo": "test",
-      "author": "Piotrunius",
-      "date": "2026-01-05T06:46:43Z",
-      "url": "https://github.com/Piotrunius/test/commit/36261836757f8c2a4690c2c1469f56c7f3c597d0"
-    },
-    {
-      "message": "Delete index.html",
-      "repo": "test",
-      "author": "Piotrunius",
-      "date": "2026-01-05T06:45:07Z",
-      "url": "https://github.com/Piotrunius/test/commit/8268c5b4d885161b5f6936013e129dab00e673f4"
-    },
-    {
-      "message": "Delete src directory",
-      "repo": "test",
-      "author": "Piotrunius",
-      "date": "2026-01-05T06:44:30Z",
-      "url": "https://github.com/Piotrunius/test/commit/c818099ed9c685ba4902624fec5282ddd0065454"
     },
     {
       "message": "Update meta description in index.html",
@@ -365,7 +365,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-05T07:50:53.365Z",
+  "lastUpdate": "2026-01-05T07:56:59.621Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -383,7 +383,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-05T07:50:53.698Z"
+    "lastChecked": "2026-01-05T07:57:00.316Z"
   },
   "pullRequests": {
     "total": 4,
@@ -445,11 +445,11 @@
   },
   "languages": [
     {
-      "name": "CSS",
+      "name": "JavaScript",
       "repos": 1
     },
     {
-      "name": "JavaScript",
+      "name": "CSS",
       "repos": 1
     },
     {
