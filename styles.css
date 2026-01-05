@@ -2415,6 +2415,31 @@ i:not(.social-link i) {
     z-index: 2;
 }
 
+.steam-avatar-wrapper.online .status-dot {
+    background: #43b581;
+    box-shadow: 0 0 10px rgba(67, 181, 129, 0.6);
+}
+
+.steam-avatar-wrapper.away .status-dot {
+    background: #faa61a;
+    box-shadow: 0 0 10px rgba(250, 166, 26, 0.6);
+}
+
+.steam-avatar-wrapper.busy .status-dot {
+    background: #f04747;
+    box-shadow: 0 0 10px rgba(240, 71, 71, 0.6);
+}
+
+.steam-avatar-wrapper.in-game .status-dot {
+    background: #43b581;
+    box-shadow: 0 0 10px rgba(67, 181, 129, 0.6);
+}
+
+.steam-avatar-wrapper.offline .status-dot {
+    background: #747f8d;
+    box-shadow: none;
+}
+
 .steam-details {
     display: flex;
     flex-direction: column;
