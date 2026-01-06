@@ -2416,27 +2416,27 @@ i:not(.social-link i) {
 }
 
 .steam-avatar-wrapper.online .status-dot {
-    background: #43b581;
-    box-shadow: 0 0 10px rgba(67, 181, 129, 0.6);
+    background: #57cbff;
+    box-shadow: 0 0 10px rgba(87, 203, 255, 0.6);
 }
 
 .steam-avatar-wrapper.away .status-dot {
-    background: #faa61a;
-    box-shadow: 0 0 10px rgba(250, 166, 26, 0.6);
+    background: #ffc82c;
+    box-shadow: 0 0 10px rgba(255, 200, 44, 0.6);
 }
 
 .steam-avatar-wrapper.busy .status-dot {
-    background: #f04747;
-    box-shadow: 0 0 10px rgba(240, 71, 71, 0.6);
+    background: #ff4b4b;
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.6);
 }
 
 .steam-avatar-wrapper.in-game .status-dot {
-    background: #43b581;
-    box-shadow: 0 0 10px rgba(67, 181, 129, 0.6);
+    background: #90ff47;
+    box-shadow: 0 0 10px rgba(144, 255, 71, 0.6);
 }
 
 .steam-avatar-wrapper.offline .status-dot {
-    background: #747f8d;
+    background: #3a3f44;
     box-shadow: none;
 }
 
@@ -2643,22 +2643,22 @@ i:not(.social-link i) {
 }
 
 .discord-avatar-wrapper.online .status-dot {
-    background: #43b581;
-    box-shadow: 0 0 10px rgba(67, 181, 129, 0.6);
+    background: #57cbff;
+    box-shadow: 0 0 10px rgba(87, 203, 255, 0.6);
 }
 
 .discord-avatar-wrapper.idle .status-dot {
-    background: #faa61a;
-    box-shadow: 0 0 10px rgba(250, 166, 26, 0.6);
+    background: #ffc82c;
+    box-shadow: 0 0 10px rgba(255, 200, 44, 0.6);
 }
 
 .discord-avatar-wrapper.dnd .status-dot {
-    background: #f04747;
-    box-shadow: 0 0 10px rgba(240, 71, 71, 0.6);
+    background: #ff4b4b;
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.6);
 }
 
 .discord-avatar-wrapper.offline .status-dot {
-    background: #747f8d;
+    background: #3a3f44;
     box-shadow: none;
 }
 
