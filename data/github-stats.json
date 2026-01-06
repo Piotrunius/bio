@@ -2,7 +2,7 @@
   "summary": {
     "projects": 4,
     "starredCount": 22,
-    "commits": 186
+    "commits": 187
   },
   "starred": [
     {
@@ -206,6 +206,13 @@
   ],
   "recentCommits": [
     {
+      "message": "Fix email formatting in README",
+      "repo": "piotrunius.github.io",
+      "author": "Piotrunius",
+      "date": "2026-01-06T02:26:23Z",
+      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/48d571a87288000caab693ac929631f0f2d31cef"
+    },
+    {
       "message": "Add files via upload",
       "repo": "piotrunius.github.io",
       "author": "Piotrunius",
@@ -253,13 +260,6 @@
       "author": "Piotrunius",
       "date": "2026-01-05T09:33:29Z",
       "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/9787e2314beb0968b414fed6abe1064bacaf80c2"
-    },
-    {
-      "message": "Disable service worker",
-      "repo": "piotrunius.github.io",
-      "author": "Piotrunius",
-      "date": "2026-01-05T09:29:53Z",
-      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/c999fbfb164e25a7624769f4fe432f60e43e13c2"
     },
     {
       "message": "Update AutoClicker.py",
@@ -318,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-06T02:25:30.550Z",
+  "lastUpdate": "2026-01-06T02:26:36.963Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -336,7 +336,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-06T02:25:31.100Z"
+    "lastChecked": "2026-01-06T02:26:37.328Z"
   },
   "pullRequests": {
     "total": 5,
