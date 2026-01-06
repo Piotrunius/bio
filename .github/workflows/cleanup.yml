@@ -24,7 +24,7 @@ jobs:
           fi
           
           # Delete the branch
-          if [[ "$BRANCH_NAME" == feature/* ]] || [[ "$BRANCH_NAME" == bugfix/* ]] || [[ "$BRANCH_NAME" == hotfix/* ]]; then
+          if [[ "$BRANCH_NAME" == "feature/"* ]] || [[ "$BRANCH_NAME" == "bugfix/"* ]] || [[ "$BRANCH_NAME" == "hotfix/"* ]]; then
             echo "🗑️  Deleting merged branch: $BRANCH_NAME"
             gh api \
               --method DELETE \

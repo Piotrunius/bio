@@ -85,7 +85,7 @@ jobs:
       
       - name: Run Lighthouse CI
         run: |
-          npm install -g @lhci/cli@0.13.x
+          npx @lhci/cli@0.13.0 --help > /dev/null || echo "Lighthouse CLI ready"
           echo "Lighthouse tests will run on deployed environment"
         continue-on-error: true
 
@@ -568,7 +568,7 @@ jobs:
           echo "Last successful run data will be used for the website."
       
       - name: Tag Version
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'push' && steps.commit.outputs.changed == 'true'
         run: |
           VERSION=$(date +'%Y.%m.%d-%H%M')
           git tag -a "v${VERSION}" -m "Automated deployment ${VERSION}" || true

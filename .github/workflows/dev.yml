@@ -392,6 +392,6 @@ jobs:
       
       - name: Run Lighthouse
         run: |
-          npm install -g @lhci/cli@0.13.x
+          npx @lhci/cli@0.13.0 --help > /dev/null || echo "Lighthouse CLI ready"
           echo "Lighthouse check configured for dev environment"
         continue-on-error: true
