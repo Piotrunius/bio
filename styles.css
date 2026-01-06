@@ -2643,8 +2643,8 @@ i:not(.social-link i) {
 }
 
 .discord-avatar-wrapper.online .status-dot {
-    background: #57cbff;
-    box-shadow: 0 0 10px rgba(87, 203, 255, 0.6);
+    background: #90ff47;
+    box-shadow: 0 0 10px rgba(144, 255, 71, 0.6);
 }
 
 .discord-avatar-wrapper.idle .status-dot {
