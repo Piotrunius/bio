@@ -37,6 +37,84 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         </noscript>
         
+        <!-- Print Stylesheet -->
+        <style media="print">
+            @media print {
+                /* Hide interactive elements */
+                .theme-toggle,
+                .wip-notice,
+                .back-to-top,
+                .music-player-card,
+                .spotify-status-card,
+                .bg-canvas,
+                .bg-layer,
+                .music-controls,
+                .contact-btn,
+                .social-link,
+                button {
+                    display: none !important;
+                }
+                
+                /* Remove animations and transitions */
+                * {
+                    animation: none !important;
+                    transition: none !important;
+                }
+                
+                /* Optimize layout for printing */
+                body {
+                    background: white !important;
+                    color: black !important;
+                }
+                
+                .main-container {
+                    display: block !important;
+                    max-width: 100% !important;
+                    padding: 0 !important;
+                }
+                
+                .glass-card {
+                    background: white !important;
+                    border: 1px solid #ccc !important;
+                    box-shadow: none !important;
+                    page-break-inside: avoid;
+                    margin-bottom: 1rem;
+                }
+                
+                .profile-section {
+                    text-align: center;
+                    margin-bottom: 2rem;
+                }
+                
+                .avatar {
+                    border: 2px solid black !important;
+                }
+                
+                /* Make sure links are visible */
+                a {
+                    color: #0066cc !important;
+                    text-decoration: underline !important;
+                }
+                
+                /* Show URLs after links */
+                a[href^="http"]:after {
+                    content: " (" attr(href) ")";
+                    font-size: 0.8em;
+                }
+                
+                /* Page breaks */
+                .projects-section,
+                .skills-section,
+                .gaming-section {
+                    page-break-before: always;
+                }
+                
+                h1, h2, h3 {
+                    page-break-after: avoid;
+                }
+            }
+        </style>
+        
         <!-- JSON-LD Structured Data -->
         <script type="application/ld+json">
         {
@@ -468,6 +546,58 @@
         <button id="back-to-top" class="back-to-top" aria-label="Back to top">
             <i class="fas fa-arrow-up"></i>
         </button>
+        
+        <!-- Keyboard Shortcuts Button -->
+        <button id="shortcuts-btn" class="shortcuts-btn" aria-label="Keyboard shortcuts">
+            <i class="fas fa-keyboard"></i>
+        </button>
+        
+        <!-- Keyboard Shortcuts Modal -->
+        <div id="shortcuts-modal" class="modal" role="dialog" aria-labelledby="shortcuts-title" aria-hidden="true">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="shortcuts-title" class="modal-title">
+                        <i class="fas fa-keyboard"></i>
+                        Keyboard Shortcuts
+                    </h2>
+                    <button class="modal-close" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="shortcuts-grid">
+                        <div class="shortcut-item">
+                            <kbd>?</kbd>
+                            <span>Show this help</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>T</kbd>
+                            <span>Toggle theme</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>S</kbd>
+                            <span>Search projects</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>P</kbd>
+                            <span>Play/Pause audio</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>↑</kbd>
+                            <span>Scroll to top</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>ESC</kbd>
+                            <span>Close modals</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Toast Notification Container -->
+        <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
         <div class="copyright-bar" id="copyright-year">© 2025 Piotrunius - All Rights Reserved</div>
 

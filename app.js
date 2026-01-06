@@ -37,7 +37,7 @@ const apiCache = {
     }
 };
 
-// Enhanced fetch with caching
+// Enhanced fetch with caching and error handling
 async function cachedFetch(url, options = {}, ttlMinutes = 5) {
     const cacheKey = `${url}_${JSON.stringify(options)}`;
     
@@ -48,18 +48,36 @@ async function cachedFetch(url, options = {}, ttlMinutes = 5) {
         return cached;
     }
     
-    // Fetch from network
-    try {
-        const response = await fetch(url, options);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const data = await response.json();
-        apiCache.set(cacheKey, data, ttlMinutes);
-        return data;
-    } catch (error) {
-        console.error(`Fetch error for ${url}:`, error);
-        throw error;
+    // Fetch from network with retry logic
+    const maxRetries = 2;
+    let lastError;
+    
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            apiCache.set(cacheKey, data, ttlMinutes);
+            return data;
+        } catch (error) {
+            lastError = error;
+            console.warn(`Fetch attempt ${attempt + 1} failed for ${url}:`, error.message);
+            
+            if (attempt < maxRetries) {
+                // Wait before retry (exponential backoff)
+                await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+            }
+        }
     }
+    
+    // All retries failed
+    if (window.showToast && attempt > 0) {
+        showToast('Connection Issue', 'Some data may not be up to date', 'warning', 3000);
+    }
+    throw lastError;
 }
 
 // Performance detection and adaptive configuration
@@ -1067,6 +1085,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     initThemeToggle();
     updateCopyrightYear();
     initBackToTop();
+    initShareButton();
+    initKeyboardShortcuts();
 
     // Auto-refresh stats with adaptive intervals
     const statsInterval = deviceCapabilities.isLowEnd ? 600000 : 300000; // 10 or 5 minutes
@@ -1081,6 +1101,128 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load projects
     loadProjects();
 });
+
+// --- TOAST NOTIFICATIONS ---
+const toastQueue = [];
+let isShowingToast = false;
+
+function showToast(title, message, type = 'info', duration = 4000) {
+    const toast = {
+        id: Date.now() + Math.random(),
+        title,
+        message,
+        type,
+        duration
+    };
+    
+    toastQueue.push(toast);
+    processToastQueue();
+}
+
+function processToastQueue() {
+    if (isShowingToast || toastQueue.length === 0) return;
+    
+    isShowingToast = true;
+    const toast = toastQueue.shift();
+    displayToast(toast);
+}
+
+function displayToast(toast) {
+    const container = document.getElementById('toast-container');
+    if (!container) {
+        isShowingToast = false;
+        return;
+    }
+    
+    const toastEl = document.createElement('div');
+    toastEl.className = `toast ${toast.type}`;
+    toastEl.setAttribute('role', 'alert');
+    
+    const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-exclamation-circle',
+        info: 'fa-info-circle',
+        warning: 'fa-exclamation-triangle'
+    };
+    
+    toastEl.innerHTML = `
+        <i class="fas ${icons[toast.type] || icons.info} toast-icon" aria-hidden="true"></i>
+        <div class="toast-content">
+            <div class="toast-title">${escapeHtml(toast.title)}</div>
+            ${toast.message ? `<div class="toast-message">${escapeHtml(toast.message)}</div>` : ''}
+        </div>
+        <button class="toast-close" aria-label="Close notification">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    const closeBtn = toastEl.querySelector('.toast-close');
+    closeBtn.addEventListener('click', () => removeToast(toastEl));
+    
+    container.appendChild(toastEl);
+    
+    // Auto remove after duration
+    setTimeout(() => {
+        removeToast(toastEl);
+    }, toast.duration);
+}
+
+function removeToast(toastEl) {
+    toastEl.classList.add('removing');
+    setTimeout(() => {
+        if (toastEl.parentNode) {
+            toastEl.parentNode.removeChild(toastEl);
+        }
+        isShowingToast = false;
+        processToastQueue();
+    }, 300);
+}
+
+// --- SHARE FUNCTIONALITY ---
+function initShareButton() {
+    // Add share button to profile section
+    const profileSection = document.querySelector('.profile-section');
+    if (!profileSection) return;
+    
+    const shareBtn = document.createElement('button');
+    shareBtn.className = 'share-btn';
+    shareBtn.setAttribute('aria-label', 'Share this page');
+    shareBtn.innerHTML = `
+        <i class="fas fa-share-alt"></i>
+        <span>Share</span>
+    `;
+    
+    shareBtn.addEventListener('click', async () => {
+        const shareData = {
+            title: 'Piotrunius - Developer & Tech Enthusiast',
+            text: 'Check out my portfolio!',
+            url: window.location.href
+        };
+        
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+                showToast('Shared!', 'Thanks for sharing!', 'success');
+            } else {
+                // Fallback to clipboard
+                await navigator.clipboard.writeText(window.location.href);
+                showToast('Link Copied!', 'Link copied to clipboard', 'success');
+            }
+            
+            // Track share event
+            if (window.umami) {
+                window.umami.track('Page Shared');
+            }
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                console.error('Share error:', err);
+                showToast('Error', 'Could not share', 'error');
+            }
+        }
+    });
+    
+    profileSection.appendChild(shareBtn);
+}
 
 // --- PROJECTS SECTION ---
 let allProjectsData = [];
@@ -1526,4 +1668,85 @@ function getTimeAgo(dateString) {
     if (seconds < 604800) return `${Math.floor(seconds / 86400)}d ago`;
     if (seconds < 2592000) return `${Math.floor(seconds / 604800)}w ago`;
     return `${Math.floor(seconds / 2592000)}mo ago`;
+}
+
+// --- KEYBOARD SHORTCUTS ---
+function initKeyboardShortcuts() {
+    const modal = document.getElementById('shortcuts-modal');
+    const shortcutsBtn = document.getElementById('shortcuts-btn');
+    const closeBtn = modal?.querySelector('.modal-close');
+    const overlay = modal?.querySelector('.modal-overlay');
+    
+    if (!modal || !shortcutsBtn) return;
+    
+    // Show modal function
+    const showModal = () => {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    };
+    
+    // Hide modal function
+    const hideModal = () => {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    };
+    
+    // Button click
+    shortcutsBtn.addEventListener('click', showModal);
+    
+    // Close button
+    closeBtn?.addEventListener('click', hideModal);
+    
+    // Overlay click
+    overlay?.addEventListener('click', hideModal);
+    
+    // Global keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        // Ignore if user is typing in input
+        if (e.target.matches('input, textarea')) return;
+        
+        switch(e.key.toLowerCase()) {
+            case '?':
+                e.preventDefault();
+                showModal();
+                break;
+                
+            case 't':
+                e.preventDefault();
+                document.getElementById('theme-toggle')?.click();
+                break;
+                
+            case 's':
+                e.preventDefault();
+                document.getElementById('project-search')?.focus();
+                break;
+                
+            case 'p':
+                e.preventDefault();
+                toggleAudio();
+                break;
+                
+            case 'escape':
+                hideModal();
+                break;
+                
+            case 'arrowup':
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                break;
+        }
+    });
+    
+    // Track keyboard shortcut usage
+    document.addEventListener('keydown', (e) => {
+        if (['?', 't', 's', 'p'].includes(e.key.toLowerCase()) && !e.target.matches('input, textarea')) {
+            if (window.umami) {
+                window.umami.track('Keyboard Shortcut Used', { key: e.key.toUpperCase() });
+            }
+        }
+    });
 }
