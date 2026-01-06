@@ -1490,6 +1490,13 @@ a:where(:not(.social-link, .contact-btn, .music-btn, .spec-item, .activity-link,
     background: var(--primary);
     color: #000;
     border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2);
+    font-weight: 700;
+}
+
+.filter-btn.active::before {
+    content: '✓ ';
+    margin-right: 0.25rem;
 }
 
 .filter-btn.active i {

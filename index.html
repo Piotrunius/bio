@@ -97,9 +97,11 @@
                 }
                 
                 /* Show URLs after links */
-                a[href^="http"]:after {
+                a.project-link[href^="http"]:after,
+                a.social-link[href^="http"]:after {
                     content: " (" attr(href) ")";
-                    font-size: 0.8em;
+                    font-size: 0.7em;
+                    word-break: break-all;
                 }
                 
                 /* Page breaks */
@@ -587,7 +589,7 @@
                             <span>Play/Pause audio</span>
                         </div>
                         <div class="shortcut-item">
-                            <kbd>↑</kbd>
+                            <kbd>Ctrl ↑</kbd>
                             <span>Scroll to top</span>
                         </div>
                         <div class="shortcut-item">

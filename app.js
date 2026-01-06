@@ -39,7 +39,10 @@ const apiCache = {
 
 // Enhanced fetch with caching and error handling
 async function cachedFetch(url, options = {}, ttlMinutes = 5) {
-    const cacheKey = `${url}_${JSON.stringify(options)}`;
+    // Create a simpler cache key using URL and basic options
+    const cacheKey = options.headers ? 
+        `${url}_${options.headers.Accept || ''}` : 
+        url;
     
     // Check cache first
     const cached = apiCache.get(cacheKey);
@@ -51,6 +54,7 @@ async function cachedFetch(url, options = {}, ttlMinutes = 5) {
     // Fetch from network with retry logic
     const maxRetries = 2;
     let lastError;
+    let retryCount = 0;
     
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
         try {
@@ -64,7 +68,8 @@ async function cachedFetch(url, options = {}, ttlMinutes = 5) {
             return data;
         } catch (error) {
             lastError = error;
-            console.warn(`Fetch attempt ${attempt + 1} failed for ${url}:`, error.message);
+            retryCount = attempt + 1;
+            console.warn(`Fetch attempt ${retryCount} failed for ${url}:`, error.message);
             
             if (attempt < maxRetries) {
                 // Wait before retry (exponential backoff)
@@ -74,7 +79,7 @@ async function cachedFetch(url, options = {}, ttlMinutes = 5) {
     }
     
     // All retries failed
-    if (typeof showToast === 'function' && attempt > 0) {
+    if (typeof showToast === 'function' && retryCount > 1) {
         showToast('Connection Issue', 'Some data may not be up to date', 'warning', 3000);
     }
     throw lastError;
@@ -1458,11 +1463,21 @@ function initProjectFilters() {
 function filterProjects(filter, search) {
     let filtered = allProjectsData;
     
-    // Apply category filter
+    // Apply category filter using project metadata
     if (filter !== 'all') {
         filtered = filtered.filter(repo => {
-            if (filter === 'active') return repo.name === 'Broadcast-generator';
-            if (filter === 'archive') return repo.name === 'AutoClicker-AntiAFK';
+            // Check if repo has archive status or specific tags
+            const isArchived = repo.archived || false;
+            const repoName = repo.name;
+            
+            if (filter === 'active') {
+                // Active projects: not archived and is Broadcast-generator
+                return !isArchived && repoName === 'Broadcast-generator';
+            }
+            if (filter === 'archive') {
+                // Archived projects: explicitly archived or is AutoClicker-AntiAFK
+                return isArchived || repoName === 'AutoClicker-AntiAFK';
+            }
             return false;
         });
     }
@@ -1481,6 +1496,9 @@ function filterProjects(filter, search) {
 
 // Helper function to escape HTML
 function escapeHtml(text) {
+    if (text == null || text === undefined) return '';
+    if (typeof text !== 'string') text = String(text);
+    
     const map = {
         '&': '&amp;',
         '<': '&lt;',
