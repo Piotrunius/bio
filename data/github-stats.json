@@ -63,7 +63,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18926,
+      "stars": 18927,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -135,7 +135,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89763,
+      "stars": 89764,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -318,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-05T23:56:59.490Z",
+  "lastUpdate": "2026-01-06T00:03:02.316Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -336,18 +336,18 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-05T23:56:59.981Z"
+    "lastChecked": "2026-01-06T00:03:02.887Z"
   },
   "pullRequests": {
     "total": 5,
     "recent": [
       {
-        "title": "Status layout local",
+        "title": "Add blur effects and improved gradient to feed-card background animations\n\nCo-authored-by: Piotrunius <93887193+Piotrunius@users.noreply.github.com>",
         "repo": "piotrunius.github.io",
-        "state": "open",
-        "url": "https://github.com/Piotrunius/piotrunius.github.io/pull/26",
-        "created": "2026-01-05T22:25:26Z",
-        "updated": "2026-01-05T22:39:18Z"
+        "state": "closed",
+        "url": "https://github.com/Piotrunius/piotrunius.github.io/pull/18",
+        "created": "2025-12-26T21:47:05Z",
+        "updated": "2026-01-06T00:03:05Z"
       },
       {
         "title": "Add blur effects and improved gradient to feed-card background animations\n\nCo-authored-by: Piotrunius <93887193+Piotrunius@users.noreply.github.com>",
@@ -355,7 +355,15 @@
         "state": "closed",
         "url": "https://github.com/Piotrunius/piotrunius.github.io/pull/20",
         "created": "2025-12-26T21:50:40Z",
-        "updated": "2025-12-26T21:51:12Z"
+        "updated": "2026-01-06T00:03:05Z"
+      },
+      {
+        "title": "Status layout local",
+        "repo": "piotrunius.github.io",
+        "state": "closed",
+        "url": "https://github.com/Piotrunius/piotrunius.github.io/pull/26",
+        "created": "2026-01-05T22:25:26Z",
+        "updated": "2026-01-06T00:03:04Z"
       },
       {
         "title": "chore: automated stats update",
@@ -364,14 +372,6 @@
         "url": "https://github.com/Piotrunius/piotrunius.github.io/pull/17",
         "created": "2025-12-26T21:46:19Z",
         "updated": "2025-12-26T21:47:48Z"
-      },
-      {
-        "title": "Add blur effects and improved gradient to feed-card background animations\n\nCo-authored-by: Piotrunius <93887193+Piotrunius@users.noreply.github.com>",
-        "repo": "piotrunius.github.io",
-        "state": "closed",
-        "url": "https://github.com/Piotrunius/piotrunius.github.io/pull/18",
-        "created": "2025-12-26T21:47:05Z",
-        "updated": "2025-12-26T21:47:44Z"
       },
       {
         "title": "Merge pull request #2 from Piotrunius/copilot/remove-time-condition-github-data\n\n[WIP] Remove time condition for data fetching from GitHub",
