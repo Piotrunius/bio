@@ -1036,6 +1036,13 @@ function renderSpotifyEmpty(container) {
 
 // --- INIT ---
 document.addEventListener('DOMContentLoaded', async () => {
+    // Show loading bar
+    const loadingBar = document.getElementById('loading-bar');
+    if (loadingBar) {
+        loadingBar.classList.add('loading');
+        loadingBar.style.width = '30%';
+    }
+    
     // Initialize performance monitoring
     initPerformanceMonitoring();
 
@@ -1063,11 +1070,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     detectDeviceCapabilities();
     applyPerformanceOptimizations();
 
+    if (loadingBar) loadingBar.style.width = '50%';
+
     await loadConfig();
     initProfile();
     initSocials();
     initMusicMeta();
     initSetup();
+    
+    if (loadingBar) loadingBar.style.width = '70%';
+    
     refreshGitHubStats();
     refreshSteamStatus();
     refreshDiscordStatus();
@@ -1076,6 +1088,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Initialize particles only after capability detection
     initParticles();
+
+    if (loadingBar) loadingBar.style.width = '90%';
 
     initScrollReveal();
     initTypingEffect();
@@ -1099,7 +1113,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     setInterval(updateSpotifyStatus, spotifyInterval);
 
     // Load projects
-    loadProjects();
+    await loadProjects();
+    
+    // Complete loading
+    if (loadingBar) {
+        loadingBar.style.width = '100%';
+        setTimeout(() => {
+            loadingBar.classList.remove('loading');
+            loadingBar.style.opacity = '0';
+        }, 300);
+    }
 });
 
 // --- TOAST NOTIFICATIONS ---

@@ -31,6 +31,37 @@
     outline-offset: 2px;
 }
 
+/* Loading Progress Bar */
+.loading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), #00b8ff);
+    z-index: 10002;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.loading-bar.loading {
+    animation: loadingProgress 2s ease-in-out infinite;
+}
+
+@keyframes loadingProgress {
+    0% {
+        width: 0%;
+        opacity: 1;
+    }
+    50% {
+        width: 70%;
+    }
+    100% {
+        width: 100%;
+        opacity: 0;
+    }
+}
+
 /* Light Mode Colors */
 body.light-mode {
     --primary: #00a859;
@@ -66,6 +97,7 @@ body {
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
 }
 
 /* Custom Scrollbar for Webkit (Main Page) - Matches feed-list style */
@@ -3726,6 +3758,31 @@ body.light-mode .language-bar-container {
 
 .skill-badge:hover::before {
     left: 100%;
+}
+
+.skill-badge::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.skill-badge:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
 }
 
 .skill-badge:hover {
