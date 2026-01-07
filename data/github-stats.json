@@ -1,8 +1,8 @@
 {
   "summary": {
-    "projects": 6,
+    "projects": 2,
     "starredCount": 22,
-    "commits": 213
+    "commits": 200
   },
   "starred": [
     {
@@ -27,7 +27,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 17128,
+      "stars": 17131,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -36,7 +36,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 119889,
+      "stars": 119893,
       "language": "Svelte",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -63,7 +63,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 18977,
+      "stars": 18980,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -99,7 +99,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 45241,
+      "stars": 45242,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -117,7 +117,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 161658,
+      "stars": 161662,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -135,7 +135,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 89919,
+      "stars": 89930,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -206,74 +206,11 @@
   ],
   "recentCommits": [
     {
-      "message": "Add files via upload",
-      "repo": "dsfhsdkjfhsdkjsdfhjksdf",
+      "message": "chore: update bio and language proficiency levels",
+      "repo": "piotrunius.github.io",
       "author": "Piotrunius",
-      "date": "2026-01-07T07:14:28Z",
-      "url": "https://github.com/Piotrunius/dsfhsdkjfhsdkjsdfhjksdf/commit/f2c0c54f051876bfac340fbeb1da88b08fff5148"
-    },
-    {
-      "message": "Add files via upload",
-      "repo": "Test-Project-Bio",
-      "author": "Piotrunius",
-      "date": "2026-01-07T06:55:10Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Bio/commit/1aceea652a8c220f5b0bc72060116f3520bc02c0"
-    },
-    {
-      "message": "Add files via upload",
-      "repo": "Test-Project-Broadcast",
-      "author": "Piotrunius",
-      "date": "2026-01-07T06:46:23Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Broadcast/commit/b5cb84c3db422e89e5fcf28c6a96c259624d76f4"
-    },
-    {
-      "message": "Add files via upload",
-      "repo": "Test-Project-Broadcast",
-      "author": "Piotrunius",
-      "date": "2026-01-07T05:58:07Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Broadcast/commit/f9e342cdb45ee6d3d36962f79097b5f930f934e2"
-    },
-    {
-      "message": "Add files via upload",
-      "repo": "Test-Project-Broadcast",
-      "author": "Piotrunius",
-      "date": "2026-01-07T05:26:34Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Broadcast/commit/761c3f49c155852ee83e85b31eb467403dce9080"
-    },
-    {
-      "message": "Add files via upload",
-      "repo": "Test-Project-Broadcast",
-      "author": "Piotrunius",
-      "date": "2026-01-07T05:23:58Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Broadcast/commit/ef5cba24f29d52e8da824524457e98188d150d99"
-    },
-    {
-      "message": "Delete index.html",
-      "repo": "Test-Project-Broadcast",
-      "author": "Piotrunius",
-      "date": "2026-01-07T05:14:43Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Broadcast/commit/604e4c979a5ea81014f63180f9e571bf72c9faea"
-    },
-    {
-      "message": "Delete README.md",
-      "repo": "Test-Project-Broadcast",
-      "author": "Piotrunius",
-      "date": "2026-01-07T05:14:37Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Broadcast/commit/4d00437e16e4b3b5c25bde39c7287ba7cd124e17"
-    },
-    {
-      "message": "Delete LICENSE",
-      "repo": "Test-Project-Broadcast",
-      "author": "Piotrunius",
-      "date": "2026-01-07T05:14:31Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Broadcast/commit/06b63a1ef44c25173a4a6e48b3f84c99abe986f4"
-    },
-    {
-      "message": "Delete src directory",
-      "repo": "Test-Project-Broadcast",
-      "author": "Piotrunius",
-      "date": "2026-01-07T05:14:26Z",
-      "url": "https://github.com/Piotrunius/Test-Project-Broadcast/commit/60e74aa293d04edd2b023c054790927cf3e498bd"
+      "date": "2026-01-07T08:38:08Z",
+      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/5836d8d40da91bec2e3c065b970839848a213d05"
     },
     {
       "message": "Fix email formatting in README",
@@ -323,13 +260,6 @@
       "author": "Piotrunius",
       "date": "2026-01-05T12:34:55Z",
       "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/da9901ccc5a3b46a38c81b1f88bb9e372c029120"
-    },
-    {
-      "message": "Remove section tracking from initScrollReveal",
-      "repo": "piotrunius.github.io",
-      "author": "Piotrunius",
-      "date": "2026-01-05T09:33:29Z",
-      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/9787e2314beb0968b414fed6abe1064bacaf80c2"
     },
     {
       "message": "Update AutoClicker.py",
@@ -388,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-07T07:54:49.762Z",
+  "lastUpdate": "2026-01-07T08:38:23.863Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -406,7 +336,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-07T07:54:50.443Z"
+    "lastChecked": "2026-01-07T08:38:24.454Z"
   },
   "pullRequests": {
     "total": 5,
@@ -485,11 +415,7 @@
   "languages": [
     {
       "name": "CSS",
-      "repos": 2
-    },
-    {
-      "name": "JavaScript",
-      "repos": 2
+      "repos": 1
     },
     {
       "name": "Python",
