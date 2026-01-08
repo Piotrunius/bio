@@ -4378,32 +4378,6 @@ body.light-mode .shortcut-item kbd {
    ENHANCED RESPONSIVE DESIGN
    ========================================== */
 
-/* Tablet breakpoint - 768px to 1024px */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .main-container {
-        max-width: 100%;
-        padding: 2rem 1.5rem;
-        gap: 1.5rem;
-    }
-    
-    .profile-section {
-        grid-column: 4 / 10;
-    }
-    
-    .spotify-status-card,
-    .music-player-card {
-        grid-column: 1 / 13;
-    }
-    
-    .glass-card {
-        padding: 1.5rem;
-    }
-    
-    .avatar-container {
-        width: 160px;
-        height: 160px;
-    }
-}
 
 /* Small tablets and large phones - 481px to 768px */
 @media (min-width: 481px) and (max-width: 768px) {
@@ -4796,11 +4770,11 @@ body.light-mode .shortcut-item kbd {
     }
     
     .glass-card {
-        padding: 1rem !important;
+        padding: 1rem;
     }
     
     .visualizer-canvas {
-        height: 80px !important;
+        height: 80px;
     }
 }
 
@@ -4817,10 +4791,6 @@ img {
 }
 
 /* Prevent horizontal scroll */
-body {
-    overflow-x: hidden;
-}
-
 html {
     overflow-x: hidden;
 }
