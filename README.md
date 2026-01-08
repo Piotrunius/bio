@@ -6,13 +6,10 @@ A modern, interactive personal portfolio website showcasing my journey as a deve
 
 ### Interactive Elements
 - **Animated Background Canvas** - Dynamic visual effects
-- **Theme Toggle** - Switch between dark/light modes (Keyboard: `T`)
-- **Audio Visualizer** - Local music player with visual feedback (Keyboard: `Space` or `K`)
+- **Theme Toggle** - Switch between dark/light modes
+- **Audio Visualizer** - Local music player with visual feedback
 - **Glass Morphism UI** - Modern frosted glass design elements
 - **Progressive Web App** - Installable with offline capabilities
-- **Keyboard Shortcuts** - Full keyboard navigation support (Press `?` for help)
-- **Notification System** - Toast notifications for user feedback
-- **Web Share API** - Native sharing on mobile devices
 
 ### Real-time Integrations
 - **Spotify Status** - Live music listening activity
@@ -80,9 +77,6 @@ Visit the live website:  [https://piotrunius.github.io/](https://piotrunius.gith
 - Deferred script loading
 - CSS and JavaScript minification ready
 - Service Worker caching
-- Adaptive performance based on device capabilities
-- Pause animations when tab is hidden
-- Performance metrics logging
 
 ## 🎨 Design Philosophy
 
@@ -97,30 +91,14 @@ The website follows a modern glassmorphism design with:
 
 - **Installable**: Can be installed as a native app
 - **Offline Support**: Service Worker provides basic offline functionality
-- **Responsive**: Optimized for mobile and desktop
-- **App-like Experience**: Standalone display mode
-
-## ♿ Accessibility Features
-
-- **Keyboard Navigation**: Full keyboard support with shortcuts (Press `?` for help)
-- **Screen Reader Support**: Proper ARIA labels and semantic HTML
-- **Focus Indicators**: Clear focus states for keyboard navigation
-- **High Contrast Mode**: Support for high contrast preferences
-- **Reduced Motion**: Respects user's motion preferences
-- **Skip Links**: Quick navigation for screen readers
+- **Responsive**:  Optimized for mobile and desktop
+- **App-like Experience**:  Standalone display mode
 
 ## 🔒 Privacy & Analytics
 
 - Uses privacy-focused Umami Analytics
 - No invasive tracking or cookies
 - External API calls for real-time data only
-- Content Security Policy (CSP) for enhanced security
-
-## 📚 Documentation
-
-- **[CHANGES.md](CHANGES.md)** - Detailed changelog and improvements
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
-- **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)** - Community standards
 
 ## 🌍 Deployment
 
@@ -150,17 +128,6 @@ While this is a personal portfolio, suggestions and improvements are welcome! Fe
 - Report bugs via Issues
 - Suggest new features
 - Submit pull requests for improvements
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards.
-
-## ⌨️ Keyboard Shortcuts
-
-Press `?` on the website to see all available keyboard shortcuts:
-- `Space` or `K` - Play/pause audio
-- `T` - Toggle theme
-- `Esc` - Close modals/notices
-- `Ctrl+Home` - Scroll to top
-- `Ctrl+End` - Scroll to bottom
 
 ## 📄 License
 
