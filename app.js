@@ -280,8 +280,27 @@ async function refreshGitHubStats() {
     }
 
     const summary = stats.summary || {};
-    if (projectsEl) projectsEl.textContent = summary.projects || '0';
-    if (starsEl) starsEl.textContent = summary.starredCount || '0';
+    
+    // Animate counters for better visual effect
+    if (projectsEl) {
+        const targetProjects = summary.projects || 0;
+        if (projectsEl.textContent === '0' || !projectsEl.dataset.animated) {
+            animateCounter(projectsEl, targetProjects, 1500);
+            projectsEl.dataset.animated = 'true';
+        } else {
+            projectsEl.textContent = targetProjects;
+        }
+    }
+    
+    if (starsEl) {
+        const targetStars = summary.starredCount || 0;
+        if (starsEl.textContent === '0' || !starsEl.dataset.animated) {
+            animateCounter(starsEl, targetStars, 1500);
+            starsEl.dataset.animated = 'true';
+        } else {
+            starsEl.textContent = targetStars;
+        }
+    }
 
     // Fetch all commits from GitHub API
     let allCommits = [];
@@ -296,7 +315,15 @@ async function refreshGitHubStats() {
         console.warn('Error fetching commits from GitHub API:', e.message);
     }
 
-    if (commitsEl) commitsEl.textContent = allCommits.length || '0';
+    if (commitsEl) {
+        const commitCount = allCommits.length || 0;
+        if (commitsEl.textContent === '0' || !commitsEl.dataset.animated) {
+            animateCounter(commitsEl, commitCount, 1500);
+            commitsEl.dataset.animated = 'true';
+        } else {
+            commitsEl.textContent = commitCount;
+        }
+    }
     if (lastUpdateEl) {
         lastUpdateEl.textContent = `Last updated: ${formatPLDateTime(new Date().toISOString())}`;
     }
@@ -1016,6 +1043,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     initThemeToggle();
     updateCopyrightYear();
     initBackToTop();
+    
+    // Initialize new features
+    initKeyboardNavigation();
+    initSmoothScroll();
+    enhanceAccessibility();
 
     // Auto-refresh stats with adaptive intervals
     const statsInterval = deviceCapabilities.isLowEnd ? 600000 : 300000; // 10 or 5 minutes
@@ -1391,4 +1423,205 @@ function getTimeAgo(dateString) {
     if (seconds < 604800) return `${Math.floor(seconds / 86400)}d ago`;
     if (seconds < 2592000) return `${Math.floor(seconds / 604800)}w ago`;
     return `${Math.floor(seconds / 2592000)}mo ago`;
+}
+
+// --- KEYBOARD NAVIGATION ---
+// Adds keyboard shortcuts for better accessibility and power user experience
+// Supports: Arrow keys for navigation, Escape to close modals, Space to play/pause audio
+function initKeyboardNavigation() {
+    document.addEventListener('keydown', (e) => {
+        // Space or K: Toggle audio playback
+        if ((e.code === 'Space' || e.key === 'k') && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            toggleAudio();
+            return;
+        }
+
+        // Escape: Close WIP notice if visible
+        if (e.key === 'Escape') {
+            const wipNotice = document.getElementById('wip-notice');
+            const closeBtn = document.getElementById('wip-close');
+            if (wipNotice && !wipNotice.classList.contains('hidden') && wipNotice.style.display !== 'none') {
+                closeBtn?.click();
+            }
+            return;
+        }
+
+        // T: Toggle theme
+        if (e.key === 't' || e.key === 'T') {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                document.getElementById('theme-toggle')?.click();
+                return;
+            }
+        }
+
+        // Home: Scroll to top
+        if (e.key === 'Home' && e.ctrlKey) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        // End: Scroll to bottom
+        if (e.key === 'End' && e.ctrlKey) {
+            e.preventDefault();
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            return;
+        }
+    });
+
+    console.log('Keyboard shortcuts enabled: Space/K (play/pause), T (theme), Esc (close), Ctrl+Home/End (scroll)');
+}
+
+// --- LOADING STATES ---
+// Shows loading indicators while API data is being fetched
+// Improves user experience by providing visual feedback
+function showLoadingState(elementId, message = 'Loading...') {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    const loadingHTML = `
+        <div class="loading-state" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; gap: 1rem; color: var(--text-secondary);">
+            <div class="spinner" style="width: 40px; height: 40px; border: 3px solid rgba(0, 255, 136, 0.1); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+            <span style="font-size: 0.9rem;">${message}</span>
+        </div>
+    `;
+    
+    element.innerHTML = loadingHTML;
+}
+
+// --- SMOOTH SCROLL TO SECTIONS ---
+// Enables smooth scrolling to specific sections when clicking on navigation links
+function initSmoothScroll() {
+    // Add scroll behavior to all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || !href) return;
+            
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// --- ANIMATED STATISTICS COUNTERS ---
+// Animates numbers counting up to their final value for better visual impact
+// Used for statistics like project count, commit count, etc.
+function animateCounter(element, targetValue, duration = 1000) {
+    if (!element) return;
+    
+    const startValue = 0;
+    const startTime = performance.now();
+    
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuad = progress * (2 - progress);
+        const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuad);
+        
+        element.textContent = currentValue;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = targetValue;
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
+
+// --- ERROR BOUNDARY FOR API CALLS ---
+// Provides user-friendly error messages when API calls fail
+// Includes retry functionality for better resilience
+function showErrorState(elementId, errorMessage = 'Failed to load data', retryCallback = null) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    const retryButton = retryCallback ? `
+        <button onclick="(${retryCallback.toString()})()" style="
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.2s;
+        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fas fa-redo"></i> Retry
+        </button>
+    ` : '';
+
+    element.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; gap: 0.5rem; color: var(--text-secondary);">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #ff6b6b; opacity: 0.8;"></i>
+            <span style="font-size: 0.95rem; text-align: center;">${errorMessage}</span>
+            ${retryButton}
+        </div>
+    `;
+}
+
+// --- ACCESSIBILITY IMPROVEMENTS ---
+// Adds focus indicators and ARIA labels for better screen reader support
+function enhanceAccessibility() {
+    // Add focus-visible class for better keyboard navigation visibility
+    document.body.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+        }
+    });
+
+    document.body.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+    });
+
+    // Ensure all interactive elements have proper roles
+    document.querySelectorAll('.skill-badge, .social-link, .project-card').forEach(el => {
+        if (!el.getAttribute('role')) {
+            el.setAttribute('role', 'link');
+        }
+    });
+
+    // Add skip to main content link for screen readers
+    const skipLink = document.createElement('a');
+    skipLink.href = '#main-container';
+    skipLink.textContent = 'Skip to main content';
+    skipLink.className = 'skip-link';
+    skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--primary);
+        color: var(--bg-primary);
+        padding: 8px;
+        text-decoration: none;
+        z-index: 100;
+    `;
+    skipLink.addEventListener('focus', () => {
+        skipLink.style.top = '0';
+    });
+    skipLink.addEventListener('blur', () => {
+        skipLink.style.top = '-40px';
+    });
+    document.body.insertBefore(skipLink, document.body.firstChild);
+
+    // Add ID to main container if not present
+    const mainContainer = document.querySelector('.main-container');
+    if (mainContainer && !mainContainer.id) {
+        mainContainer.id = 'main-container';
+    }
 }

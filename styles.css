@@ -3922,3 +3922,198 @@ body.light-mode .profile-stat-item:hover {
 }
 
 /* ==========================================
+   END OF STYLES 
+   ========================================== */
+
+/* ==========================================
+   ACCESSIBILITY & KEYBOARD NAVIGATION
+   ========================================== */
+
+/* Keyboard navigation focus styles */
+body.keyboard-navigation *:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2);
+}
+
+body.keyboard-navigation button:focus,
+body.keyboard-navigation a:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: var(--bg);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+    font-weight: 600;
+    border-radius: 0 0 8px 0;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: none;
+}
+
+/* ==========================================
+   LOADING & ERROR STATES
+   ========================================== */
+
+/* Spinner animation for loading states */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-state {
+    min-height: 200px;
+}
+
+.spinner {
+    animation: spin 0.8s linear infinite;
+}
+
+/* Error state styling */
+.error-state {
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* ==========================================
+   SMOOTH ANIMATIONS
+   ========================================== */
+
+/* Smooth counter animation */
+.stat-value {
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover .stat-value {
+    transform: scale(1.1);
+}
+
+/* Pulse animation for important elements */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ==========================================
+   ENHANCED INTERACTIVITY
+   ========================================== */
+
+/* Better hover states for interactive elements */
+.social-link,
+.skill-badge,
+.project-link,
+.contact-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus-within for card containers */
+.glass-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 255, 136, 0.15);
+}
+
+/* Smooth height transitions */
+.collapsible {
+    transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .bg-layer,
+    .bg-canvas,
+    .theme-toggle,
+    .back-to-top,
+    .wip-notice,
+    .music-player-card,
+    .audio-toggle {
+        display: none !important;
+    }
+    
+    .glass-card {
+        background: white;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+    
+    a {
+        text-decoration: underline;
+        color: black;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+}
+
+/* ==========================================
+   REDUCED MOTION SUPPORT
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .spinner {
+        animation: none;
+        border: 3px solid var(--primary);
+    }
+}
+
+/* ==========================================
+   HIGH CONTRAST MODE
+   ========================================== */
+
+@media (prefers-contrast: high) {
+    :root {
+        --primary: #00ff88;
+        --text: #ffffff;
+        --bg: #000000;
+        --border: #ffffff;
+    }
+    
+    .glass-card {
+        border: 2px solid var(--border);
+    }
+    
+    button,
+    a {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+}

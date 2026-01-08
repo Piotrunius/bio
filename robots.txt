@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow data files and assets from crawling
+Disallow: /data/
+Disallow: /sw.js
+
+# Sitemap
+Sitemap: https://piotrunius.github.io/sitemap.xml
