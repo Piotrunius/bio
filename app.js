@@ -1699,22 +1699,6 @@ function enhanceAccessibility() {
     skipLink.href = '#main-container';
     skipLink.textContent = 'Skip to main content';
     skipLink.className = 'skip-link';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 0;
-        background: var(--primary);
-        color: var(--bg-primary);
-        padding: 8px;
-        text-decoration: none;
-        z-index: 100;
-    `;
-    skipLink.addEventListener('focus', () => {
-        skipLink.style.top = '0';
-    });
-    skipLink.addEventListener('blur', () => {
-        skipLink.style.top = '-40px';
-    });
     document.body.insertBefore(skipLink, document.body.firstChild);
 
     // Add ID to main container if not present
@@ -1820,8 +1804,9 @@ async function copyToClipboard(text, successMessage = 'Copied to clipboard!') {
             // Fallback for older browsers
             const textArea = document.createElement('textarea');
             textArea.value = text;
-            textArea.style.position = 'fixed';
+            textArea.style.position = 'absolute';
             textArea.style.left = '-999999px';
+            textArea.style.opacity = '0';
             document.body.appendChild(textArea);
             textArea.select();
             try {

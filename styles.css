@@ -9,6 +9,8 @@
     --glass-bg: rgba(255, 255, 255, 0.06);
     --glass-border: rgba(255, 255, 255, 0.12);
     --shadow: rgba(0, 0, 0, 0.45);
+    --skip-link-offset: -40px;
+    --skip-link-padding: 8px 16px;
 }
 
 /* Light Mode Colors */
@@ -3945,11 +3947,11 @@ body.keyboard-navigation a:focus {
 /* Skip to main content link */
 .skip-link {
     position: absolute;
-    top: -40px;
+    top: var(--skip-link-offset);
     left: 0;
     background: var(--primary);
     color: var(--bg);
-    padding: 8px 16px;
+    padding: var(--skip-link-padding);
     text-decoration: none;
     z-index: 100;
     font-weight: 600;
