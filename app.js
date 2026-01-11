@@ -1108,7 +1108,7 @@ async function loadProjects() {
             } else if (repo.name === 'Test-Project-Bio') {
                 badge = 'public';
                 badgeClass = 'project-badge-public';
-                // Use default html_url for Test-Project-Bio
+                // Test-Project-Bio uses standard GitHub URL (repo.html_url)
             }
 
             card.innerHTML = `
