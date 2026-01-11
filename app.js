@@ -1036,6 +1036,8 @@ async function loadProjects() {
     const container = document.getElementById('projects-container');
     if (!container) return;
 
+    let allRepos = [];
+
     try {
         // Fetch repositories
         const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=100&type=owner`, {
@@ -1044,30 +1046,50 @@ async function loadProjects() {
             }
         });
 
-        if (!response.ok) {
-            throw new Error(`GitHub API error: ${response.status}`);
+        if (response.ok) {
+            const repos = await response.json();
+            // Target specific repositories
+            const targetNames = ['AutoClicker-AntiAFK', 'piotrunius.github.io'];
+            allRepos = repos.filter(r => targetNames.includes(r.name));
         }
+    } catch (e) {
+        console.warn('Failed to fetch public repos:', e);
+    }
 
-        const repos = await response.json();
-
-        // Target specific repositories
-        const targetNames = ['AutoClicker-AntiAFK', 'piotrunius.github.io'];
-        let allRepos = repos.filter(r => targetNames.includes(r.name));
-
-        // Add Broadcast-generator (now owned by Piotrunius, may be private)
-        try {
-            const broadcastResponse = await fetch(`https://api.github.com/repos/${githubUsername}/Broadcast-generator`, {
-                headers: {
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            });
-            if (broadcastResponse.ok) {
-                const broadcastRepo = await broadcastResponse.json();
-                allRepos.push(broadcastRepo);
+    // Add Broadcast-generator (now owned by Piotrunius, may be private)
+    try {
+        const broadcastResponse = await fetch(`https://api.github.com/repos/${githubUsername}/Broadcast-generator`, {
+            headers: {
+                'Accept': 'application/vnd.github.v3+json'
             }
-        } catch (e) {
-            console.warn('Failed to fetch Broadcast-generator project:', e);
+        });
+        if (broadcastResponse.ok) {
+            const broadcastRepo = await broadcastResponse.json();
+            allRepos.push(broadcastRepo);
+        } else {
+            // Fallback: Add manual data for private repository
+            console.log('Broadcast-generator is private, using fallback data');
+            allRepos.push({
+                name: 'Broadcast-generator',
+                description: 'A private project for generating broadcasts',
+                html_url: 'https://github.com/Piotrunius/Broadcast-generator',
+                language: 'Python',
+                owner: { login: 'Piotrunius' }
+            });
         }
+    } catch (e) {
+        console.warn('Failed to fetch Broadcast-generator project, using fallback:', e);
+        // Fallback: Add manual data for private repository
+        allRepos.push({
+            name: 'Broadcast-generator',
+            description: 'A private project for generating broadcasts',
+            html_url: 'https://github.com/Piotrunius/Broadcast-generator',
+            language: 'Python',
+            owner: { login: 'Piotrunius' }
+        });
+    }
+
+    try {
 
         if (allRepos.length === 0) {
             container.innerHTML = `
