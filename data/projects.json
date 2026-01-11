@@ -1,21 +1,8 @@
 {
   "projects": [
     {
-      "name": "piotrunius.github.io",
-      "description": "Personal portfolio website with real-time stats and integrations",
-      "html_url": "https://github.com/Piotrunius/piotrunius.github.io",
-      "language": "JavaScript",
-      "owner": {
-        "login": "Piotrunius"
-      },
-      "private": false,
-      "stars": 0,
-      "forks": 0,
-      "updated_at": "2026-01-11T10:00:00Z"
-    },
-    {
       "name": "AutoClicker-AntiAFK",
-      "description": "An AutoClicker with Anti-AFK functionality",
+      "description": "Piotrunius AutoClicker & More",
       "html_url": "https://github.com/Piotrunius/AutoClicker-AntiAFK",
       "language": "Python",
       "owner": {
@@ -24,21 +11,21 @@
       "private": false,
       "stars": 0,
       "forks": 0,
-      "updated_at": "2025-12-01T10:00:00Z"
+      "updated_at": "2025-12-10T09:51:26Z"
     },
     {
-      "name": "Broadcast-generator",
-      "description": "A private project for generating broadcasts",
-      "html_url": "https://github.com/Piotrunius/Broadcast-generator",
-      "language": "Python",
+      "name": "piotrunius.github.io",
+      "description": "No description available",
+      "html_url": "https://github.com/Piotrunius/piotrunius.github.io",
+      "language": "CSS",
       "owner": {
         "login": "Piotrunius"
       },
-      "private": true,
+      "private": false,
       "stars": 0,
       "forks": 0,
-      "updated_at": "2026-01-11T10:00:00Z"
+      "updated_at": "2026-01-11T11:06:14Z"
     }
   ],
-  "lastUpdate": "2026-01-11T10:00:00Z"
+  "lastUpdate": "2026-01-11T11:06:37.633Z"
 }
