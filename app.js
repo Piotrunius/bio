@@ -1078,10 +1078,14 @@ async function loadProjects() {
             if (repo.name === 'piotrunius.github.io') {
                 badge = 'active';
                 badgeClass = 'project-badge-active';
-            } else if (repo.name === 'Broadcast-generator' || repo.private) {
+            } else if (repo.name === 'Broadcast-generator') {
                 badge = 'private';
                 badgeClass = 'project-badge-private';
                 projectLink = 'https://cloud.umami.is/q/2SQPbwqnb';
+            } else if (repo.private) {
+                badge = 'private';
+                badgeClass = 'project-badge-private';
+                // Keep default repo.html_url for other private projects
             } else if (repo.name === 'AutoClicker-AntiAFK') {
                 badge = 'archive';
                 badgeClass = 'project-badge-archive';
