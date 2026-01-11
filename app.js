@@ -1057,6 +1057,15 @@ async function loadProjects() {
     }
 
     // Add Broadcast-generator (now owned by Piotrunius, may be private)
+    // Fallback data for private repository
+    const broadcastFallback = {
+        name: 'Broadcast-generator',
+        description: 'A private project for generating broadcasts',
+        html_url: 'https://github.com/Piotrunius/Broadcast-generator',
+        language: 'Python',
+        owner: { login: 'Piotrunius' }
+    };
+
     try {
         const broadcastResponse = await fetch(`https://api.github.com/repos/${githubUsername}/Broadcast-generator`, {
             headers: {
@@ -1067,26 +1076,13 @@ async function loadProjects() {
             const broadcastRepo = await broadcastResponse.json();
             allRepos.push(broadcastRepo);
         } else {
-            // Fallback: Add manual data for private repository
+            // Repository is private, use fallback data
             console.log('Broadcast-generator is private, using fallback data');
-            allRepos.push({
-                name: 'Broadcast-generator',
-                description: 'A private project for generating broadcasts',
-                html_url: 'https://github.com/Piotrunius/Broadcast-generator',
-                language: 'Python',
-                owner: { login: 'Piotrunius' }
-            });
+            allRepos.push(broadcastFallback);
         }
     } catch (e) {
         console.warn('Failed to fetch Broadcast-generator project, using fallback:', e);
-        // Fallback: Add manual data for private repository
-        allRepos.push({
-            name: 'Broadcast-generator',
-            description: 'A private project for generating broadcasts',
-            html_url: 'https://github.com/Piotrunius/Broadcast-generator',
-            language: 'Python',
-            owner: { login: 'Piotrunius' }
-        });
+        allRepos.push(broadcastFallback);
     }
 
     try {
