@@ -206,6 +206,13 @@
   ],
   "recentCommits": [
     {
+      "message": "Fix: Update project links and improve layout in project cards",
+      "repo": "piotrunius.github.io",
+      "author": "Piotrunius",
+      "date": "2026-01-11T11:23:42Z",
+      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/160f51a77ef2b9f51526e0134b10f00d2e1b1415"
+    },
+    {
       "message": "Delete CNAME",
       "repo": "piotrunius.github.io",
       "author": "Piotrek",
@@ -253,13 +260,6 @@
       "author": "Piotrunius",
       "date": "2026-01-05T22:38:51Z",
       "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/18c4fedad4757fd3058597d88c069608d3046a10"
-    },
-    {
-      "message": "Add Discord status panel and enhance GitHub stats display",
-      "repo": "piotrunius.github.io",
-      "author": "Piotrunius",
-      "date": "2026-01-05T22:23:35Z",
-      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/7fa72cfb5b9d09b80f5a695c935050ff878ae811"
     },
     {
       "message": "Update AutoClicker.py",
@@ -318,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-11T11:21:59.009Z",
+  "lastUpdate": "2026-01-11T11:24:41.555Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -336,7 +336,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-11T11:21:59.250Z"
+    "lastChecked": "2026-01-11T11:24:42.064Z"
   },
   "pullRequests": {
     "total": 5,
