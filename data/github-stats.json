@@ -2,7 +2,7 @@
   "summary": {
     "projects": 2,
     "starredCount": 22,
-    "commits": 118
+    "commits": 119
   },
   "starred": [
     {
@@ -36,7 +36,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 120231,
+      "stars": 120233,
       "language": "Python",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -206,6 +206,13 @@
   ],
   "recentCommits": [
     {
+      "message": "Fix: Update projects.json to include Broadcast-generator and remove owner fields",
+      "repo": "piotrunius.github.io",
+      "author": "Piotrunius",
+      "date": "2026-01-11T11:29:15Z",
+      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/c0ac5e660b3570cb641bacefb2a1971991595787"
+    },
+    {
       "message": "Fix: Update project links and improve layout in project cards",
       "repo": "piotrunius.github.io",
       "author": "Piotrunius",
@@ -253,13 +260,6 @@
       "author": "Piotrunius",
       "date": "2026-01-05T23:05:05Z",
       "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/26eb3958c44f5c3910de510c1bd1d70efca5dff4"
-    },
-    {
-      "message": "Remove visitor counter functionality from the site",
-      "repo": "piotrunius.github.io",
-      "author": "Piotrunius",
-      "date": "2026-01-05T22:38:51Z",
-      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/18c4fedad4757fd3058597d88c069608d3046a10"
     },
     {
       "message": "Update AutoClicker.py",
@@ -318,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-11T11:24:41.555Z",
+  "lastUpdate": "2026-01-11T11:31:27.836Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -336,7 +336,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-11T11:24:42.064Z"
+    "lastChecked": "2026-01-11T11:31:28.091Z"
   },
   "pullRequests": {
     "total": 5,
