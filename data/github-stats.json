@@ -27,7 +27,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 17252,
+      "stars": 17254,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -36,7 +36,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 120247,
+      "stars": 120248,
       "language": "Python",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -135,7 +135,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 90481,
+      "stars": 90484,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -318,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-11T14:24:30.726Z",
+  "lastUpdate": "2026-01-11T14:44:43.573Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -336,7 +336,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-11T14:24:31.032Z"
+    "lastChecked": "2026-01-11T14:44:43.931Z"
   },
   "pullRequests": {
     "total": 5,
