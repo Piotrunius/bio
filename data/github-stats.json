@@ -36,7 +36,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 120309,
+      "stars": 120311,
       "language": "Python",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -63,7 +63,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 19153,
+      "stars": 19154,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -117,7 +117,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 162241,
+      "stars": 162244,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -135,7 +135,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 90541,
+      "stars": 90544,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -171,7 +171,7 @@
       "name": "glazewm",
       "owner": "glzr-io",
       "url": "https://github.com/glzr-io/glazewm",
-      "stars": 11065,
+      "stars": 11066,
       "language": "Rust",
       "description": "GlazeWM is a tiling window manager for Windows inspired by i3wm.",
       "starredAt": "2025-06-17T03:39:52Z"
@@ -318,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-12T05:00:49.289Z",
+  "lastUpdate": "2026-01-12T05:46:52.735Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -336,7 +336,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-12T05:00:49.644Z"
+    "lastChecked": "2026-01-12T05:46:53.243Z"
   },
   "pullRequests": {
     "total": 5,
