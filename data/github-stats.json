@@ -18,7 +18,7 @@
       "name": "github-profile-readme-generator",
       "owner": "rahuldkjain",
       "url": "https://github.com/rahuldkjain/github-profile-readme-generator",
-      "stars": 23922,
+      "stars": 23921,
       "language": "TypeScript",
       "description": "🚀 Generate GitHub profile README easily with the latest add-ons like visitors count, GitHub stats, etc using minimal UI.",
       "starredAt": "2026-01-03T02:14:42Z"
@@ -27,7 +27,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 17370,
+      "stars": 17371,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -36,7 +36,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 120645,
+      "stars": 120650,
       "language": "Python",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -81,7 +81,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52365,
+      "stars": 52366,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -99,7 +99,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 45583,
+      "stars": 45585,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -117,7 +117,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 162568,
+      "stars": 162569,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -318,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-14T16:43:01.236Z",
+  "lastUpdate": "2026-01-14T17:15:08.129Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -336,7 +336,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-14T16:43:01.655Z"
+    "lastChecked": "2026-01-14T17:15:08.793Z"
   },
   "pullRequests": {
     "total": 5,
