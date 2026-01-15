@@ -36,7 +36,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 120780,
+      "stars": 120781,
       "language": "Python",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -72,7 +72,7 @@
       "name": "krohnkite",
       "owner": "esjeon",
       "url": "https://github.com/esjeon/krohnkite",
-      "stars": 2017,
+      "stars": 2018,
       "language": "TypeScript",
       "description": "A dynamic tiling extension for KWin",
       "starredAt": "2025-11-03T18:09:23Z"
@@ -99,7 +99,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 45650,
+      "stars": 45651,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -135,7 +135,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 91032,
+      "stars": 91033,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -171,7 +171,7 @@
       "name": "glazewm",
       "owner": "glzr-io",
       "url": "https://github.com/glzr-io/glazewm",
-      "stars": 11093,
+      "stars": 11094,
       "language": "Rust",
       "description": "GlazeWM is a tiling window manager for Windows inspired by i3wm.",
       "starredAt": "2025-06-17T03:39:52Z"
@@ -180,7 +180,7 @@
       "name": "yasb",
       "owner": "amnweb",
       "url": "https://github.com/amnweb/yasb",
-      "stars": 3936,
+      "stars": 3937,
       "language": "Python",
       "description": "A highly configurable Windows status bar written in Python.",
       "starredAt": "2025-06-17T03:39:25Z"
@@ -318,7 +318,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-15T22:27:48.001Z",
+  "lastUpdate": "2026-01-15T22:49:03.478Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -336,7 +336,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-15T22:27:48.564Z"
+    "lastChecked": "2026-01-15T22:49:03.991Z"
   },
   "pullRequests": {
     "total": 5,
