@@ -36,7 +36,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 17426,
+      "stars": 17427,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -126,7 +126,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 162725,
+      "stars": 162726,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -215,6 +215,13 @@
   ],
   "recentCommits": [
     {
+      "message": "Update Headphones label for clarity",
+      "repo": "piotrunius.github.io",
+      "author": "Piotrek",
+      "date": "2026-01-16T07:04:53Z",
+      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/57d01fdcf305f48d4021b193fc8e3caef2d35da7"
+    },
+    {
       "message": "Reupload fix",
       "repo": "piotrunius.github.io",
       "author": "Piotrek",
@@ -262,13 +269,6 @@
       "author": "Piotrunius",
       "date": "2026-01-11T11:33:41Z",
       "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/5bcdca43a4ae4a717889fd929e3d8d427aececf3"
-    },
-    {
-      "message": "Fix: Update projects.json to include Broadcast-generator and remove owner fields",
-      "repo": "piotrunius.github.io",
-      "author": "Piotrunius",
-      "date": "2026-01-11T11:29:15Z",
-      "url": "https://github.com/Piotrunius/piotrunius.github.io/commit/c0ac5e660b3570cb641bacefb2a1971991595787"
     },
     {
       "message": "Update AutoClicker.py",
@@ -327,7 +327,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-16T06:59:57.453Z",
+  "lastUpdate": "2026-01-16T07:05:09.747Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -345,7 +345,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-16T06:59:57.994Z"
+    "lastChecked": "2026-01-16T07:05:10.309Z"
   },
   "pullRequests": {
     "total": 5,
