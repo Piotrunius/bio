@@ -27,7 +27,7 @@
       "name": "github-profile-readme-generator",
       "owner": "rahuldkjain",
       "url": "https://github.com/rahuldkjain/github-profile-readme-generator",
-      "stars": 23929,
+      "stars": 23928,
       "language": "TypeScript",
       "description": "🚀 Generate GitHub profile README easily with the latest add-ons like visitors count, GitHub stats, etc using minimal UI.",
       "starredAt": "2026-01-03T02:14:42Z"
@@ -36,7 +36,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 17443,
+      "stars": 17444,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -45,7 +45,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 120901,
+      "stars": 120908,
       "language": "Python",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -54,7 +54,7 @@
       "name": "arcraiders-data",
       "owner": "RaidTheory",
       "url": "https://github.com/RaidTheory/arcraiders-data",
-      "stars": 250,
+      "stars": 251,
       "language": "JavaScript",
       "description": "Free to use ARC Raiders game data in JSON Format.",
       "starredAt": "2025-11-30T11:02:20Z"
@@ -72,7 +72,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 19294,
+      "stars": 19297,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -90,7 +90,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52406,
+      "stars": 52408,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -108,7 +108,7 @@
       "name": "winutil",
       "owner": "ChrisTitusTech",
       "url": "https://github.com/ChrisTitusTech/winutil",
-      "stars": 45698,
+      "stars": 45701,
       "language": "PowerShell",
       "description": "Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
       "starredAt": "2025-09-29T20:42:42Z"
@@ -126,7 +126,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 162812,
+      "stars": 162826,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -144,7 +144,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 91173,
+      "stars": 91192,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -171,7 +171,7 @@
       "name": "YimMenuV2",
       "owner": "YimMenu",
       "url": "https://github.com/YimMenu/YimMenuV2",
-      "stars": 1013,
+      "stars": 1014,
       "language": "C++",
       "description": "Experimental menu for GTA 5: Enhanced",
       "starredAt": "2025-07-07T06:47:19Z"
@@ -180,7 +180,7 @@
       "name": "glazewm",
       "owner": "glzr-io",
       "url": "https://github.com/glzr-io/glazewm",
-      "stars": 11106,
+      "stars": 11108,
       "language": "Rust",
       "description": "GlazeWM is a tiling window manager for Windows inspired by i3wm.",
       "starredAt": "2025-06-17T03:39:52Z"
@@ -327,7 +327,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-16T23:56:05.970Z",
+  "lastUpdate": "2026-01-17T02:10:49.732Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -345,7 +345,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-16T23:56:06.277Z"
+    "lastChecked": "2026-01-17T02:10:50.284Z"
   },
   "pullRequests": {
     "total": 5,
