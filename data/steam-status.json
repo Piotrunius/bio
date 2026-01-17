@@ -1,12 +1,12 @@
 {
   "steam": {
-    "personastate": 3,
-    "gameextrainfo": null,
+    "personastate": 1,
+    "gameextrainfo": "Risk of Rain Returns",
     "avatar": "https://avatars.steamstatic.com/a7b85c1debc6db3cb342f4f0a14f3bbe2d564f6d_medium.jpg",
     "timecreated": 1584306745,
     "lastlogoff": 1768572359,
     "game_count": 276,
     "total_playtime": 2758
   },
-  "lastUpdate": "2026-01-17T08:33:24.708Z"
+  "lastUpdate": "2026-01-17T08:57:05.797Z"
 }
