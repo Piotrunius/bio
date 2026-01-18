@@ -18,7 +18,7 @@
       "name": "bazzite",
       "owner": "ublue-os",
       "url": "https://github.com/ublue-os/bazzite",
-      "stars": 7613,
+      "stars": 7614,
       "language": "Shell",
       "description": "Bazzite makes gaming and everyday use smoother and simpler across desktop PCs, handhelds, tablets, and home theater PCs.",
       "starredAt": "2026-01-05T20:57:12Z"
@@ -27,7 +27,7 @@
       "name": "github-profile-readme-generator",
       "owner": "rahuldkjain",
       "url": "https://github.com/rahuldkjain/github-profile-readme-generator",
-      "stars": 23932,
+      "stars": 23933,
       "language": "TypeScript",
       "description": "🚀 Generate GitHub profile README easily with the latest add-ons like visitors count, GitHub stats, etc using minimal UI.",
       "starredAt": "2026-01-03T02:14:42Z"
@@ -126,7 +126,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 162933,
+      "stars": 162935,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -144,7 +144,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 91431,
+      "stars": 91437,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -171,7 +171,7 @@
       "name": "YimMenuV2",
       "owner": "YimMenu",
       "url": "https://github.com/YimMenu/YimMenuV2",
-      "stars": 1017,
+      "stars": 1018,
       "language": "C++",
       "description": "Experimental menu for GTA 5: Enhanced",
       "starredAt": "2025-07-07T06:47:19Z"
@@ -189,7 +189,7 @@
       "name": "yasb",
       "owner": "amnweb",
       "url": "https://github.com/amnweb/yasb",
-      "stars": 3958,
+      "stars": 3959,
       "language": "Python",
       "description": "A highly configurable Windows status bar written in Python.",
       "starredAt": "2025-06-17T03:39:25Z"
@@ -327,7 +327,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-18T08:57:15.141Z",
+  "lastUpdate": "2026-01-18T09:30:16.343Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -345,7 +345,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-18T08:57:15.458Z"
+    "lastChecked": "2026-01-18T09:30:16.821Z"
   },
   "pullRequests": {
     "total": 5,
