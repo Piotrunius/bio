@@ -27,7 +27,7 @@
       "name": "github-profile-readme-generator",
       "owner": "rahuldkjain",
       "url": "https://github.com/rahuldkjain/github-profile-readme-generator",
-      "stars": 23931,
+      "stars": 23932,
       "language": "TypeScript",
       "description": "🚀 Generate GitHub profile README easily with the latest add-ons like visitors count, GitHub stats, etc using minimal UI.",
       "starredAt": "2026-01-03T02:14:42Z"
@@ -45,7 +45,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 121008,
+      "stars": 121009,
       "language": "Python",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -90,7 +90,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52428,
+      "stars": 52429,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -327,7 +327,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-18T07:29:05.882Z",
+  "lastUpdate": "2026-01-18T07:44:03.781Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -345,7 +345,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-18T07:29:06.216Z"
+    "lastChecked": "2026-01-18T07:44:04.042Z"
   },
   "pullRequests": {
     "total": 5,
