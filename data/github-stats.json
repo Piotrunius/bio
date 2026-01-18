@@ -36,7 +36,7 @@
       "name": "qwen-code",
       "owner": "QwenLM",
       "url": "https://github.com/QwenLM/qwen-code",
-      "stars": 17463,
+      "stars": 17462,
       "language": "TypeScript",
       "description": "An open-source AI agent that lives in your terminal.",
       "starredAt": "2025-12-09T15:58:30Z"
@@ -45,7 +45,7 @@
       "name": "open-webui",
       "owner": "open-webui",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 121007,
+      "stars": 121008,
       "language": "Python",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "starredAt": "2025-12-09T13:44:06Z"
@@ -72,7 +72,7 @@
       "name": "omarchy",
       "owner": "basecamp",
       "url": "https://github.com/basecamp/omarchy",
-      "stars": 19326,
+      "stars": 19325,
       "language": "Shell",
       "description": "Beautiful, Modern & Opinionated Linux",
       "starredAt": "2025-11-14T20:28:21Z"
@@ -90,7 +90,7 @@
       "name": "powerlevel10k",
       "owner": "romkatv",
       "url": "https://github.com/romkatv/powerlevel10k",
-      "stars": 52427,
+      "stars": 52428,
       "language": "Shell",
       "description": "A Zsh theme",
       "starredAt": "2025-10-22T19:34:06Z"
@@ -126,7 +126,7 @@
       "name": "Microsoft-Activation-Scripts",
       "owner": "massgravel",
       "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
-      "stars": 162926,
+      "stars": 162929,
       "language": "Batchfile",
       "description": "Open-source Windows and Office activator featuring HWID, Ohook, TSforge, and Online KMS activation methods, along with advanced troubleshooting.",
       "starredAt": "2025-09-29T20:41:38Z"
@@ -144,7 +144,7 @@
       "name": "gemini-cli",
       "owner": "google-gemini",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "stars": 91422,
+      "stars": 91425,
       "language": "TypeScript",
       "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
       "starredAt": "2025-09-23T16:15:36Z"
@@ -327,7 +327,7 @@
       "url": "https://github.com/Piotrunius/AutoClicker-AntiAFK/commit/dfe351efc4a812b9d9470d0bd532bcfdc27b2b3b"
     }
   ],
-  "lastUpdate": "2026-01-18T06:59:38.152Z",
+  "lastUpdate": "2026-01-18T07:29:05.882Z",
   "security": {
     "dependabot": {
       "open": 0,
@@ -345,7 +345,7 @@
       "alerts": []
     },
     "totalOpen": 0,
-    "lastChecked": "2026-01-18T06:59:38.459Z"
+    "lastChecked": "2026-01-18T07:29:06.216Z"
   },
   "pullRequests": {
     "total": 5,
